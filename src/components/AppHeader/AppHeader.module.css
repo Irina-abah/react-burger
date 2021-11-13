@@ -1,10 +1,36 @@
 .header {
+  border: 1px red solid; 
+  background: #1C1C21;
+
+}
+
+.wrapper {
+  max-width: 1240px;
+  width: 100%;
+  border: 1px red solid;
   display: flex;
   flex-direction: row;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .nav {
   list-style: none;
   display: flex;
   flex-direction: row;
+}
+
+.nav_item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  color: #8585AD;
+}
+
+.nav_item:hover path, .nav_item:hover{
+  transition: all 0.8s ease;
+  fill: #fff;
+  color: #fff;
 }
