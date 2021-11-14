@@ -19,6 +19,7 @@
   list-style: none;
   display: flex;
   flex-direction: row;
+  padding: 0;
 }
 
 .nav_item {
@@ -29,8 +30,18 @@
   color: #8585AD;
 }
 
+.active, .active path{
+  color: #fff;
+  fill: #fff;
+}
+
 .nav_item:hover path, .nav_item:hover{
   transition: all 0.8s ease;
   fill: #fff;
   color: #fff;
+}
+
+.text {
+  margin-top: 0;
+  margin-bottom: 0;
 }
