@@ -4,3 +4,8 @@
   display: flex;
   justify-content: space-around;
 }
+
+.tab {
+  text-decoration: inherit;
+  color: inherit;
+}

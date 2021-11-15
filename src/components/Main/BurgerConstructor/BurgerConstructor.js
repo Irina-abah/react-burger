@@ -1,7 +1,7 @@
 import React from "react";
 import Constructor from "../BurgerConstructor/BurgerConstructor.module.css";
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
-import data from "../../../utils/data"
+import data from "../../../utils/data";
 
 function BurgerConstructor() {
   return (
