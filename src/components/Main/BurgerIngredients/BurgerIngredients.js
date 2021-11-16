@@ -14,7 +14,7 @@ function BurgerIngredients() {
   const mains = data.filter((item) => item.type === 'main');
 
   return (
-    <div>
+    <div className={`mr-10`}>
       <h1 className={`text text_type_main-large mb-5`}>Соберите бургер</h1>
       <div style={{ display: 'flex' }}>
         <Tab value="one" active={current === 'one'} onClick={setCurrent}><Link className={IngredientsStyles.tab} to="#buns">Булки</Link>
@@ -27,7 +27,7 @@ function BurgerIngredients() {
       <div className={IngredientsStyles.menu}>
         <div className={`mt-10`}>
           <h2 className={`${IngredientsStyles.title} text text_type_main-medium`} id="buns">Булки</h2>
-          <div className={`${IngredientsStyles.type} mr-4 ml-4 mt-6`}>
+          <div className={`${IngredientsStyles.type} mr-2 ml-4 mt-6`}>
             {buns.map((item, i) => (
               <Ingredient item={item} key={item._id}
               />
@@ -36,7 +36,7 @@ function BurgerIngredients() {
         </div>
         <div className={`mt-10`}>
           <h2 className={`${IngredientsStyles.title} text text_type_main-medium`} id="sauses">Соусы</h2>
-          <div className={`${IngredientsStyles.type} mr-4 ml-4 mt-6`}>
+          <div className={`${IngredientsStyles.type} mr-2 ml-4 mt-6`}>
             {sauses.map((item, i) => (
               <Ingredient item={item} key={item._id}
               />
@@ -45,7 +45,7 @@ function BurgerIngredients() {
         </div>
         <div className={`mt-10`}>
           <h2 className={`${IngredientsStyles.title} text text_type_main-medium`} id="mains">Начинки</h2>
-          <div className={`${IngredientsStyles.type} mr-4 ml-4 mt-6`}>
+          <div className={`${IngredientsStyles.type} mr-2 ml-4 mt-6`}>
             {mains.map((item, i) => (
               <Ingredient item={item} key={item._id}
               />

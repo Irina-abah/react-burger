@@ -11,10 +11,10 @@
 }
 
 .menu {
-  flex: 1;
   max-height: 100vh;
   height: 100%;
   overflow-y: scroll;
+  box-sizing: content-box;
 }
 
 .type {

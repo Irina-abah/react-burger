@@ -15,12 +15,14 @@
   min-width: 320px;
   min-height: 100vh;
   position: relative;
-  /* width: 100%; */
   margin: 0 auto;
 }
 
 body {
   background-color: #131316;
   color: #F2F2F3;
-  ;
+}
+
+html {
+  scroll-behavior: smooth;
 }

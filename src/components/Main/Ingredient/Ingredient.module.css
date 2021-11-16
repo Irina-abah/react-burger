@@ -1,5 +1,6 @@
 .ingredient {
   border: 1px red solid; 
+  position: relative;
 }
 
 .price {
@@ -9,6 +10,5 @@
 
 .title {
   min-height: 48px;
-  height: 100%;
   text-align: center;
 }
