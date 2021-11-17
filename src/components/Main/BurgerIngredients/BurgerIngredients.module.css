@@ -11,10 +11,10 @@
 }
 
 .menu {
-  max-height: 100vh;
+  max-height: calc(100vh - 196px);
   height: 100%;
-  overflow-y: scroll;
-  box-sizing: content-box;
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .type {

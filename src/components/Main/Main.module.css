@@ -1,7 +1,4 @@
 .main {
   display: flex;
   flex-direction: row;
-  /* grid-template-columns: 1fr 1fr;
-  grid-template-rows: 100px, max-content;
-  column-gap: 40px; */
 }

@@ -1,20 +1,29 @@
 .wrapper {
-  max-height: 100vh;
-  height: 100%;
-  overflow-y: scroll;
-  box-sizing: content-box;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.wrapper::-webkit-scrollbar {
-  width: 8px;
-  background-color: #2F2F37;
+.food_list {
+  composes: menu from '../BurgerIngredients/BurgerIngredients.module.css';
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: calc(100vh - 476px);
 }
 
-.wrapper::-webkit-scrollbar-thumb {
-  background-color: #8585AD;
-}
-
-.food {
+.food_item {
   display: flex;
   align-items: center;
+}
+
+.order {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.price {
+  display: flex;
+  flex-direction: row;
 }
