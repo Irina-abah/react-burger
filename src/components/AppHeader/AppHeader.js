@@ -27,7 +27,7 @@ function Header() {
               </NavLink></li>
           </ul>
         </nav>
-        <Link exact path="/">
+        <Link to="/">
           <Logo />
         </Link>
         <NavLink 

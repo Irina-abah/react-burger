@@ -8,7 +8,7 @@ function Ingredient({item}) {
   return (
     <div className={IngredientStyles.ingredient}>
       <img src={item.image} alt="Изображение продукта"/>
-      <div className={`${IngredientStyles.price} mt-2 mb-2`}>
+      <div className={`${IngredientStyles.price} mt-2 mb-1`}>
         <p className={`text text_type_digits-default`}>{item.price}</p>
         <CurrencyIcon type="primary" />
       </div>
@@ -19,17 +19,17 @@ function Ingredient({item}) {
 }
 
 Ingredient.propTypes = PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
+    _id: PropTypes.string,
+    name: PropTypes.string,
+    type: PropTypes.string,
     proteins: PropTypes.number,
     fat: PropTypes.number,
     carbohydrates: PropTypes.number,
     calories: PropTypes.number,
-    price: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired,
-    image_large: PropTypes.string.isRequired,
-    image_mobile: PropTypes.string.isRequired,
+    price: PropTypes.number,
+    image: PropTypes.string,
+    image_large: PropTypes.string,
+    image_mobile: PropTypes.string,
   });
 
   export default Ingredient;

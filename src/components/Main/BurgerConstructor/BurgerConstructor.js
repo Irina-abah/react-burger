@@ -2,6 +2,7 @@ import React from "react";
 import ConstructorStyles from "../BurgerConstructor/BurgerConstructor.module.css";
 import { ConstructorElement, DragIcon, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import data from "../../../utils/data";
+import PropTypes from "prop-types";
 
 function BurgerConstructor() {
 
@@ -22,10 +23,9 @@ function BurgerConstructor() {
         
         <div className={`${ConstructorStyles.food_list} pr-2`}>
           {addedItems.map((item, i) => (
-            <div className={ConstructorStyles.food_item}>
+            <div key={item._id} className={ConstructorStyles.food_item}>
               <DragIcon type="primary" />
               <ConstructorElement
-                key={item._id}
                 text={item.name}
                 price={item.price}
                 thumbnail={item.image}
@@ -53,8 +53,6 @@ function BurgerConstructor() {
         </Button>
       </div>
     </div>
-    
-    
   )
 }
 
