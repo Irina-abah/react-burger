@@ -8,16 +8,19 @@ function BurgerConstructor() {
   const addedItems = data.filter((item) => item.type !== 'bun')
 
   return (
-    <div className={`mt-15`}>
-      <div className={`${ConstructorStyles.wrapper} mb-10 pr-2 pl-4`}>
-        <ConstructorElement
-          type="top"
-          isLocked={true}
-          text={`${data[0].name} (верх)`}
-          price={data[0].price}
-          thumbnail={data[0].image}
-        />
-        <div className={`${ConstructorStyles.food_list} pr-2 pl-4`}>
+    <div className={`${ConstructorStyles.container} mt-15 pl-4`}>
+      <div className={`${ConstructorStyles.wrapper} mb-10`}>
+        <div className={`pr-4`}>
+          <ConstructorElement
+            type="top"
+            isLocked={true}
+            text={`${data[0].name} (верх)`}
+            price={data[0].price}
+            thumbnail={data[0].image}
+          />
+        </div>
+        
+        <div className={`${ConstructorStyles.food_list} pr-2`}>
           {addedItems.map((item, i) => (
             <div className={ConstructorStyles.food_item}>
               <DragIcon type="primary" />
@@ -30,17 +33,19 @@ function BurgerConstructor() {
             </div>
           ))}
         </div>
-        <ConstructorElement
-          type="bottom"
-          isLocked={true}
-          text={`${data[0].name} (низ)`}
-          price={data[0].price}
-          thumbnail={data[0].image}
-        />
+        <div className={`pr-4`}>
+          <ConstructorElement
+            type="bottom"
+            isLocked={true}
+            text={`${data[0].name} (низ)`}
+            price={data[0].price}
+            thumbnail={data[0].image}
+          />
+        </div>
+        
       </div>
-      <div className={`${ConstructorStyles.order}`}>
-        <span className={`${ConstructorStyles.price}`}>
-          <p className={`text text_type_digits-medium`}>999</p>
+      <div className={`${ConstructorStyles.order} pr-4`}>
+        <span className={`${ConstructorStyles.price} text text_type_digits-medium mr-10`}>610
           <CurrencyIcon type="primary" />
         </span>
         <Button type="primary" size="large">

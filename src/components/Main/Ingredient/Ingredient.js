@@ -6,9 +6,9 @@ import IngredientStyles from "../Ingredient/Ingredient.module.css";
 function Ingredient({item}) {
 
   return (
-    <div className={`${IngredientStyles.ingredient}`}>
+    <div className={IngredientStyles.ingredient}>
       <img src={item.image} alt="Изображение продукта"/>
-      <div className={`${IngredientStyles.price} mt-1 mb-1`}>
+      <div className={`${IngredientStyles.price} mt-2 mb-2`}>
         <p className={`text text_type_digits-default`}>{item.price}</p>
         <CurrencyIcon type="primary" />
       </div>
