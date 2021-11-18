@@ -7,7 +7,7 @@ function Main({data}) {
   return (
     <section className={`${MainStyles.main} pl-5 pr-5 pb-10 pt-10`}>
       <BurgerIngredients data={data}/>
-      <BurgerConstructor />
+      <BurgerConstructor data={data}/>
     </section>
   )
 }

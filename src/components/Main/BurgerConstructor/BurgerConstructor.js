@@ -5,7 +5,7 @@ import ingredientType from "../../../utils/types";
 import PropTypes from "prop-types";
 
 function BurgerConstructor({data}) {
-
+  const buns = data.filter((item) => item.type === 'bun');
   const addedItems = data.filter((item) => item.type !== 'bun')
 
   return (
@@ -15,9 +15,9 @@ function BurgerConstructor({data}) {
           <ConstructorElement
             type="top"
             isLocked={true}
-            text={`${data[0].name} (верх)`}
-            price={data[0].price}
-            thumbnail={data[0].image}
+            text={`${buns[0].name} (верх)`}
+            price={buns[0].price}
+            thumbnail={buns[0].image}
           />
         </div>
         
@@ -37,9 +37,9 @@ function BurgerConstructor({data}) {
           <ConstructorElement
             type="bottom"
             isLocked={true}
-            text={`${data[0].name} (низ)`}
-            price={data[0].price}
-            thumbnail={data[0].image}
+            text={`${buns[0].name} (низ)`}
+            price={buns[0].price}
+            thumbnail={buns[0].image}
           />
         </div>
         
@@ -57,7 +57,7 @@ function BurgerConstructor({data}) {
 }
 
 BurgerConstructor.propTypes = {
-  data: PropTypes.arrayOf(ingredientType).isRequired
+  data: PropTypes.arrayOf(ingredientType)
 }
 
 export default BurgerConstructor;

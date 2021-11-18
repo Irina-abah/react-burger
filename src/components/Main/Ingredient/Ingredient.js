@@ -2,14 +2,15 @@ import React from "react";
 import { CurrencyIcon, Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import IngredientStyles from "../Ingredient/Ingredient.module.css";
+import ingredientType from "../../../utils/types";
 
 function Ingredient({item}) {
 
   return (
     <div className={IngredientStyles.ingredient}>
       <img src={item.image} alt="Изображение продукта"/>
-      <div className={`${IngredientStyles.price} mt-2 mb-1`}>
-        <p className={`text text_type_digits-default`}>{item.price}</p>
+      <div className={`${IngredientStyles.price} mt-2 mb-2`}>
+        <p className={`text text_type_digits-default mr-2`}>{item.price}</p>
         <CurrencyIcon type="primary" />
       </div>
       <h2 className={`${IngredientStyles.title} text text_type_main-default`}>{item.name}</h2>
@@ -18,18 +19,9 @@ function Ingredient({item}) {
   )
 }
 
-Ingredient.propTypes = PropTypes.shape({
-    _id: PropTypes.string,
-    name: PropTypes.string,
-    type: PropTypes.string,
-    proteins: PropTypes.number,
-    fat: PropTypes.number,
-    carbohydrates: PropTypes.number,
-    calories: PropTypes.number,
-    price: PropTypes.number,
-    image: PropTypes.string,
-    image_large: PropTypes.string,
-    image_mobile: PropTypes.string,
-  });
+Ingredient.propTypes = {
+  item: ingredientType
+}
+
 
   export default Ingredient;
