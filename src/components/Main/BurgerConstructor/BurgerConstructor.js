@@ -1,10 +1,10 @@
 import React from "react";
 import ConstructorStyles from "../BurgerConstructor/BurgerConstructor.module.css";
 import { ConstructorElement, DragIcon, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import data from "../../../utils/data";
+import ingredientType from "../../../utils/types";
 import PropTypes from "prop-types";
 
-function BurgerConstructor() {
+function BurgerConstructor({data}) {
 
   const addedItems = data.filter((item) => item.type !== 'bun')
 
@@ -54,6 +54,10 @@ function BurgerConstructor() {
       </div>
     </div>
   )
+}
+
+BurgerConstructor.propTypes = {
+  data: PropTypes.arrayOf(ingredientType).isRequired
 }
 
 export default BurgerConstructor;

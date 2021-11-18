@@ -3,10 +3,10 @@ import MainStyles from "../Main/Main.module.css";
 import BurgerConstructor from "./BurgerConstructor/BurgerConstructor";
 import BurgerIngredients from "./BurgerIngredients/BurgerIngredients";
 
-function Main() {
+function Main({data}) {
   return (
     <section className={`${MainStyles.main} pl-5 pr-5 pb-10 pt-10`}>
-      <BurgerIngredients />
+      <BurgerIngredients data={data}/>
       <BurgerConstructor />
     </section>
   )
