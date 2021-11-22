@@ -2,8 +2,8 @@ import React from 'react';
 import MainStyles from "./App.module.css";
 import Header from "../AppHeader/AppHeader";
 import Main from "../Main/Main";
-import Modal from "../Modal/Modal";
-import OrderDetails from "../OrderDetails/OrderDetails";
+// import Modal from "../Modal/Modal";
+// import OrderDetails from "../OrderDetails/OrderDetails";
 // import ingredients from "../../utils/data";
 import allIngredientsApi from "../../utils/MainApi";
 
@@ -33,12 +33,12 @@ function App() {
       <Main 
       data={foodData}
       onOrderDetails={handleModal}/>
-      <Modal 
+      {/* <Modal 
       title=''
       isOpen={isOpen} 
       onClose={handleModal}>
         <OrderDetails />
-      </Modal>
+      </Modal> */}
     </div>
   )
 }
