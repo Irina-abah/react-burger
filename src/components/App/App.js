@@ -11,12 +11,12 @@ function App() {
 
   React.useEffect(() => {
     allIngredientsApi.getIngredients()
-    .then((data) => {
-      console.log(data)
-      setFoodData(data)
+    .then((res) => {
+      console.log(res)
+      setFoodData(res.data)
+    })
     .catch((err) => {
       console.log(err);
-      })
     })
   }, [])
 

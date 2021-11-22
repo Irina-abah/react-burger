@@ -1,4 +1,4 @@
-import {BASE_URL} from "../utils/constants";
+import {BASE_URL} from "./constants";
 
 export class IngredientsApi {
   constructor({address, headers}) {
