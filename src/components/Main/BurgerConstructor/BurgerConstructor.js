@@ -4,7 +4,7 @@ import { ConstructorElement, DragIcon, CurrencyIcon, Button } from "@ya.praktiku
 import ingredientType from "../../../utils/types";
 import PropTypes from "prop-types";
 
-function BurgerConstructor({data}) {
+function BurgerConstructor({data, onOrderDetails}) {
   const buns = data.filter((item) => item.type === 'bun');
   const addedItems = data.filter((item) => item.type !== 'bun')
 
@@ -48,7 +48,7 @@ function BurgerConstructor({data}) {
         <span className={`${ConstructorStyles.price} text text_type_digits-medium mr-10`}>610
           <CurrencyIcon type="primary" />
         </span>
-        <Button type="primary" size="large">
+        <Button type="primary" size="large" onClick={onOrderDetails}>
           Оформить заказ 
         </Button>
       </div>
