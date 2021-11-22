@@ -15,7 +15,7 @@ function Modal({isOpen, onClose, title, children}) {
     }
     document.addEventListener('keydown', handleEscClose);
     return () => {
-      document.removeEventListener('keydown', handleEscClose);
+    document.removeEventListener('keydown', handleEscClose);
     }
   }, [onClose]);
 
@@ -32,6 +32,7 @@ function Modal({isOpen, onClose, title, children}) {
     </div>
     </>), modalRoot
   )
+  
 }
 
 export default Modal;

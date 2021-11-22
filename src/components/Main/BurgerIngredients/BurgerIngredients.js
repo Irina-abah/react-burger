@@ -6,7 +6,7 @@ import Ingredient from "../Ingredient/Ingredient";
 import ingredientType from "../../../utils/types";
 import PropTypes from "prop-types";
 
-function BurgerIngredients({data}) {
+function BurgerIngredients({data, onIngredientDetails}) {
 
   const [current, setCurrent] = React.useState('one');
   const buns = data.filter((item) => item.type === 'bun');
@@ -29,7 +29,7 @@ function BurgerIngredients({data}) {
           <h2 className={`${IngredientsStyles.title} text text_type_main-medium`} id="buns">Булки</h2>
           <div className={`${IngredientsStyles.type} mr-2 ml-4 mt-6`}>
             {buns.map((item, i) => (
-              <Ingredient item={item} key={item._id}
+              <Ingredient item={item} key={item._id} onIngredientDetails={onIngredientDetails}
               />
             ))}
           </div>
@@ -38,7 +38,7 @@ function BurgerIngredients({data}) {
           <h2 className={`${IngredientsStyles.title} text text_type_main-medium`} id="sauses">Соусы</h2>
           <div className={`${IngredientsStyles.type} mr-2 ml-4 mt-6`}>
             {sauses.map((item, i) => (
-              <Ingredient item={item} key={item._id}
+              <Ingredient item={item} key={item._id} onIngredientDetails={onIngredientDetails}
               />
             ))}
           </div>
@@ -47,7 +47,7 @@ function BurgerIngredients({data}) {
           <h2 className={`${IngredientsStyles.title} text text_type_main-medium`} id="mains">Начинки</h2>
           <div className={`${IngredientsStyles.type} mr-2 ml-4 mt-6`}>
             {mains.map((item, i) => (
-              <Ingredient item={item} key={item._id}
+              <Ingredient item={item} key={item._id} onIngredientDetails={onIngredientDetails}
               />
             ))}
           </div>

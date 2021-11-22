@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 import IngredientStyles from "../Ingredient/Ingredient.module.css";
 import ingredientType from "../../../utils/types";
 
-function Ingredient({item}) {
+function Ingredient({item, onIngredientDetails}) {
 
   return (
-    <div className={IngredientStyles.ingredient}>
+    <div className={IngredientStyles.ingredient} onClick={onIngredientDetails}>
       <img src={item.image} alt="Изображение продукта"/>
       <div className={`${IngredientStyles.price} mt-2 mb-2`}>
         <p className={`text text_type_digits-default mr-2`}>{item.price}</p>
