@@ -9,7 +9,7 @@ function OrderDetails() {
       </span>
       <img className={`mt-15 mb-15`} src={doneIcon} alt="Done" />
       <p className={`text text_type_main-default mb-2`}>Ваш заказ начали готовить</p>
-      <p className={`${orderStyles.status} text text_type_main-default mb-15`}>Дождитесь готовности на орбитальной станции</p>
+      <p className={`${orderStyles.status} text text_type_main-default text_color_inactive mb-15`}>Дождитесь готовности на орбитальной станции</p>
     </>
   )
 }

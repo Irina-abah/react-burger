@@ -12,7 +12,7 @@ function Header() {
             <li> 
               <NavLink 
                 to="/constructor" 
-                className={`${HeaderStyles.nav_item} pl-5 pr-5 mr-2`} 
+                className={`${HeaderStyles.nav_item} text_color_inactive pl-5 pr-5 mr-2`} 
                 activeClassName={HeaderStyles.active}>
               <BurgerIcon type="secondary"/>
               <p className={`${HeaderStyles.text} ml-2`}>Конструктор</p>
@@ -20,7 +20,7 @@ function Header() {
               <li>
                 <NavLink 
                 to="/orders" 
-                className={`${HeaderStyles.nav_item} pl-5 pr-5`}
+                className={`${HeaderStyles.nav_item} text_color_inactive pl-5 pr-5`}
                 activeClassName={HeaderStyles.active}>
               <ListIcon type="secondary" />
               <p className={`${HeaderStyles.text} ml-2`}>Лента заказов</p>
@@ -32,7 +32,7 @@ function Header() {
         </Link>
         <NavLink 
           to="/account" 
-          className={`${HeaderStyles.nav_item} pl-5 pr-5`}
+          className={`${HeaderStyles.nav_item} text_color_inactive pl-5 pr-5`}
           activeClassName={HeaderStyles.active}>
           <ProfileIcon type="secondary" />
           <p className={`${HeaderStyles.text} ml-2`}>Личный кабинет</p>

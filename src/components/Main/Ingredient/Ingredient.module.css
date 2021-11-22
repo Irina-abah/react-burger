@@ -1,9 +1,9 @@
 .ingredient {
-  /* border: 1px red solid;  */
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
 }
 
 .price {
