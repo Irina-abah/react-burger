@@ -5,13 +5,13 @@ import ingredientType from "../../../utils/types";
 import PropTypes from "prop-types";
 
 function BurgerConstructor({data}) {
-  // const buns = data.filter((item) => item.type === 'bun');
+  const buns = data.filter((item) => item.type === 'bun');
   const addedItems = data.filter((item) => item.type !== 'bun')
 
   return (
     <div className={`${ConstructorStyles.container} mt-15 pl-4`}>
-      <div className={`${ConstructorStyles.wrapper} mb-10`}>
-        {/* <div className={`pr-4`}>
+      {data.length && buns ? (<div className={`${ConstructorStyles.wrapper} mb-10`}>
+        <div className={`pr-4`}>
           <ConstructorElement
             type="top"
             isLocked={true}
@@ -19,7 +19,7 @@ function BurgerConstructor({data}) {
             price={buns[0].price}
             thumbnail={buns[0].image}
           />
-        </div> */}
+        </div>
         <div className={`${ConstructorStyles.food_list} pr-2`}>
           {addedItems.map((item, i) => (
             <div key={item._id} className={ConstructorStyles.food_item}>
@@ -32,7 +32,7 @@ function BurgerConstructor({data}) {
             </div>
           ))}
         </div>
-        {/* <div className={`pr-4`}>
+        <div className={`pr-4`}>
           <ConstructorElement
             type="bottom"
             isLocked={true}
@@ -40,9 +40,10 @@ function BurgerConstructor({data}) {
             price={buns[0].price}
             thumbnail={buns[0].image}
           />
-        </div> */}
+        </div>
         
-      </div>
+      </div>) : null}
+      
       <div className={`${ConstructorStyles.order} pr-4`}>
         <span className={`${ConstructorStyles.price} text text_type_digits-medium mr-10`}>610
           <CurrencyIcon type="primary" />
