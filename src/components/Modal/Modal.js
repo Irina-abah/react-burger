@@ -10,9 +10,7 @@ const modalRoot = document.getElementById("react-modals");
 function Modal({isOpen, onClose, title, children}) {
 
   function handleClick(evt) {
-    if (evt.target.className.includes('overlay')) {
       onClose()
-    }
   }
 
   React.useEffect(() => {
