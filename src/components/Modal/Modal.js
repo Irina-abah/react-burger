@@ -43,11 +43,11 @@ function Modal({isOpen, onClose, title, children}) {
   ) 
 }
 
-Modal.propTypes = PropTypes.shape({
-  isOpen: PropTypes.bool,
-  onClose: PropTypes.func,
-  title: PropTypes.string,
-  children: PropTypes.elementType
-}).isRequired;
+Modal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired
+};
 
 export default Modal;
