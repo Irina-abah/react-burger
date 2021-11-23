@@ -1,6 +1,8 @@
 import MainStyles from "../Main/Main.module.css";
 import BurgerConstructor from "./BurgerConstructor/BurgerConstructor";
 import BurgerIngredients from "./BurgerIngredients/BurgerIngredients";
+import ingredientType from "../../utils/types";
+import PropTypes from "prop-types";
 
 function Main({data}) {
   return (
@@ -9,6 +11,10 @@ function Main({data}) {
       <BurgerConstructor data={data}/>
     </section>
   )
+}
+
+Main.propTypes = {
+  data: PropTypes.arrayOf(ingredientType).isRequired
 }
 
 export default Main;
