@@ -29,8 +29,7 @@ function Ingredient({item}) {
       <Counter count={1} size="default" />
     </div>
     {isOpen && (<Modal 
-      title="Детали ингредиента"
-      isOpen={isOpen} 
+      title="Детали ингредиента" 
       onClose={handleClose}>
       <IngredientsDetails item={item}/>
     </Modal>)}

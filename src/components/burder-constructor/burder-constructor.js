@@ -66,7 +66,6 @@ function BurgerConstructor({data}) {
     </div>
     {isOpen && (<Modal 
       title=""
-      isOpen={isOpen} 
       onClose={handleClose}>
       <OrderDetails />
     </Modal>)}
