@@ -1,8 +1,7 @@
 import React from 'react';
-import MainStyles from "./App.module.css";
-import Header from "../AppHeader/AppHeader";
-import Main from "../Main/Main";
-import allIngredientsApi from "../../utils/MainApi";
+import Header from "../app-header/app-header";
+import Main from "../main/main";
+import allIngredientsApi from "../../utils/main-api";
 
 function App() {
 
@@ -20,7 +19,7 @@ function App() {
   }, [])
 
   return (
-    <div className={MainStyles.App}>
+    <div>
       <Header />
       <Main 
       data={foodData}

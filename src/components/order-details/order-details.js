@@ -1,5 +1,5 @@
 import doneIcon from "../../images/done-icon.gif";
-import orderStyles from "./OrderDetails.module.css";
+import orderStyles from "./order-details.module.css";
 
 function OrderDetails() {
   return (

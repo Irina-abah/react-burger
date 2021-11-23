@@ -12,13 +12,14 @@
 }
 
 .food_list {
-  composes: menu from '../BurgerIngredients/BurgerIngredients.module.css';
+  composes: menu from '../burger-ingredients/burger-ingredients.module.css';
   display: flex;
   flex-direction: column;
   gap: 10px;
   max-height: calc(100vh - 476px);
   width: 100%;
 }
+
 
 .food_item {
   display: flex;
