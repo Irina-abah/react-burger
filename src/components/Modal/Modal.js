@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 
 const modalRoot = document.getElementById("react-modals");
 
-function Modal({isOpen, onClose, title, children}) {
+function Modal({onClose, title, children}) {
 
   function handleClick(evt) {
       onClose()
@@ -27,22 +27,22 @@ function Modal({isOpen, onClose, title, children}) {
   }, [onClose]);
 
   return createPortal(
-    isOpen && ( 
     <>
     <ModalOverlay onClose={handleClick}/>
     <div className={`${modalStyles.container} pt-10 pr-10 pb-15 pl-10`}>
     <div className={modalStyles.header}>
       <h2 className={`${modalStyles.title} text text_type_main-large`}>{title}</h2>
-      <CloseIcon type="primary" onClick={onClose} />
+      <div className={modalStyles.icon}>
+        <CloseIcon type="primary" onClick={onClose}/>
+      </div>
     </div>
       {children}
     </div>
-    </>), modalRoot
+    </>, modalRoot
   ) 
 }
 
 Modal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   children: PropTypes.element.isRequired

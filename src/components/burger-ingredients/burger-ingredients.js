@@ -60,7 +60,8 @@ function BurgerIngredients({data, isFailed}) {
 }
 
 BurgerIngredients.propTypes = {
-  data: PropTypes.arrayOf(ingredientType).isRequired
+  data: PropTypes.arrayOf(ingredientType).isRequired,
+  isFailed: PropTypes.bool.isRequired
 }
 
 export default BurgerIngredients;

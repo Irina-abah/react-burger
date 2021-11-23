@@ -64,12 +64,12 @@ function BurgerConstructor({data}) {
         </Button>
       </div>
     </div>
-    <Modal 
+    {isOpen && (<Modal 
       title=""
       isOpen={isOpen} 
       onClose={handleClose}>
       <OrderDetails />
-    </Modal>
+    </Modal>)}
     </>
   )
 }

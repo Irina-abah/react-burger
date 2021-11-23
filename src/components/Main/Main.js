@@ -14,7 +14,8 @@ function Main({data, isFailed}) {
 }
 
 Main.propTypes = {
-  data: PropTypes.arrayOf(ingredientType).isRequired
+  data: PropTypes.arrayOf(ingredientType).isRequired,
+  isFailed: PropTypes.bool.isRequired
 }
 
 export default Main;

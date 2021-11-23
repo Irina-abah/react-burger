@@ -28,12 +28,13 @@ function Ingredient({item}) {
       <h2 className={`${ingredientStyles.title} text text_type_main-default`}>{item.name}</h2>
       <Counter count={1} size="default" />
     </div>
-    <Modal 
+    {isOpen && (<Modal 
       title="Детали ингредиента"
       isOpen={isOpen} 
       onClose={handleClose}>
       <IngredientsDetails item={item}/>
-    </Modal>
+    </Modal>)}
+    
     </>
   )
 }
