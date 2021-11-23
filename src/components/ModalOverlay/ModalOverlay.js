@@ -1,8 +1,9 @@
 import overlayStyles from "./ModalOverlay.module.css";
 
-function ModalOverlay() {
+function ModalOverlay({onClose}) {
+  
   return (
-    <div className={overlayStyles.overlay}></div>
+    <div className={overlayStyles.overlay} onMouseDown={onClose}></div>
   )
 }
 

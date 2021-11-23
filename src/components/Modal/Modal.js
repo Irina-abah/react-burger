@@ -8,9 +8,16 @@ const modalRoot = document.getElementById("react-modals");
 
 function Modal({isOpen, onClose, title, children}) {
 
+  function handleClick(evt) {
+    if (evt.target.className.includes('overlay')) {
+      onClose()
+    }
+  }
+
   React.useEffect(() => {
     function handleEscClose(evt) {
       if (evt.key === 'Escape') {
+        console.log(evt.target)
         onClose();
       }
     }
@@ -23,7 +30,7 @@ function Modal({isOpen, onClose, title, children}) {
   return createPortal(
     isOpen && ( 
     <>
-    <ModalOverlay />
+    <ModalOverlay onClose={handleClick}/>
     <div className={`${modalStyles.container} pt-10 pr-10 pb-15 pl-10`}>
     <div className={modalStyles.header}>
       <h2 className={`${modalStyles.title} text text_type_main-large`}>{title}</h2>
