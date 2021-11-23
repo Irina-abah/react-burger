@@ -1,4 +1,3 @@
-
 import ingredientStyles from "./IngredientDetails.module.css";
 import ingredientType from "../../utils/types";
 

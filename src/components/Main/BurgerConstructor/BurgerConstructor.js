@@ -53,8 +53,7 @@ function BurgerConstructor({data}) {
             price={buns[0].price}
             thumbnail={buns[0].image}
           />
-        </div>
-        
+        </div> 
       </div>) : null}
       <div className={`${ConstructorStyles.order} pr-4`}>
         <span className={`${ConstructorStyles.price} text text_type_digits-medium mr-10`}>610
@@ -66,7 +65,7 @@ function BurgerConstructor({data}) {
       </div>
     </div>
     <Modal 
-      title=''
+      title=""
       isOpen={isOpen} 
       onClose={handleClose}>
       <OrderDetails />
@@ -76,7 +75,7 @@ function BurgerConstructor({data}) {
 }
 
 BurgerConstructor.propTypes = {
-  data: PropTypes.arrayOf(ingredientType)
+  data: PropTypes.arrayOf(ingredientType).isRequired
 }
 
 export default BurgerConstructor;

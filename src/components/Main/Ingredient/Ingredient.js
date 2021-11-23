@@ -5,7 +5,7 @@ import ingredientType from "../../../utils/types";
 import Modal from "../../Modal/Modal";
 import IngredientsDetails from "../../IngredientDetails/IngredientDetails";
 
-function Ingredient({item, onIngredientClick}) {
+function Ingredient({item}) {
 
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -29,7 +29,7 @@ function Ingredient({item, onIngredientClick}) {
       <Counter count={1} size="default" />
     </div>
     <Modal 
-      title='Детали ингредиента'
+      title="Детали ингредиента"
       isOpen={isOpen} 
       onClose={handleClose}>
       <IngredientsDetails item={item}/>
@@ -39,8 +39,7 @@ function Ingredient({item, onIngredientClick}) {
 }
 
 Ingredient.propTypes = {
-  item: ingredientType
+  item: ingredientType.isRequired
 }
 
-
-  export default Ingredient;
+export default Ingredient;
