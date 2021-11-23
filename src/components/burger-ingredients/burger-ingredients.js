@@ -4,9 +4,10 @@ import ingredientsStyles from "./burger-ingredients.module.css";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import Ingredient from "../ingredient/ingredient";
 import ingredientType from "../../utils/types";
+import { LOAD_ERROR } from "../../utils/constants";
 import PropTypes from "prop-types";
 
-function BurgerIngredients({data}) {
+function BurgerIngredients({data, isFailed}) {
 
   const [current, setCurrent] = React.useState('one');
   const buns = data.filter((item) => item.type === 'bun');
@@ -24,7 +25,7 @@ function BurgerIngredients({data}) {
         <Tab value="three" active={current === 'three'} onClick={setCurrent}><Link className={ingredientsStyles.tab} to="#mains">Начинки</Link>
         </Tab>
       </div>
-      <div className={ingredientsStyles.menu}>
+      {isFailed ? <p className={`${ingredientsStyles.error} text text_type_main-medium pt-15`}>{LOAD_ERROR}</p> : (<div className={ingredientsStyles.menu}>
         <div className={`mt-10`}>
           <h2 className={`${ingredientsStyles.title} text text_type_main-medium`} id="buns">Булки</h2>
           <div className={`${ingredientsStyles.type} mr-2 ml-4 mt-6`}>
@@ -52,7 +53,8 @@ function BurgerIngredients({data}) {
             ))}
           </div>
         </div>
-      </div>
+      </div>)}
+      
     </div>
   )
 }

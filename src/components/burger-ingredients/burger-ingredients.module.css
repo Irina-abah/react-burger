@@ -38,3 +38,9 @@
 .menu::-webkit-scrollbar-thumb {
   background-color: #8585AD;
 }
+
+.error {
+  width: 75%;
+  text-align: center;
+  margin: 0 auto; 
+}

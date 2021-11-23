@@ -6,15 +6,17 @@ import allIngredientsApi from "../../utils/main-api";
 function App() {
 
   const [foodData, setFoodData] = React.useState([]);
+  const [isFailed, setIsFailed] = React.useState(false);
 
   React.useEffect(() => {
     allIngredientsApi.getIngredients()
     .then((res) => {
-      console.log(res)
+      setIsFailed(false)
       setFoodData(res.data)
     })
     .catch((err) => {
-      console.log(err);
+      setIsFailed(true)
+      console.log(err)
     })
   }, [])
 
@@ -23,6 +25,7 @@ function App() {
       <Header />
       <Main 
       data={foodData}
+      isFailed={isFailed}
       />
     </div>
   )

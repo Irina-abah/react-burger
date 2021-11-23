@@ -20,7 +20,7 @@ function Ingredient({item}) {
   return (
     <>
     <div className={ingredientStyles.ingredient} onClick={handleOpen}>
-      <img src={item.image_large} alt="Изображение продукта"/>
+      <img src={item.image} alt="Изображение продукта"/>
       <div className={`${ingredientStyles.price} mt-2 mb-2`}>
         <p className={`text text_type_digits-default mr-2`}>{item.price}</p>
         <CurrencyIcon type="primary" />
