@@ -26,7 +26,7 @@ function Header() {
               </NavLink></li>
           </ul>
         </nav>
-        <Link to="/">
+        <Link to="/" className={headerStyles.logo}>
           <Logo />
         </Link>
         <NavLink 
