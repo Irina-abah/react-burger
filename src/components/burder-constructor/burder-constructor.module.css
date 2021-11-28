@@ -1,0 +1,40 @@
+.container {
+  max-width: 600px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.food_list {
+  composes: menu from '../burger-ingredients/burger-ingredients.module.css';
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: calc(100vh - 476px);
+  width: 100%;
+}
+
+
+.food_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.order {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.price {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+}
