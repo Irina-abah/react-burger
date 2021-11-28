@@ -12,12 +12,8 @@ function BurgerConstructor({data}) {
   const buns = data.filter((item) => item.type === 'bun');
   const addedItems = data.filter((item) => item.type !== 'bun')
 
-  function handleOpen() {
+  function handleModal() {
     setIsOpen(!isOpen)
-  }
-
-  function handleClose() {
-    setIsOpen(false)
   }
 
   return (
@@ -59,14 +55,14 @@ function BurgerConstructor({data}) {
         <span className={`${constructorStyles.price} text text_type_digits-medium mr-10`}>610
           <CurrencyIcon type="primary" />
         </span>
-        <Button type="primary" size="large" onClick={handleOpen}>
+        <Button type="primary" size="large" onClick={handleModal}>
           Оформить заказ 
         </Button>
       </div>
     </div>
     {isOpen && (<Modal 
       title=""
-      onClose={handleClose}>
+      onClose={handleModal}>
       <OrderDetails />
     </Modal>)}
     </>
