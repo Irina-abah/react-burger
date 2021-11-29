@@ -5,8 +5,11 @@ import ingredientType from "../../utils/types";
 import PropTypes from "prop-types";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
+import { BurgerContext } from "../../contexts/burger-context";
 
-function BurgerConstructor({data}) {
+function BurgerConstructor() {
+
+  const data = React.useContext(BurgerContext);
 
   const [isOpen, setIsOpen] = React.useState(false)
   const buns = data.filter((item) => item.type === 'bun');

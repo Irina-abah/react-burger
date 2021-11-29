@@ -2,6 +2,7 @@ import React from 'react';
 import Header from "../app-header/app-header";
 import Main from "../main/main";
 import allIngredientsApi from "../../utils/main-api";
+import { BurgerContext } from "../../contexts/burger-context";
 
 function App() {
 
@@ -23,10 +24,12 @@ function App() {
   return (
     <div>
       <Header />
+      <BurgerContext.Provider value={foodData}>
       <Main 
       data={foodData}
       isFailed={isFailed}
       />
+      </BurgerContext.Provider>
     </div>
   )
 }
