@@ -13,7 +13,14 @@ function BurgerConstructor() {
 
   const [isOpen, setIsOpen] = React.useState(false)
   const buns = data.filter((item) => item.type === 'bun');
-  const addedItems = data.filter((item) => item.type !== 'bun')
+  const addedItems = data.filter((item) => item.type !== 'bun');
+
+  const totalPrice = data.reduce(
+    function (sum, item) {
+      return sum + item.price
+    }, 0
+  )
+
 
   function handleModal() {
     setIsOpen(!isOpen)
@@ -55,7 +62,7 @@ function BurgerConstructor() {
         </div> 
       </div>) : null}
       <div className={`${constructorStyles.order} pr-4`}>
-        <span className={`${constructorStyles.price} text text_type_digits-medium mr-10`}>610
+        <span className={`${constructorStyles.price} text text_type_digits-medium mr-10`}>{totalPrice}
           <CurrencyIcon type="primary" />
         </span>
         <Button type="primary" size="large" onClick={handleModal}>

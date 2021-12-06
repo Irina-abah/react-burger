@@ -23,6 +23,10 @@ export class IngredientsApi {
     })
   }
 
+  makeOrder() {
+    
+  }
+
 }
 
 const allIngredientsApi = new IngredientsApi({
