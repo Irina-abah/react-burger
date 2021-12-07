@@ -27,11 +27,11 @@ function App() {
       <BurgerContext.Provider 
         value={foodData}
       >
-      <Main 
-        data={foodData}
-        isFailed={isFailed}
-        setIsFailed={setIsFailed}
-      />
+        <Main 
+          data={foodData}
+          isFailed={isFailed}
+          setIsFailed={setIsFailed}
+        />
       </BurgerContext.Provider>
     </div>
   )

@@ -3,7 +3,7 @@ import constructorStyles from "./burder-constructor.module.css";
 import { ConstructorElement, DragIcon, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
-import { BurgerContext } from "../../contexts/burger-context";
+import { BurgerContext, OrderContext } from "../../contexts/burger-context";
 import allIngredientsApi from "../../utils/main-api";
 
 function BurgerConstructor() {
@@ -89,10 +89,13 @@ function BurgerConstructor() {
     {isOpen && (<Modal 
       title=""
       onClose={handleModal}>
-      <OrderDetails 
-        orderNumber={orderNumber}
-        orderFailed={orderFailed}
-      />
+      <OrderContext.Provider 
+        value={orderNumber}
+      >
+        <OrderDetails 
+          orderFailed={orderFailed}
+        />
+      </OrderContext.Provider>
     </Modal>)}
     </>
   )
