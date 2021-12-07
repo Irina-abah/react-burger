@@ -24,11 +24,13 @@ function App() {
   return (
     <div>
       <Header />
-      <BurgerContext.Provider value={foodData}>
+      <BurgerContext.Provider 
+        value={foodData}
+      >
       <Main 
-      data={foodData}
-      isFailed={isFailed}
-      setIsFailed={setIsFailed}
+        data={foodData}
+        isFailed={isFailed}
+        setIsFailed={setIsFailed}
       />
       </BurgerContext.Provider>
     </div>

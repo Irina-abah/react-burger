@@ -1,6 +1,7 @@
 import doneIcon from "../../images/done-icon.gif";
 import orderStyles from "./order-details.module.css";
 import { LOAD_ERROR } from "../../utils/constants";
+import PropTypes from "prop-types";
 
 function OrderDetails({orderNumber, orderFailed}) {
   return (
@@ -16,6 +17,11 @@ function OrderDetails({orderNumber, orderFailed}) {
       </>)} 
     </>
   )
+}
+
+OrderDetails.propTypes = {
+  orderNumber: PropTypes.number.isRequired,
+  orderFailed: PropTypes.bool.isRequired
 }
 
 export default OrderDetails;
