@@ -15,7 +15,7 @@ export class IngredientsApi {
   }
 
   getIngredients() {
-    return fetch(`${this._address}`, {
+    return fetch(`${this._address}/ingredients`, {
         headers: this._headers
     })
     .then((res) => {
@@ -23,8 +23,17 @@ export class IngredientsApi {
     })
   }
 
-  makeOrder() {
-    
+  makeOrder(items) {
+    return fetch(`${this._address}/orders`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        ingredients: items
+      })
+  })
+  .then((res) => {
+      return this._checkResponse(res)
+  })
   }
 
 }

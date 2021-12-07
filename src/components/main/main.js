@@ -6,14 +6,14 @@ import ingredientType from "../../utils/types";
 import PropTypes from "prop-types";
 import { BurgerContext } from "../../contexts/burger-context";
 
-function Main({isFailed}) {
+function Main({isFailed, setIsFailed}) {
 
   const data = React.useContext(BurgerContext);
   
   return (
     <section className={`${mainStyles.main} pl-5 pr-5 pb-10 pt-10`}>
       <BurgerIngredients data={data} isFailed={isFailed}/>
-      <BurgerConstructor data={data}/>
+      <BurgerConstructor data={data} setIsFailed={setIsFailed}/>
     </section>
   )
 }

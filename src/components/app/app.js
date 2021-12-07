@@ -28,6 +28,7 @@ function App() {
       <Main 
       data={foodData}
       isFailed={isFailed}
+      setIsFailed={setIsFailed}
       />
       </BurgerContext.Provider>
     </div>

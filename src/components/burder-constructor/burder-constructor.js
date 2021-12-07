@@ -6,12 +6,15 @@ import PropTypes from "prop-types";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
 import { BurgerContext } from "../../contexts/burger-context";
+import allIngredientsApi from "../../utils/main-api";
 
 function BurgerConstructor() {
 
   const data = React.useContext(BurgerContext);
 
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [orderNumber, setOrderNumber] = React.useState(0);
+  const [orderFailed, setOrderFailed] = React.useState(false);
   const buns = data.filter((item) => item.type === 'bun');
   const addedItems = data.filter((item) => item.type !== 'bun');
 
@@ -21,9 +24,24 @@ function BurgerConstructor() {
     }, 0
   )
 
-
   function handleModal() {
     setIsOpen(!isOpen)
+  }
+
+  function handleSubmit() {
+    setIsOpen(!isOpen)
+
+    const items = data.map(item => item._id);
+
+    allIngredientsApi.makeOrder(items)
+    .then((res) => {
+      setOrderFailed(false)
+      setOrderNumber(res.order.number)
+    })
+    .catch((err) => {
+      setOrderFailed(true)
+      console.log(err)
+    }) 
   }
 
   return (
@@ -65,7 +83,7 @@ function BurgerConstructor() {
         <span className={`${constructorStyles.price} text text_type_digits-medium mr-10`}>{totalPrice}
           <CurrencyIcon type="primary" />
         </span>
-        <Button type="primary" size="large" onClick={handleModal}>
+        <Button type="primary" size="large" onClick={handleSubmit}>
           Оформить заказ 
         </Button>
       </div>
@@ -73,7 +91,10 @@ function BurgerConstructor() {
     {isOpen && (<Modal 
       title=""
       onClose={handleModal}>
-      <OrderDetails />
+      <OrderDetails 
+        orderNumber={orderNumber}
+        orderFailed={orderFailed}
+      />
     </Modal>)}
     </>
   )
