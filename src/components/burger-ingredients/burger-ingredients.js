@@ -3,11 +3,13 @@ import { HashLink as Link } from "react-router-hash-link";
 import ingredientsStyles from "./burger-ingredients.module.css";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import Ingredient from "../ingredient/ingredient";
-import ingredientType from "../../utils/types";
 import { LOAD_ERROR } from "../../utils/constants";
 import PropTypes from "prop-types";
+import { BurgerContext } from "../../contexts/burger-context";
 
-function BurgerIngredients({data, isFailed}) {
+function BurgerIngredients({isFailed}) {
+
+  const data = React.useContext(BurgerContext);
 
   const [current, setCurrent] = React.useState('one');
   const buns = data.filter((item) => item.type === 'bun');
@@ -60,7 +62,6 @@ function BurgerIngredients({data, isFailed}) {
 }
 
 BurgerIngredients.propTypes = {
-  data: PropTypes.arrayOf(ingredientType).isRequired,
   isFailed: PropTypes.bool.isRequired
 }
 

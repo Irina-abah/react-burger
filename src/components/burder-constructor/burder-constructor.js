@@ -1,23 +1,70 @@
 import React from "react";
 import constructorStyles from "./burder-constructor.module.css";
 import { ConstructorElement, DragIcon, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import ingredientType from "../../utils/types";
-import PropTypes from "prop-types";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
+import { BurgerContext, OrderContext } from "../../contexts/burger-context";
+import allIngredientsApi from "../../utils/main-api";
 
-function BurgerConstructor({data}) {
+const initialState = { price: 0 };
+  
+  function reducer(state, action) {
+    switch (action.type) {
+      case "add":
+        return { price: state.price + action.price };
+      default:
+        return state;
+    }
+  }
 
-  const [isOpen, setIsOpen] = React.useState(false)
+function BurgerConstructor() {
+
+  const data = React.useContext(BurgerContext);
+
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [orderNumber, setOrderNumber] = React.useState(0);
+  const [orderFailed, setOrderFailed] = React.useState(false);
   const buns = data.filter((item) => item.type === 'bun');
-  const addedItems = data.filter((item) => item.type !== 'bun')
+  
+  const insideBunItems = data.filter((item) => item.type !== 'bun');
+  
 
-  function handleOpen() {
+  const [state, dispatch] = React.useReducer(reducer, initialState);
+
+  React.useEffect(() => {
+
+    data.forEach(item => {
+      return dispatch({
+          type: 'add',
+          price: item.price
+      });
+    });
+  }, [data]);
+
+  // const totalPrice = data.reduce(
+  //   function (sum, item) {
+  //     return sum + item.price
+  //   }, 0
+  // )
+
+  function handleModal() {
     setIsOpen(!isOpen)
   }
 
-  function handleClose() {
-    setIsOpen(false)
+  function handleSubmit() {
+    setIsOpen(!isOpen)
+
+    const items = data.map(item => item._id);
+
+    allIngredientsApi.makeOrder(items)
+    .then((res) => {
+      setOrderFailed(false)
+      setOrderNumber(res.order.number)
+    })
+    .catch((err) => {
+      setOrderFailed(true)
+      console.log(err)
+    }) 
   }
 
   return (
@@ -34,7 +81,7 @@ function BurgerConstructor({data}) {
           />
         </div>
         <div className={`${constructorStyles.food_list} pr-2`}>
-          {addedItems.map((item, i) => (
+          {insideBunItems.map((item, i) => (
             <div key={item._id} className={constructorStyles.food_item}>
               <DragIcon type="primary" />
               <ConstructorElement
@@ -56,25 +103,27 @@ function BurgerConstructor({data}) {
         </div> 
       </div>) : null}
       <div className={`${constructorStyles.order} pr-4`}>
-        <span className={`${constructorStyles.price} text text_type_digits-medium mr-10`}>610
+        <span className={`${constructorStyles.price} text text_type_digits-medium mr-10`}>{state.price}
           <CurrencyIcon type="primary" />
         </span>
-        <Button type="primary" size="large" onClick={handleOpen}>
+        <Button type="primary" size="large" onClick={handleSubmit}>
           Оформить заказ 
         </Button>
       </div>
     </div>
     {isOpen && (<Modal 
       title=""
-      onClose={handleClose}>
-      <OrderDetails />
+      onClose={handleModal}>
+      <OrderContext.Provider 
+        value={orderNumber}
+      >
+        <OrderDetails 
+          orderFailed={orderFailed}
+        />
+      </OrderContext.Provider>
     </Modal>)}
     </>
   )
-}
-
-BurgerConstructor.propTypes = {
-  data: PropTypes.arrayOf(ingredientType).isRequired
 }
 
 export default BurgerConstructor;

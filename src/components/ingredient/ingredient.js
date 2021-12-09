@@ -9,17 +9,13 @@ function Ingredient({item}) {
 
   const [isOpen, setIsOpen] = React.useState(false);
 
-  function handleOpen() {
+  function handleModal() {
     setIsOpen(!isOpen)
-  }
-
-  function handleClose() {
-    setIsOpen(false)
   }
 
   return (
     <>
-    <div className={ingredientStyles.ingredient} onClick={handleOpen}>
+    <div className={ingredientStyles.ingredient} onClick={handleModal}>
       <img src={item.image} alt="Изображение продукта"/>
       <div className={`${ingredientStyles.price} mt-2 mb-2`}>
         <p className={`text text_type_digits-default mr-2`}>{item.price}</p>
@@ -30,7 +26,7 @@ function Ingredient({item}) {
     </div>
     {isOpen && (<Modal 
       title="Детали ингредиента" 
-      onClose={handleClose}>
+      onClose={handleModal}>
       <IngredientsDetails item={item}/>
     </Modal>)}
     
