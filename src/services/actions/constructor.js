@@ -1,0 +1,7 @@
+export const ADD_BUN = 'ADD_BUN'
+export const ADD_INNER_ITEM = 'ADD_INNER_ITEM'
+export const REMOVE_INNER_ITEM = 'REMOVE_INNER_ITEM'
+export const CHANGE_ITEM = 'REMOVE_INNER_ITEM'
+export const MOVE_ITEM = 'MOVE_ITEM'
+export const UPDATE_ITEM = 'UPDATE_ITEM'
+export const UPDATE_COUNT = 'UPDATE_COUNT'
