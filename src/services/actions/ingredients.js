@@ -20,7 +20,7 @@ export const getIngredients = () => {
       if (res && res.success) {
         dispatch({
           type: GET_INGREDIENTS_SUCCESS,
-          data: res.data
+          foodData: res.data
         })
       } else {
         dispatch({
