@@ -10,7 +10,7 @@ const initialState = {
   orderFailed: false,
 }
 
-export const makeOrder = (state = initialState, action) => {
+export const orderReducer = (state = initialState, action) => {
   switch (action.type) {
     case MAKE_ORDER: {
       return {

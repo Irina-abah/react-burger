@@ -5,6 +5,7 @@ import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
 import { BurgerContext, OrderContext } from "../../contexts/burger-context";
 import allIngredientsApi from "../../utils/main-api";
+import { useSelector } from 'react-redux';
 
 const initialState = { price: 0 };
   
@@ -19,7 +20,7 @@ const initialState = { price: 0 };
 
 function BurgerConstructor() {
 
-  const data = React.useContext(BurgerContext);
+  const data = useSelector((store) => store.ingredients.foodData);
 
   const [isOpen, setIsOpen] = React.useState(false);
   const [orderNumber, setOrderNumber] = React.useState(0);

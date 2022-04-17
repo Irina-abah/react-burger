@@ -5,11 +5,13 @@ import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import Ingredient from "../ingredient/ingredient";
 import { LOAD_ERROR } from "../../utils/constants";
 import PropTypes from "prop-types";
+import { useSelector } from 'react-redux';
 import { BurgerContext } from "../../contexts/burger-context";
 
 function BurgerIngredients({isFailed}) {
 
-  const data = React.useContext(BurgerContext);
+  // const data = React.useContext(BurgerContext);
+  const data = useSelector((store) => store.ingredients.foodData);
 
   const [current, setCurrent] = React.useState('one');
   const buns = data.filter((item) => item.type === 'bun');
