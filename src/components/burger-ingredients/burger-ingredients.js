@@ -6,8 +6,6 @@ import Ingredient from "../ingredient/ingredient";
 import { LOAD_ERROR } from "../../utils/constants";
 import PropTypes from "prop-types";
 import { useSelector } from 'react-redux';
-import { BurgerContext } from "../../contexts/burger-context";
-
 function BurgerIngredients({isFailed}) {
 
   // const data = React.useContext(BurgerContext);
