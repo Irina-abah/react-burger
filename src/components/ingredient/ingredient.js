@@ -9,14 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function Ingredient({item}) {
 
-  // const [isOpen, setIsOpen] = React.useState(false);
-
   const showModal = useSelector((store) => store.modal.modalOpened);
   const dispatch = useDispatch();
-
-  // function handleModal() {
-  //   setIsOpen(!isOpen)
-  // }
 
   const handleOpenModal = () => {
 
