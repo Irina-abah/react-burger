@@ -5,7 +5,7 @@ import {
 } from "../actions/order";
 
 const initialState = {
-  order: null,
+  number: null,
   orderRequest: false,
   orderFailed: false,
 }
@@ -21,7 +21,7 @@ export const orderReducer = (state = initialState, action) => {
     case MAKE_ORDER_SUCCESS: {
       return {
         ...state,
-        order: action.number,
+        number: action.number,
         orderRequest: false,
         orderFailed: false,
       }

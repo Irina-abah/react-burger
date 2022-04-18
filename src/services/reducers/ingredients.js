@@ -94,6 +94,14 @@ export const ingredientsReducer = (state = initialState, action) => {
         currentIngredient: action.item
       }
     }
+    case UPDATE_ITEM: {
+      return {
+        ...state,
+        foodData: [...state.foodData].map(item =>
+          item._id === action.item._id ? {...item, constructor: action.constructor} : item
+      )
+      }
+    }
     default: {
       return state;
     }

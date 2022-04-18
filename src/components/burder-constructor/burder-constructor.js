@@ -3,9 +3,9 @@ import constructorStyles from "./burder-constructor.module.css";
 import { ConstructorElement, DragIcon, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
-import { BurgerContext, OrderContext } from "../../contexts/burger-context";
-import allIngredientsApi from "../../utils/main-api";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useDrop } from 'react-dnd';
+import { makeOrder } from "../../services/actions/order";
 
 const initialState = { price: 0 };
   
@@ -21,21 +21,21 @@ const initialState = { price: 0 };
 function BurgerConstructor() {
 
   const data = useSelector((store) => store.ingredients.foodData);
-
+  const dispatch = useDispatch();
+  const showModal = useSelector((store) => store.modal.modalOpened);
   const [isOpen, setIsOpen] = React.useState(false);
-  const [orderNumber, setOrderNumber] = React.useState(0);
   const [orderFailed, setOrderFailed] = React.useState(false);
   const buns = data.filter((item) => item.type === 'bun');
   
   const insideBunItems = data.filter((item) => item.type !== 'bun');
   
 
-  const [state, dispatch] = React.useReducer(reducer, initialState);
+  const [stateTotal, dispatchTotal] = React.useReducer(reducer, initialState);
 
   React.useEffect(() => {
 
     data.forEach(item => {
-      return dispatch({
+      return dispatchTotal({
           type: 'add',
           price: item.price
       });
@@ -53,19 +53,21 @@ function BurgerConstructor() {
   }
 
   function handleSubmit() {
+    const items = data.map(item => item._id);
+    dispatch(makeOrder(items))
     setIsOpen(!isOpen)
 
-    const items = data.map(item => item._id);
+    
 
-    allIngredientsApi.makeOrder(items)
-    .then((res) => {
-      setOrderFailed(false)
-      setOrderNumber(res.order.number)
-    })
-    .catch((err) => {
-      setOrderFailed(true)
-      console.log(err)
-    }) 
+    // allIngredientsApi.makeOrder(items)
+    // .then((res) => {
+    //   setOrderFailed(false)
+    //   setOrderNumber(res.order.number)
+    // })
+    // .catch((err) => {
+    //   setOrderFailed(true)
+    //   console.log(err)
+    // }) 
   }
 
   return (
@@ -104,7 +106,7 @@ function BurgerConstructor() {
         </div> 
       </div>) : null}
       <div className={`${constructorStyles.order} pr-4`}>
-        <span className={`${constructorStyles.price} text text_type_digits-medium mr-10`}>{state.price}
+        <span className={`${constructorStyles.price} text text_type_digits-medium mr-10`}>{stateTotal.price}
           <CurrencyIcon type="primary" />
         </span>
         <Button type="primary" size="large" onClick={handleSubmit}>
@@ -115,13 +117,9 @@ function BurgerConstructor() {
     {isOpen && (<Modal 
       title=""
       onClose={handleModal}>
-      <OrderContext.Provider 
-        value={orderNumber}
-      >
         <OrderDetails 
           orderFailed={orderFailed}
         />
-      </OrderContext.Provider>
     </Modal>)}
     </>
   )
