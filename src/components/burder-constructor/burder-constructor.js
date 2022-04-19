@@ -4,7 +4,7 @@ import constructorStyles from "./burder-constructor.module.css";
 import { ConstructorElement, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
-import ConstructorItem from "../constructor-element/constructor-item";
+import ConstructorItem from "../constructor-item/constructor-item";
 import { useSelector, useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
 import { makeOrder } from "../../services/actions/order";
@@ -67,14 +67,12 @@ function BurgerConstructor() {
     }, 0
   )
 
-  // const totalPrice = allBurgerItems.reduce(
-  //   function (sum, item) {
-  //       return sum + item.price
-  //   }, 0
-  // )
-
-  function handleModal() {
-    setIsOpen(!isOpen)
+  function checkPrice(price) {
+    if (isNaN(price)) {
+      return 0
+    } else {
+      return price
+    }
   }
 
   function handleCloseModal() {
@@ -95,7 +93,7 @@ function BurgerConstructor() {
     <div ref={dropTargerRef} className={`${constructorStyles.container} mt-15 pl-4 ${isHover ? constructorStyles.hover : ''}`}>
       <div className={`${constructorStyles.wrapper} mb-10`}>
         <div className={`pr-4`}>
-          {selectedBun &&(<ConstructorElement
+          {selectedBun.type &&(<ConstructorElement
             type="top"
             isLocked={true}
             text={`${selectedBun.name} (верх)`}
@@ -109,7 +107,7 @@ function BurgerConstructor() {
           ))}
         </div>
         <div className={`pr-4`}>
-          {selectedBun && (<ConstructorElement
+          {selectedBun.type && (<ConstructorElement
             type="bottom"
             isLocked={true}
             text={`${selectedBun.name} (низ)`}
@@ -119,7 +117,7 @@ function BurgerConstructor() {
         </div> 
       </div>
       <div className={`${constructorStyles.order} pr-4`}>
-        <span className={`${constructorStyles.price} text text_type_digits-medium mr-10`}>{totalPrice}
+        <span className={`${constructorStyles.price} text text_type_digits-medium mr-10`}>{checkPrice(totalPrice)} 
           <CurrencyIcon type="primary" />
         </span>
         <Button type="primary" size="large" onClick={handleSubmit}>
@@ -129,7 +127,7 @@ function BurgerConstructor() {
     </div>
     {isOpen && (<Modal 
       title=""
-      onClose={handleCloseModal }>
+      onClose={handleCloseModal}>
         <OrderDetails />
     </Modal>)}
     </>
