@@ -8,7 +8,6 @@ import {
   ADD_BUN,
   ADD_INNER_ITEM,
   REMOVE_INNER_ITEM,
-  SET_SELECTED_INGREDIENT,
   UPDATE_CONSTRUCTOR_LIST,
   RESET_CONSTRUSTOR
 } from "../actions/constructor";
@@ -35,7 +34,10 @@ export const ingredientsReducer = (state = initialState, action) => {
     case GET_INGREDIENTS_SUCCESS: {
       return {
         ...state,
-        foodData: action.foodData,
+        foodData: action.foodData.map((item) => {
+          item.count = 0;
+          return item
+        }),
         foodDataRequest: false,
         foodDataFailed: false
       }
@@ -106,7 +108,11 @@ export const ingredientsReducer = (state = initialState, action) => {
           ...state.constructor,
           selectedBun: {},
           innerItems: []
-        }
+        },
+        foodData: [...state.foodData].map((item) => {
+          item.count = 0;
+          return item
+        }),
       }
     }
     default: {
