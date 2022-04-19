@@ -5,24 +5,22 @@ import {
 } from "../actions/ingredients";
 
 import {
-  // ADD_BUN,
-  ADD_INGREDIENT,
-  // ADD_INNER_ITEM,
+  ADD_BUN,
+  ADD_INNER_ITEM,
   REMOVE_INNER_ITEM,
   SET_SELECTED_INGREDIENT,
-  MOVE_ITEM,
-  UPDATE_ITEM
+  UPDATE_CONSTRUCTOR_LIST,
+  RESET_CONSTRUSTOR
 } from "../actions/constructor";
 
 const initialState = {
   foodData: [],
   foodDataRequest: false,
   foodDataFailed: false,
-  // constructor: {
-  //   selectedBun: {},
-  //   innerItems: []
-  // },
-  constructor: [],
+  constructor: {
+    selectedBun: {},
+    innerItems: []
+  },
   selectedIngredient: {}
 }
 
@@ -49,32 +47,31 @@ export const ingredientsReducer = (state = initialState, action) => {
         foodDataRequest: false,
       }
     }
-    // case ADD_INGREDIENT: {
-    //   return {
-    //     constructor: {
-    //       ...state.constructor,
-    //       bunItem: action.bun
-    //     },
-    //     foodData: state.foodData.map(item => {
-    //       if (item.type === "bun") {
-    //         if (item._id === action.bun._id) {
-    //           return { ...item, count: 2 };
-    //         } else {
-    //           return { ...item, count: 0 };
-    //         }
-    //       } else {
-    //         return item;
-    //       }
-    //     })
-    //   }
-    // }
-    case ADD_INGREDIENT: {
+    case ADD_BUN: {
+      return {
+        constructor: {
+          ...state.constructor,
+          selectedBun: action.bun
+        },
+        foodData: [...state.foodData].map(item => {
+          if (item.type === "bun") {
+            if (item._id === action.bun._id) {
+              return { ...item, count: 2 };
+            } else {
+              return { ...item, count: 0 };
+            }
+          } 
+            return item;
+        })
+      }
+    }
+    case ADD_INNER_ITEM: {
       return {
         ...state,
-        constructor: [
+        constructor: {
           ...state.constructor,
-          {...action.item}
-        ],
+          innerItems: [ ...state.constructor.innerItems, action.item]
+        },
         foodData: [...state.foodData].map(item =>
           item._id === action.item._id ? { ...item, count: ++item.count } : item
         )
@@ -83,24 +80,33 @@ export const ingredientsReducer = (state = initialState, action) => {
     case REMOVE_INNER_ITEM: {
       return {
         ...state,
-        constructor: [...state.constructor].filter(item => item.dragId !== action.item.dragId),
+        constructor: {
+          ...state.constructor,
+          innerItems: [...state.constructor.innerItems].filter(item => item.dragId !== action.item.dragId)
+        },
         foodData: [...state.foodData].map(item =>
           item._id === action.item._id ? { ...item, count: --item.count } : item
         )
       }
     }
-    case SET_SELECTED_INGREDIENT: {
+
+    case UPDATE_CONSTRUCTOR_LIST: {
       return {
         ...state,
-        currentIngredient: action.item
+        constructor: {
+          ...state.constructor,
+          innerItems: action.updatedItems
+        }
       }
     }
-    case UPDATE_ITEM: {
+    case RESET_CONSTRUSTOR: {
       return {
         ...state,
-        foodData: [...state.foodData].map(item =>
-          item._id === action.item._id ? {...item, constructor: action.constructor} : item
-      )
+        constructor: {
+          ...state.constructor,
+          selectedBun: {},
+          innerItems: []
+        }
       }
     }
     default: {

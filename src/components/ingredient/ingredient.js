@@ -26,7 +26,6 @@ function Ingredient({item}) {
       type: OPEN_MODAL,
       item
     })
-    console.log(item)
   }
 
   const handleCloseModal = () => {

@@ -5,9 +5,10 @@ import { LOAD_ERROR } from "../../utils/constants";
 import PropTypes from "prop-types";
 import { useSelector } from 'react-redux';
 
-function OrderDetails({orderFailed}) {
+function OrderDetails() {
 
   const number = useSelector((store) => store.order.number);
+  const orderFailed = useSelector((store) => store.order.orderFailed)
 
   return (
     <>

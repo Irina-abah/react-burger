@@ -8,9 +8,7 @@ import PropTypes from "prop-types";
 import { useSelector } from 'react-redux';
 function BurgerIngredients({isFailed}) {
 
-  // const data = React.useContext(BurgerContext);
   const data = useSelector((store) => store.ingredients.foodData);
-
   const [current, setCurrent] = React.useState('one');
   const buns = data.filter((item) => item.type === 'bun');
   const sauses = data.filter((item) => item.type === 'sauce');
