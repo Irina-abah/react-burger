@@ -5,8 +5,9 @@ import {
 } from "../actions/ingredients";
 
 import {
-  ADD_BUN,
-  ADD_INNER_ITEM,
+  // ADD_BUN,
+  ADD_INGREDIENT,
+  // ADD_INNER_ITEM,
   REMOVE_INNER_ITEM,
   SET_SELECTED_INGREDIENT,
   MOVE_ITEM,
@@ -17,10 +18,11 @@ const initialState = {
   foodData: [],
   foodDataRequest: false,
   foodDataFailed: false,
-  constructor: {
-    selectedBun: {},
-    innerItems: []
-  },
+  // constructor: {
+  //   selectedBun: {},
+  //   innerItems: []
+  // },
+  constructor: [],
   selectedIngredient: {}
 }
 
@@ -47,31 +49,32 @@ export const ingredientsReducer = (state = initialState, action) => {
         foodDataRequest: false,
       }
     }
-    case ADD_BUN: {
+    // case ADD_INGREDIENT: {
+    //   return {
+    //     constructor: {
+    //       ...state.constructor,
+    //       bunItem: action.bun
+    //     },
+    //     foodData: state.foodData.map(item => {
+    //       if (item.type === "bun") {
+    //         if (item._id === action.bun._id) {
+    //           return { ...item, count: 2 };
+    //         } else {
+    //           return { ...item, count: 0 };
+    //         }
+    //       } else {
+    //         return item;
+    //       }
+    //     })
+    //   }
+    // }
+    case ADD_INGREDIENT: {
       return {
-        constructor: {
+        ...state,
+        constructor: [
           ...state.constructor,
-          bunItem: action.bun
-        },
-        foodData: state.foodData.map(item => {
-          if (item.type === "bun") {
-            if (item._id === action.bun._id) {
-              return { ...item, count: 2 };
-            } else {
-              return { ...item, count: 0 };
-            }
-          } else {
-            return item;
-          }
-        })
-      }
-    }
-    case ADD_INNER_ITEM: {
-      return {
-        constructor: {
-          ...state.constructor,
-          innerItems: [ ...state.constructor.innerItems, action.item]
-        },
+          {...action.item}
+        ],
         foodData: [...state.foodData].map(item =>
           item._id === action.item._id ? { ...item, count: ++item.count } : item
         )
@@ -79,10 +82,8 @@ export const ingredientsReducer = (state = initialState, action) => {
     }
     case REMOVE_INNER_ITEM: {
       return {
-        constructor: {
-          ...state.constructor,
-          innerItems: [...state.constructor.innerItems].filter(item => item._id !== action.item._id)
-        },
+        ...state,
+        constructor: [...state.constructor].filter(item => item.dragId !== action.item.dragId),
         foodData: [...state.foodData].map(item =>
           item._id === action.item._id ? { ...item, count: --item.count } : item
         )

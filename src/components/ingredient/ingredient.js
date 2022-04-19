@@ -44,7 +44,7 @@ function Ingredient({item}) {
         <CurrencyIcon type="primary" />
       </div>
       <h2 className={`${ingredientStyles.title} text text_type_main-default`}>{item.name}</h2>
-      <Counter count={1} size="default" />
+      {item.count > 0 && <Counter count={item.count} size="default" />}
     </div>
     {showModal && (<Modal 
       title="Детали ингредиента" 
