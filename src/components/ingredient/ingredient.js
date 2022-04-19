@@ -6,11 +6,19 @@ import Modal from "../modal/modal";
 import IngredientsDetails from "../ingredient-details/ingredient-details";
 import { OPEN_MODAL, CLOSE_MODAL } from "../../services/actions/ingredient-modal";
 import { useDispatch, useSelector } from 'react-redux';
+import { useDrag } from 'react-dnd';
 
 function Ingredient({item}) {
 
   const showModal = useSelector((store) => store.modal.modalOpened);
   const dispatch = useDispatch();
+
+  const [{ opacity }, dragRef] = useDrag({
+    type: 'ingredient',
+    item: { ...item },
+    collect: monitor => ({opacity: monitor.isDragging() ? 0.5 : 1
+    })
+  })
 
   const handleOpenModal = () => {
 
@@ -29,7 +37,7 @@ function Ingredient({item}) {
 
   return (
     <>
-    <div className={ingredientStyles.ingredient} onClick={handleOpenModal}>
+    <div ref={dragRef} className={ingredientStyles.ingredient} style={{ opacity }} onClick={handleOpenModal}>
       <img src={item.image} alt="Изображение продукта"/>
       <div className={`${ingredientStyles.price} mt-2 mb-2`}>
         <p className={`text text_type_digits-default mr-2`}>{item.price}</p>
@@ -41,7 +49,7 @@ function Ingredient({item}) {
     {showModal && (<Modal 
       title="Детали ингредиента" 
       onClose={handleCloseModal}>
-      <IngredientsDetails />
+      <IngredientsDetails item={item}/>
     </Modal>)}
     
     </>
