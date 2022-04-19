@@ -6,7 +6,6 @@ import { getIngredients } from '../../services/actions/ingredients';
 
 function App() {
 
-  const [isFailed, setIsFailed] = React.useState(false);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -16,10 +15,7 @@ function App() {
   return (
     <div>
       <Header />
-        <Main
-          isFailed={isFailed}
-          setIsFailed={setIsFailed}
-        />
+      <Main />
     </div>
   )
 }

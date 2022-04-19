@@ -1,6 +1,6 @@
 import { BASE_URL } from "../../utils/constants";
 
-export const MAKE_ORDER = 'MAKE_ORDER';
+export const MAKE_ORDER_REQUEST = 'MAKE_ORDER';
 export const MAKE_ORDER_SUCCESS = "MAKE_ORDER_SUCCESS";
 export const MAKE_ORDER_FAILED = "MAKE_ORDER_FAILED";
 
@@ -8,7 +8,7 @@ export const makeOrder = (data) => {
   // const items = data.map(item => item._id);
   return function (dispatch) {
     dispatch({
-      type: MAKE_ORDER
+      type: MAKE_ORDER_REQUEST
     })
     fetch(`${BASE_URL}/orders`, {
       method: "POST",

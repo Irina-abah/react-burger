@@ -16,10 +16,10 @@ function BurgerConstructor() {
   const {innerItems} = useSelector((store) => store.ingredients.constructor);
   const {selectedBun} = useSelector((store) => store.ingredients.constructor);
   const data = useSelector((store) => store.ingredients.foodData);
-  const showModal = useSelector((store) => store.modal.modalOpened);
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const allBurgerItems = [...innerItems, selectedBun]
+  const allBurgerItems = [...innerItems, selectedBun];
+  // const orderButtonClass = innerItems.length === 0 ? constructorStyles.disabled : '';
 
   const [{ isHover }, dropTargerRef] = useDrop({
     accept: 'ingredient',

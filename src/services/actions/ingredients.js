@@ -1,13 +1,13 @@
 import { BASE_URL } from "../../utils/constants";
 
-export const GET_INGREDIENTS = 'GET_INGREDIENTS';
+export const GET_INGREDIENTS_REQUEST = 'GET_INGREDIENTS';
 export const GET_INGREDIENTS_SUCCESS = "GET_INGREDIENTS_SUCCESS";
 export const GET_INGREDIENTS_FAILED = "GET_INGREDIENTS_FAILED";
 
 export const getIngredients = () => {
   return function (dispatch) {
     dispatch({
-      type: GET_INGREDIENTS
+      type: GET_INGREDIENTS_REQUEST
     })
     fetch(`${BASE_URL}/ingredients`)
     .then((res) => {

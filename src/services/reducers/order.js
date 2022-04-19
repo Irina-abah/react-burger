@@ -1,5 +1,5 @@
 import {
-  MAKE_ORDER,
+  MAKE_ORDER_REQUEST,
   MAKE_ORDER_SUCCESS,
   MAKE_ORDER_FAILED
 } from "../actions/order";
@@ -12,7 +12,7 @@ const initialState = {
 
 export const orderReducer = (state = initialState, action) => {
   switch (action.type) {
-    case MAKE_ORDER: {
+    case MAKE_ORDER_REQUEST: {
       return {
         ...state,
         orderRequest: true

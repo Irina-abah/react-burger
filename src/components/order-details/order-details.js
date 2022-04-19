@@ -2,7 +2,6 @@ import React from "react";
 import doneIcon from "../../images/done-icon.gif";
 import orderStyles from "./order-details.module.css";
 import { LOAD_ERROR } from "../../utils/constants";
-import PropTypes from "prop-types";
 import { useSelector } from 'react-redux';
 
 function OrderDetails() {
@@ -23,10 +22,6 @@ function OrderDetails() {
       </>)} 
     </>
   )
-}
-
-OrderDetails.propTypes = {
-  orderFailed: PropTypes.bool.isRequired
 }
 
 export default OrderDetails;
