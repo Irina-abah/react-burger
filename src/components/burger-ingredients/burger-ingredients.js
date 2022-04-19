@@ -4,9 +4,7 @@ import ingredientsStyles from "./burger-ingredients.module.css";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import Ingredient from "../ingredient/ingredient";
 import { LOAD_ERROR } from "../../utils/constants";
-import PropTypes from "prop-types";
 import { useSelector } from 'react-redux';
-import CheckHeight from "../../utils/windowHeight";
 
 const BurgerIngredients = () => {
 
