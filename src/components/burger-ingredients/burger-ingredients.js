@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef, useEffect} from "react";
 import { HashLink as Link } from "react-router-hash-link";
 import ingredientsStyles from "./burger-ingredients.module.css";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -6,6 +6,7 @@ import Ingredient from "../ingredient/ingredient";
 import { LOAD_ERROR } from "../../utils/constants";
 import PropTypes from "prop-types";
 import { useSelector } from 'react-redux';
+import CheckHeight from "../../utils/windowHeight";
 function BurgerIngredients({isFailed}) {
 
   const data = useSelector((store) => store.ingredients.foodData);
@@ -14,15 +15,27 @@ function BurgerIngredients({isFailed}) {
   const sauses = data.filter((item) => item.type === 'sauce');
   const mains = data.filter((item) => item.type === 'main');
 
+  const bunsRef = useRef(null);
+  const sausesRef = useRef(null);
+  const mainsRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = (e) => {
+      if (window.scrollY >= 0 && window.scrollY <= 290) {
+        setCurrent('two')
+      }  
+    }
+  })
+
   return (
     <div className={`mr-10`}>
       <h1 className={`text text_type_main-large mb-5`}>Соберите бургер</h1>
       <div style={{ display: 'flex' }}>
-        <Tab value="one" active={current === 'one'} onClick={setCurrent}><Link className={ingredientsStyles.tab} to="#buns">Булки</Link>
+        <Tab ref={bunsRef} value="one" active={current === 'one'} onClick={setCurrent}><Link className={ingredientsStyles.tab} to="#buns">Булки</Link>
         </Tab>
-        <Tab value="two" active={current === 'two'} onClick={setCurrent}><Link className={ingredientsStyles.tab} to="#sauses">Соусы</Link>
+        <Tab ref={sausesRef} value="two" active={current === 'two'} onClick={setCurrent}><Link className={ingredientsStyles.tab} to="#sauses">Соусы</Link>
         </Tab>
-        <Tab value="three" active={current === 'three'} onClick={setCurrent}><Link className={ingredientsStyles.tab} to="#mains">Начинки</Link>
+        <Tab ref={mainsRef} value="three" active={current === 'three'} onClick={setCurrent}><Link className={ingredientsStyles.tab} to="#mains">Начинки</Link>
         </Tab>
       </div>
       {isFailed ? <p className={`${ingredientsStyles.error} text text_type_main-medium pt-15`}>{LOAD_ERROR}</p> : (<div className={ingredientsStyles.menu}>

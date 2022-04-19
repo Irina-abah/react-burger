@@ -20,7 +20,6 @@ function BurgerConstructor() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const allBurgerItems = [...innerItems, selectedBun]
-  console.log(allBurgerItems)
 
   const [{ isHover }, dropTargerRef] = useDrop({
     accept: 'ingredient',
