@@ -10,7 +10,7 @@ const BurgerIngredients = () => {
 
   const data = useSelector((store) => store.ingredients.foodData);
   const loadingFailed = useSelector((store) => store.ingredients.foodDataFailed);
-  const [current, setCurrent] = React.useState('one');
+  const [current, setCurrent] = React.useState('buns');
   const buns = data.filter((item) => item.type === 'bun');
   const sauses = data.filter((item) => item.type === 'sauce');
   const mains = data.filter((item) => item.type === 'main');
@@ -23,11 +23,11 @@ const BurgerIngredients = () => {
   const handleScroll = () => {
 		const top = allRef.current.scrollTop + allRef.current.offsetTop;
 		if (sausesRef.current.offsetTop > top) {
-			setCurrent("one");
+			setCurrent("buns");
 		} else if (mainsRef.current.offsetTop > top && top >= sausesRef.current.offsetTop) {
-			setCurrent("two");
+			setCurrent("sauses");
 		} else {
-			setCurrent("three");
+			setCurrent("mains");
 		}
 	};
 
@@ -35,11 +35,11 @@ const BurgerIngredients = () => {
     <div className={`mr-10`}>
       <h1 className={`text text_type_main-large mb-5`}>Соберите бургер</h1>
       <div style={{ display: 'flex' }}>
-        <Tab innerRef={bunsRef} value="one" active={current === 'one'} onClick={setCurrent}><Link className={ingredientsStyles.tab} to="#buns">Булки</Link>
+        <Tab innerRef={bunsRef} value="buns" active={current === 'buns'} onClick={setCurrent}><Link className={ingredientsStyles.tab} to="#buns">Булки</Link>
         </Tab>
-        <Tab innerRef={sausesRef} value="two" active={current === 'two'} onClick={setCurrent}><Link className={ingredientsStyles.tab} to="#sauses">Соусы</Link>
+        <Tab innerRef={sausesRef} value="sauses" active={current === 'sauses'} onClick={setCurrent}><Link className={ingredientsStyles.tab} to="#sauses">Соусы</Link>
         </Tab>
-        <Tab innerRef={mainsRef} value="three" active={current === 'three'} onClick={setCurrent}><Link className={ingredientsStyles.tab} to="#mains">Начинки</Link>
+        <Tab innerRef={mainsRef} value="mains" active={current === 'mains'} onClick={setCurrent}><Link className={ingredientsStyles.tab} to="#mains">Начинки</Link>
         </Tab>
       </div>
       {loadingFailed ? <p className={`${ingredientsStyles.error} text text_type_main-medium pt-15`}>{LOAD_ERROR}</p> : (<div className={ingredientsStyles.menu} onScroll={handleScroll} ref={allRef}>
