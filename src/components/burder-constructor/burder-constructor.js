@@ -119,9 +119,9 @@ function BurgerConstructor() {
         <span className={`${constructorStyles.price} text text_type_digits-medium mr-10`}>{checkPrice(totalPrice)} 
           <CurrencyIcon type="primary" />
         </span>
-        <Button type="primary" size="large" onClick={handleSubmit}>
+        {selectedBun.type && <Button type="primary" size="large" onClick={handleSubmit}>
           Оформить заказ 
-        </Button>
+        </Button>} 
       </div>
     </div>
     {isOpen && (<Modal 
