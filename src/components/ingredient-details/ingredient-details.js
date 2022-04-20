@@ -1,6 +1,6 @@
 import ingredientStyles from "./ingredient-details.module.css";
-import ingredientType from "../../utils/types";
 import { useSelector } from 'react-redux';
+
 function IngredientsDetails() {
 
   const item = useSelector((store) => store.modal.selectedItem);
@@ -29,10 +29,6 @@ function IngredientsDetails() {
       </ul>
     </div>
   )
-}
-
-IngredientsDetails.propTypes = {
-  item: ingredientType.isRequired
 }
 
 export default IngredientsDetails;

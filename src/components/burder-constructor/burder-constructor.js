@@ -15,7 +15,6 @@ function BurgerConstructor() {
   const dispatch = useDispatch();
   const {innerItems} = useSelector((store) => store.ingredients.constructor);
   const {selectedBun} = useSelector((store) => store.ingredients.constructor);
-  const allBurger = useSelector((store) => store.ingredients.constructor);
   const data = useSelector((store) => store.ingredients.foodData);
   const [isOpen, setIsOpen] = React.useState(false);
 
