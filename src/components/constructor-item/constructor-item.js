@@ -1,12 +1,12 @@
 import { useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useDrop, useDrag } from 'react-dnd';
 import itemStyles from "./constructor-item.module.css";
 import { REMOVE_INNER_ITEM } from "../../services/actions/constructor";
-
-
+import PropTypes from 'prop-types';
+import ingredientType from '../../utils/types';
 function ConstructorItem({item, index, moveCard}) {
 
   const ref = useRef(null);
@@ -75,5 +75,11 @@ function ConstructorItem({item, index, moveCard}) {
     </div>
   )
 }
+
+ConstructorItem.propTypes = {
+  item: ingredientType.isRequired,
+  index: PropTypes.number,
+  moveCard: PropTypes.func.isRequired,
+};
 
 export default ConstructorItem;

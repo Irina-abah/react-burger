@@ -1,4 +1,4 @@
-import React, {useRef, useCallback} from "react";
+import React, {useRef} from "react";
 import { HashLink as Link } from "react-router-hash-link";
 import ingredientsStyles from "./burger-ingredients.module.css";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
