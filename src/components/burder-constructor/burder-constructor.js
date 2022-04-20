@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import constructorStyles from "./burder-constructor.module.css";
 import { ConstructorElement, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -15,11 +15,13 @@ function BurgerConstructor() {
   const dispatch = useDispatch();
   const {innerItems} = useSelector((store) => store.ingredients.constructor);
   const {selectedBun} = useSelector((store) => store.ingredients.constructor);
+  const allBurger = useSelector((store) => store.ingredients.constructor);
   const data = useSelector((store) => store.ingredients.foodData);
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const allBurgerItems = [...innerItems, selectedBun];
-  // const orderButtonClass = innerItems.length === 0 ? constructorStyles.disabled : '';
+  const allBurgerItems = useMemo(() => {
+    return selectedBun._id ? innerItems.concat([selectedBun, selectedBun]) : innerItems;
+  }, [innerItems, selectedBun]);
 
   const [{ isHover }, dropTargerRef] = useDrop({
     accept: 'ingredient',
@@ -58,13 +60,11 @@ function BurgerConstructor() {
 
   const totalPrice = allBurgerItems.reduce(
     function (sum, item) {
-      if (item.type !== "bun") {
         return sum + item.price
-      } else {
-        return sum + item.price * 2
-      }
     }, 0
   )
+
+  
 
   function checkPrice(price) {
     if (isNaN(price)) {
@@ -83,8 +83,8 @@ function BurgerConstructor() {
 
   function handleSubmit() {
     const items = data.map(item => item._id);
-    dispatch(makeOrder(items))
-    setIsOpen(!isOpen)
+      dispatch(makeOrder(items))
+      setIsOpen(!isOpen)
   }
 
   return (
