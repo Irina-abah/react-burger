@@ -7,7 +7,7 @@ import itemStyles from "./constructor-item.module.css";
 import { REMOVE_INNER_ITEM } from "../../services/actions/constructor";
 import PropTypes from 'prop-types';
 import ingredientType from '../../utils/types';
-function ConstructorItem({item, index, moveCard}) {
+function ConstructorItem({ item, index, moveCard }) {
 
   const ref = useRef(null);
   const dispatch = useDispatch();
@@ -64,7 +64,7 @@ function ConstructorItem({item, index, moveCard}) {
   const preventDefault = (e) => e.preventDefault();
 
   return (
-  <div ref={ref} style={{ opacity }} onDrop={preventDefault} data-handler-id={handlerId} moveCard={moveCard} className={itemStyles.food_item}>
+  <div ref={ref} style={{ opacity }} onDrop={preventDefault} data-handler-id={handlerId} className={itemStyles.food_item}>
       <DragIcon type="primary" />
       <ConstructorElement
         text={item.name}
