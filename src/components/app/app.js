@@ -1,37 +1,21 @@
 import React from 'react';
 import Header from "../app-header/app-header";
 import Main from "../main/main";
-import allIngredientsApi from "../../utils/main-api";
-import { BurgerContext } from "../../contexts/burger-context";
+import { useDispatch } from 'react-redux';
+import { getIngredients } from '../../services/actions/ingredients';
 
 function App() {
 
-  const [foodData, setFoodData] = React.useState([]);
-  const [isFailed, setIsFailed] = React.useState(false);
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
-    allIngredientsApi.getIngredients()
-    .then((res) => {
-      setIsFailed(false)
-      setFoodData(res.data)
-    })
-    .catch((err) => {
-      setIsFailed(true)
-      console.log(err)
-    })
-  }, [])
+    dispatch(getIngredients())
+  }, [dispatch])
 
   return (
     <div>
       <Header />
-      <BurgerContext.Provider 
-        value={foodData}
-      >
-        <Main
-          isFailed={isFailed}
-          setIsFailed={setIsFailed}
-        />
-      </BurgerContext.Provider>
+      <Main />
     </div>
   )
 }
