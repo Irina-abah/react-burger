@@ -6,6 +6,7 @@ import Login from '../../pages/login/login';
 import Register from '../../pages/register/register';
 import ForgotPassword from '../../pages/forgot-password/forgot-password';
 import ResetPassword from '../../pages/reset-password/reset-password';
+import Profile from '../../pages/profile/profile';
 import { useDispatch } from 'react-redux';
 import { getIngredients } from '../../services/actions/ingredients';
 
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route path="/reset-password">
             <ResetPassword/>
+          </Route>
+          <Route path="/profile">
+            <Profile/>
           </Route>
           <Route exact path="/">
             <Main />

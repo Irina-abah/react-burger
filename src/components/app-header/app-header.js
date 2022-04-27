@@ -30,7 +30,7 @@ function Header() {
           <Logo />
         </Link>
         <NavLink 
-          to="/account" 
+          to="/profile" 
           className={`${headerStyles.nav_item} text_color_inactive pl-5 pr-5`}
           activeClassName={headerStyles.active}>
           <ProfileIcon type="secondary" />
