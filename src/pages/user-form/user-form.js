@@ -18,7 +18,7 @@ function UserForm({title, onSubmit, children, buttonName, message, link, linkNam
             {buttonName}
           </Button>
         </div>
-        <p className={`text text_type_main-default text_color_inactive mb-4`}>
+        <p className={`text text_type_main-default text_color_inactive`}>
         {message} 
         <Link to={link} className={`text text_type_main-default`}>
           {linkName}

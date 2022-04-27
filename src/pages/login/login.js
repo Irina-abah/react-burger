@@ -51,7 +51,7 @@ function Login() {
           />
         </div>
       </UserForm>
-      <p className={`text text_type_main-default text_color_inactive`}>
+      <p className={`text text_type_main-default text_color_inactive mt-4`}>
         {"Забыли пароль? "}
         <Link to="/forgot-password" className={`text text_type_main-default`}>
         Восстановить пароль
