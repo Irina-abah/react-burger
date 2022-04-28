@@ -1,20 +1,28 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import UserForm from "../user-form/user-form";
 import loginStyles from "./login.module.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useSelector, useDispatch } from 'react-redux';
+import { loginUser } from "../../services/actions/user";
 
 function Login() {
 
+  const dispatch = useDispatch();
+  const auth = useSelector((store) => store.user.isAuthenticated)
   const [state, setState] = useState({
     email: "",
     password: ""
   });
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-  }
+  let submit = useCallback(
+    e => {
+      e.preventDefault()
+      dispatch(loginUser(state))
+    },
+    [dispatch, state]
+  )
   
   const handleInputChange = (e) => {
       const value = e.target.value;
@@ -26,11 +34,23 @@ function Login() {
       })
     }
 
+    useEffect(() => {
+      if (auth) {
+        return (
+          <Redirect
+            to={{
+              pathname: '/'
+            }}
+          />
+        );
+      }
+    }, [auth])
+
   return (
     <section className={loginStyles.login}>
       <UserForm
         title="Вход"
-        onSubmit={handleSubmit}
+        onSubmit={submit}
         buttonName="Войти"
         message="Вы — новый пользователь? " 
         link="/register" 

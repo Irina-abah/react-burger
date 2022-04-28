@@ -1,10 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import UserForm from '../user-form/user-form';
 import registerStyles from "./register.module.css";
 import { Input, PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useSelector, useDispatch } from 'react-redux';
+import { registerUser } from "../../services/actions/user";
+import { Redirect } from 'react-router-dom';
 
 function Register() {
 
+  const dispatch = useDispatch();
+  const auth = useSelector((store) => store.user.isAuthenticated)
   const [state, setState] = useState({
     name: "",
     email: "",
@@ -12,9 +17,14 @@ function Register() {
   });
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-  }
+  let submit = useCallback(
+    e => {
+      e.preventDefault()
+      dispatch(registerUser(state))
+    },
+    [dispatch, state]
+  )
+  
   
   const handleInputChange = (e) => {
       const value = e.target.value;
@@ -26,11 +36,24 @@ function Register() {
       })
     }
 
+    useEffect(() => {
+      if (auth) {
+        return (
+          <Redirect
+            to={{
+              pathname: '/'
+            }}
+          />
+        );
+      }
+    }, [auth])
+
+
   return (
     <section className={registerStyles.register}>
       <UserForm
         title="Регистрация"
-        onSubmit={handleSubmit}
+        onSubmit={submit}
         buttonName="Зарегистрироваться"
         message="Уже зарегистрированы? " 
         link="/login" 
