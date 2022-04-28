@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import profileStyles from "./profile.module.css";
 import { Link, NavLink } from "react-router-dom";
-import { Input, PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
+import { Input, PasswordInput, EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 
 function Profile() {
 
@@ -29,13 +29,27 @@ function Profile() {
   return (
     <section className={profileStyles.profile}>
       <nav>
-        <ul>
-          <li>
-          <NavLink 
-            to="/profile" 
-            className={`${profileStyles.nav_item} text_type_main-medium text_color_inactive pl-5 pr-5 mr-2`} 
-            activeClassName={profileStyles.active}>Профиль
-          </NavLink>
+        <ul className={profileStyles.nav}>
+          <li className={profileStyles.nav_item}>
+            <NavLink 
+              to={{pathname: "/profile" }}
+              className={`${profileStyles.nav_link} text_type_main-medium text_color_inactive pl-5 pr-5 mr-2`} 
+              activeClassName={profileStyles.active}>Профиль
+            </NavLink>
+          </li>
+          <li className={profileStyles.nav_item}>
+            <NavLink 
+              to={{pathname: "/profile/orders" }}
+              className={`${profileStyles.nav_link} text_type_main-medium text_color_inactive pl-5 pr-5 mr-2`} 
+              activeClassName={profileStyles.active}>История заказов
+            </NavLink>
+          </li>
+          <li className={profileStyles.nav_item}>
+            <NavLink 
+              to={{pathname: "/profile/orders/:id" }}
+              className={`${profileStyles.nav_link} text_type_main-medium text_color_inactive pl-5 pr-5 mr-2`} 
+              activeClassName={profileStyles.active}>Выход
+            </NavLink>
           </li>
         </ul>
       </nav>
@@ -63,6 +77,17 @@ function Profile() {
             name={'password'}
           />
         </div>
+      </div>
+      <p className={`${profileStyles.text} text_type_main-default text_color_inactive`} >
+        В этом разделе вы можете изменить свои персональные данные
+      </p>
+      <div className={profileStyles.buttons}>
+        <Button type="secondary" size="medium">
+          Отмена
+        </Button>
+        <Button type="primary" size="medium">
+          Сохранить
+        </Button>
       </div>
     </section>
   )
