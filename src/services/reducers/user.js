@@ -21,60 +21,58 @@ import {
 } from "../actions/user";
 
 const initialState = {
-  data: {
-  },
-  registerRequest: false,
-  registerFailed: false,
+  // data: {},
   isAuthenticated: false,
   loginRequest: false,
   loginFailed: false,
+  logoutRequest: false,
+  logoutFailed: false
 }
 
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case REGISTER_USER_REQUEST: {
+    // case LOGIN_USER_REQUEST: {
+    //   return {
+    //     ...state,
+    //     loginRequest: true,
+    //   };
+    // }
+    // case LOGIN_USER_SUCCESS: {
+    //   return {
+    //     ...state,
+    //     isAuthenticated: true,
+    //     loginRequest: false,
+    //     loginFailed: false,
+    //     data: action.data.user
+    //   }
+    // }
+    // case LOGIN_USER_FAILED: {
+    //   return {
+    //     ...state,
+    //     isAuthenticated: false,
+    //     loginRequest: false,
+    //     loginFailed: true,
+    //   }
+    // }
+    case LOGOUT_REQUEST: {
       return {
         ...state,
-        registerRequest: true,
+        logoutRequest: true,
       };
     }
-    case REGISTER_USER_SUCCESS: {
+    case LOGOUT_SUCCESS: {
       return {
         ...state,
-        registerFailed: false,
-        registerRequest: false,
-        isAuthenticated: true,
-        data: action.data
+        logoutRequest: false,
+        logoutFailed: false,
+        data: {}
       }
     }
-    case REGISTER_USER_FAILED: {
+    case LOGOUT_FAILED: {
       return {
         ...state,
-        registerFailed: true,
-        registerRequest: false,
-      }
-    }
-    case LOGIN_USER_REQUEST: {
-      return {
-        ...state,
-        loginRequest: true,
-      };
-    }
-    case LOGIN_USER_SUCCESS: {
-      return {
-        ...state,
-        isAuthenticated: true,
-        loginRequest: false,
-        loginFailed: false,
-        data: action.data
-      }
-    }
-    case LOGIN_USER_FAILED: {
-      return {
-        ...state,
-        isAuthenticated: false,
-        loginRequest: false,
-        loginFailed: true,
+        logoutRequest: false,
+        logoutFailed: true
       }
     }
     default: {

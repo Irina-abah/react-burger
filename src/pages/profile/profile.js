@@ -2,8 +2,12 @@ import { useState } from 'react';
 import profileStyles from "./profile.module.css";
 import { Link, NavLink } from "react-router-dom";
 import { Input, PasswordInput, EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useSelector, useDispatch } from 'react-redux';
+import { logoutUser } from '../../services/actions/user';
 
 function Profile() {
+
+  const dispatch = useDispatch();
 
   const [state, setState] = useState({
     name: "",
@@ -26,6 +30,10 @@ function Profile() {
       })
     }
 
+  const onSignOut = () => {
+    dispatch(logoutUser(state))
+  }
+
   return (
     <section className={profileStyles.profile}>
       <nav>
@@ -45,11 +53,12 @@ function Profile() {
             </NavLink>
           </li>
           <li className={profileStyles.nav_item}>
-            <NavLink 
-              to={{pathname: "/profile/orders/:id" }}
+            <Link 
+              to={{pathname: "/" }}
               className={`${profileStyles.nav_link} text_type_main-medium text_color_inactive pl-5 pr-5 mr-2`} 
-              activeClassName={profileStyles.active}>Выход
-            </NavLink>
+              activeClassName={profileStyles.active}
+              onClick={onSignOut}>Выход
+            </Link>
           </li>
         </ul>
       </nav>

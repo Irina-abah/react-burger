@@ -3,13 +3,13 @@ import UserForm from '../user-form/user-form';
 import registerStyles from "./register.module.css";
 import { Input, PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { registerUser } from "../../services/actions/user";
+import { registerUser } from "../../services/actions/register";
 import { Redirect } from 'react-router-dom';
 
 function Register() {
 
   const dispatch = useDispatch();
-  const auth = useSelector((store) => store.user.isAuthenticated)
+  const auth = useSelector((store) => store.register.isAuthenticated)
   const [state, setState] = useState({
     name: "",
     email: "",
