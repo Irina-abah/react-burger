@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import UserForm from "../user-form/user-form";
 import loginStyles from "./login.module.css";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginUser } from "../../services/actions/login";
@@ -9,6 +9,7 @@ import { loginUser } from "../../services/actions/login";
 function Login() {
 
   const dispatch = useDispatch();
+  const history = useHistory();
   const auth = useSelector((store) => store.login.isAuthenticated)
   const [state, setState] = useState({
     email: "",
@@ -36,15 +37,20 @@ function Login() {
 
     useEffect(() => {
       if (auth) {
-        return (
-          <Redirect
-            to={{
-              pathname: '/'
-            }}
-          />
-        );
+        history.replace({ pathname: '/' });
       }
-    }, [auth])
+    }, [history, auth]);
+  
+    if (auth) {
+      return (
+        <Redirect
+          to={{
+            pathname: '/'
+          }}
+        />
+      );
+    }
+
 
   return (
     <section className={loginStyles.login}>

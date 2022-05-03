@@ -36,9 +36,10 @@ export const loginUser = (data) => {
         setCookie('accessToken', res.accessToken)
         localStorage.setItem('refreshToken', res.refreshToken)
       } else {
-        dispatch({
-          type: LOGIN_USER_FAILED,
-        })
+        // dispatch({
+        //   type: LOGIN_USER_FAILED,
+        // })
+        return Promise.reject(`Error ${res.status}`)
       }
     })
     .catch((err) => {

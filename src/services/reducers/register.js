@@ -29,7 +29,7 @@ export const registerReducer = (state = initialState, action) => {
         registerFailed: false,
         registerRequest: false,
         isAuthenticated: true,
-        user: action.user
+        user: action.payload
       }
     }
     case REGISTER_USER_FAILED: {

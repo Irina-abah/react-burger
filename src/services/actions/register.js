@@ -36,9 +36,10 @@ export const registerUser = (data) => {
         setCookie('accessToken', res.accessToken)
         localStorage.setItem('refreshToken', res.refreshToken)
       } else {
-        dispatch({
-          type: REGISTER_USER_FAILED,
-        })
+        // dispatch({
+        //   type: REGISTER_USER_FAILED,
+        // })
+        return Promise.reject(`Error ${res.status}`)
       }
     })
     .catch((err) => {
