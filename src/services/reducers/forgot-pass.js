@@ -5,7 +5,6 @@ import {
  } from '../actions/forgot-pass';
 
  const initialState = {
-  email: "",
   forgotRequest: false,
   isEmailSent: false,
   forgotFailed: false
@@ -24,8 +23,7 @@ export const forgotReducer = (state = initialState, action) => {
         ...state,
         forgotRequest: false,
         isEmailSent: true,
-        forgotFailed: false,
-        email: action.payload
+        forgotFailed: false
       }
     }
     case FORGOT_PASSWORD_FAILED: {

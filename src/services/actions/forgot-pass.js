@@ -27,8 +27,7 @@ export const forgotPass = (data) => {
     .then((res) => {
       if (res && res.success) {
         dispatch({
-          type: FORGOT_PASSWORD_SUCCESS,
-          email: res.data,
+          type: FORGOT_PASSWORD_SUCCESS
         })
         console.log(res)
       } else {
