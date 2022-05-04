@@ -8,17 +8,12 @@ import { useHistory, Redirect } from 'react-router-dom';
 
 function ForgotPassword() {
 
-  // const [email, setEmail] = useState("");
   const [state, setState] = useState({
     email: ""
   });
   const history = useHistory();
   const dispatch = useDispatch();
   const emailSent = useSelector((store) => store.forgot.isEmailSent)
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  // }
 
   let submit = useCallback(
     e => {
@@ -35,21 +30,21 @@ function ForgotPassword() {
     })
   }
 
-    useEffect(() => {
-      if (emailSent) {
-        history.replace({ pathname: '/reset-password' });
-      }
-    }, [history, emailSent]);
-  
+  useEffect(() => {
     if (emailSent) {
-      return (
-        <Redirect
-          to={{
-            pathname: '/reset-password'
-          }}
-        />
-      );
-    }  
+      history.replace({ pathname: '/reset-password' });
+    }
+  }, [history, emailSent]);
+
+  if (emailSent) {
+    return (
+      <Redirect
+        to={{
+          pathname: '/reset-password'
+        }}
+      />
+    );
+  }  
 
   return (
     <section className={forgotStyles.forgot}>
