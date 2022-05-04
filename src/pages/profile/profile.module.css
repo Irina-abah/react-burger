@@ -13,12 +13,7 @@
   height: 64px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-}
-
-.nav_link {
   text-decoration: none;
-  padding: 0;
 }
 
 .active, .active path{

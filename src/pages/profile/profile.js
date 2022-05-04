@@ -34,29 +34,34 @@ function Profile() {
     dispatch(logoutUser(state))
   }
 
+  const onReset = () => {
+    
+  }
+
   return (
     <section className={profileStyles.profile}>
       <nav>
         <ul className={profileStyles.nav}>
-          <li className={profileStyles.nav_item}>
+          <li>
             <NavLink 
               to={{pathname: "/profile" }}
-              className={`${profileStyles.nav_link} text_type_main-medium text_color_inactive pl-5 pr-5 mr-2`} 
+              exact
+              className={`${profileStyles.nav_item} text_type_main-medium text_color_inactive pl-5 pr-5 mr-2`} 
               activeClassName={profileStyles.active}>Профиль
             </NavLink>
           </li>
-          <li className={profileStyles.nav_item}>
+          <li>
             <NavLink 
               to={{pathname: "/profile/orders" }}
-              className={`${profileStyles.nav_link} text_type_main-medium text_color_inactive pl-5 pr-5 mr-2`} 
+              exact 
+              className={`${profileStyles.nav_item} text_type_main-medium text_color_inactive pl-5 pr-5 mr-2`} 
               activeClassName={profileStyles.active}>История заказов
             </NavLink>
           </li>
-          <li className={profileStyles.nav_item}>
+          <li>
             <Link 
               to={{pathname: "/" }}
-              className={`${profileStyles.nav_link} text_type_main-medium text_color_inactive pl-5 pr-5 mr-2`} 
-              activeClassName={profileStyles.active}
+              className={`${profileStyles.nav_item} text_type_main-medium text_color_inactive pl-5 pr-5 mr-2`} 
               onClick={onSignOut}>Выход
             </Link>
           </li>
@@ -91,7 +96,7 @@ function Profile() {
         В этом разделе вы можете изменить свои персональные данные
       </p>
       <div className={profileStyles.buttons}>
-        <Button type="secondary" size="medium">
+        <Button type="secondary" size="medium" onClick={onReset}>
           Отмена
         </Button>
         <Button type="primary" size="medium">
