@@ -1,6 +1,7 @@
 import { BASE_URL } from "../../utils/constants";
-import { fetchWithRefresh } from "../../utils/token";
 import { getCookie } from "../../utils/cookie";
+import { LOGIN_USER_SUCCESS } from "./login";
+import { refreshToken } from "./refresh-token";
 
 export const GET_USER_REQUEST = "GET_USER_REQUEST";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
@@ -11,7 +12,7 @@ export const getUser = () => {
     dispatch({
       type: GET_USER_REQUEST
     })
-    fetchWithRefresh(`${BASE_URL}/auth/user`, {
+    fetch(`${BASE_URL}/auth/user`, {
       headers: {
         "Content-Type": "application/json;charset=utf-8",
         authorization: getCookie('accessToken')
@@ -27,7 +28,11 @@ export const getUser = () => {
       if (res && res.success) {
         dispatch({
           type: GET_USER_SUCCESS,
-          user: res.user
+          data: res.user
+        })
+        console.log(res)
+        dispatch({
+          type: LOGIN_USER_SUCCESS,
         })
       } else {
         dispatch({
@@ -37,9 +42,13 @@ export const getUser = () => {
     })
     .catch((err) => {
       console.log(err)
-      dispatch({
-        type: GET_USER_FAILED,
-      })
+      if (err.message === "jwt expired" || err.message === "Token is invalid") {
+        dispatch({
+          type: GET_USER_FAILED,
+        })
+        dispatch(refreshToken())
+        dispatch(getUser())
+      }
     })
   }
 }

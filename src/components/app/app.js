@@ -10,6 +10,7 @@ import Profile from '../../pages/profile/profile';
 import { ProtectedRoute } from '../../pages/protected-route';
 import { useDispatch } from 'react-redux';
 import { getIngredients } from '../../services/actions/ingredients';
+import { getUser } from '../../services/actions/get-user';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
 
   React.useEffect(() => {
     dispatch(getIngredients())
+    dispatch(getUser())
   }, [dispatch])
 
   return (

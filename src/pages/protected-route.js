@@ -5,27 +5,30 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getUser } from '../services/actions/get-user';
 
 export function ProtectedRoute({ children, ...rest }) {
-    // let { getUser, ...auth } = useAuth();
     const [isUserLoaded, setUserLoaded] = useState(false);
-    const auth = useSelector((store) => store.login.isAuthenticated)
+    const auth = useSelector((store) => store.getUser.isAuthenticated)
     const dispatch = useDispatch();
 
-    const init = async () => {
-    await dispatch(getUser());
-    setUserLoaded(true);
-
-    // if (!isUserLoaded) {
-    //   return null;
-    // }
-  };
-
-  useEffect(() => {
-    init();
-  }, []);
-
+    useEffect(() => {
+      setUserLoaded(true);
+    }, []);
+  
     if (!isUserLoaded) {
-    return null;
-  }
+      return null;
+    }
+
+  //   const init = async () => {
+  //     await dispatch(getUser());
+  //     setUserLoaded(true);
+  //   };
+
+  // useEffect(() => {
+  //   init();
+  // }, []);
+
+  // if (!isUserLoaded) {
+  //   return null;
+  // }
 
     return (
     <Route

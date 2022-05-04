@@ -25,7 +25,7 @@ export const getUserReducer = (state = initialState, action) => {
         isAuthenticated: true,
         getUserRequest: false,
         getUserFailed: false,
-        user: action.payload
+        user: action.user
       }
     }
     case GET_USER_FAILED: {

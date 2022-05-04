@@ -1,5 +1,6 @@
 import { BASE_URL } from "../../utils/constants";
-import { setCookie, getCookie } from "../../utils/cookie";
+import { setCookie } from "../../utils/cookie";
+import { getUser } from "./get-user";
 
 export const LOGIN_USER_REQUEST = "LOGIN_USER_REQUEST";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
@@ -17,8 +18,7 @@ export const loginUser = (data) => {
         password: data.password
       }),
       headers: {
-        "Content-Type": "application/json;charset=utf-8",
-        authorization: getCookie('accessToken')
+        "Content-Type": "application/json;charset=utf-8"
       },
     })
     .then((res) => {
@@ -35,6 +35,7 @@ export const loginUser = (data) => {
         })
         setCookie('accessToken', res.accessToken)
         localStorage.setItem('refreshToken', res.refreshToken)
+        dispatch(getUser())
       } else {
         dispatch({
           type: LOGIN_USER_FAILED,

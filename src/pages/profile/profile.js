@@ -4,18 +4,24 @@ import { Link, NavLink } from "react-router-dom";
 import { Input, PasswordInput, EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../../services/actions/logout';
+import { getUser } from '../../services/actions/get-user';
 
 function Profile() {
 
   const dispatch = useDispatch();
-  const user = useSelector((store) => store.getUser.user);
+  const user = useSelector((store) => store.login.user);
+  console.log(user)
 
-  const [state, setState] = useState({});
+  const [state, setState] = useState({
+    // name: "",
+    // email: "",
+    // password: ""
+  });
 
   useEffect(() => {
     setState(user)
     console.log(user)
-  }, [state, user])
+  }, [dispatch, state, user])
 
   const handleSubmit = (e) => {
     e.preventDefault()
