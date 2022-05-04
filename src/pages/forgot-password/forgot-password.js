@@ -8,9 +8,7 @@ import { useHistory, Redirect } from 'react-router-dom';
 
 function ForgotPassword() {
 
-  const [state, setState] = useState({
-    email: ""
-  });
+  const [email, setEmail] = useState("")
   const history = useHistory();
   const dispatch = useDispatch();
   const emailSent = useSelector((store) => store.forgot.isEmailSent)
@@ -18,16 +16,13 @@ function ForgotPassword() {
   let submit = useCallback(
     e => {
       e.preventDefault()
-      dispatch(forgotPass(state))
+      dispatch(forgotPass(email))
     },
-    [dispatch, state]
+    [dispatch, email]
   )
-  
+
   const handleInputChange = (e) => {
-    setState({
-      ...state,
-      [e.target.name]: e.target.value
-    })
+    setEmail(e.target.value)
   }
 
   useEffect(() => {
@@ -61,7 +56,7 @@ function ForgotPassword() {
             type={'email'}
             placeholder={'Укажите e-mail'}
             onChange={handleInputChange}
-            value={state.email}
+            value={email}
             name={'email'}
             error={false}
             size={'default'}

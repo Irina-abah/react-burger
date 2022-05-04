@@ -4,7 +4,7 @@ export const FORGOT_PASSWORD_REQUEST = "FORGOT_PASSWORD_REQUEST";
 export const FORGOT_PASSWORD_SUCCESS = "FORGOT_PASSWORD_SUCCESS";
 export const FORGOT_PASSWORD_FAILED = "FORGOT_PASSWORD_FAILED";
 
-export const forgotPass = (data) => {
+export const forgotPass = (email) => {
   return function (dispatch) {
     dispatch({
       type: FORGOT_PASSWORD_REQUEST
@@ -12,7 +12,7 @@ export const forgotPass = (data) => {
     fetch(`${BASE_URL}/password-reset`, {
       method: "POST",
       body: JSON.stringify({
-        email: data.email
+        email: email
       }),
       headers: {
         "Content-Type": "application/json;charset=utf-8"
