@@ -7,6 +7,7 @@ import { loginReducer } from './login';
 import { logoutReducer } from './logout';
 import { forgotReducer } from './forgot-pass';
 import { resetReducer } from './reset-pass';
+import { getUserReducer } from './get-user'
 
 export const rootReducer = combineReducers({
   order: orderReducer,
@@ -16,5 +17,6 @@ export const rootReducer = combineReducers({
   login: loginReducer,
   logout: logoutReducer,
   forgot: forgotReducer,
-  reset: resetReducer
+  reset: resetReducer,
+  getUser: getUserReducer
 });

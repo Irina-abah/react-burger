@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import profileStyles from "./profile.module.css";
 import { Link, NavLink } from "react-router-dom";
 import { Input, PasswordInput, EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -8,13 +8,14 @@ import { logoutUser } from '../../services/actions/logout';
 function Profile() {
 
   const dispatch = useDispatch();
+  const user = useSelector((store) => store.getUser.user);
 
-  const [state, setState] = useState({
-    name: "",
-    email: "",
-    password: ""
-  });
+  const [state, setState] = useState({});
 
+  useEffect(() => {
+    setState(user)
+    console.log(user)
+  }, [state, user])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -35,7 +36,7 @@ function Profile() {
   }
 
   const onReset = () => {
-    
+
   }
 
   return (
