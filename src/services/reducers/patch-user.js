@@ -10,6 +10,7 @@ const initialState = {
     name: ""
   },
   patchUserRequest: false,
+  isSuccess: false,
   patchUserFailed: false
 }
 
@@ -26,6 +27,7 @@ export const patchUserReducer = (state = initialState, action) => {
         ...state,
         patchUserRequest: false,
         patchUserFailed: false,
+        isSuccess: true,
         user: action.user
       }
     }
@@ -34,6 +36,7 @@ export const patchUserReducer = (state = initialState, action) => {
         ...state,
         patchUserRequest: false,
         patchUserFailed: true,
+        isSuccess: false
       }
     }
     default: {

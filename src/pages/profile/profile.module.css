@@ -1,12 +1,10 @@
 .profile {
   margin: 180px auto;
-  border: 1px solid red; 
   display: grid;
   max-width: 860px;
   width: 100%;
   grid-column-gap: 60px;
-  grid-template-columns: 320px 480px
-  /* grid-template-columns: 320px auto; */
+  grid-template-columns: 320px 480px;
 }
 
 .nav_item {
@@ -39,4 +37,10 @@
 
 .inputs, .buttons {
   margin: 0 0 0 auto;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }

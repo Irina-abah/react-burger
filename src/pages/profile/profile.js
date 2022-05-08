@@ -4,14 +4,13 @@ import { Link, NavLink } from "react-router-dom";
 import { Input, PasswordInput, EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../../services/actions/logout';
-import { getUser } from '../../services/actions/get-user';
 import { patchUser } from '../../services/actions/patch-user';
 
 function Profile() {
 
   const dispatch = useDispatch();
   const user = useSelector((store) => store.getUser.user);
-  const updatedUser = useSelector((store) => store.patchUser.user);
+  const isSuccess = useSelector((store) => store.getUser.isSuccess);
   const [isEdit, setIsEdit] = useState(false);
   const [state, setState] = useState({
     name: "",
@@ -25,9 +24,9 @@ function Profile() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // if (isEdit) {
-      patchUser(state)
-    // }
+    if (isEdit) {
+      dispatch(patchUser(state))
+    }
   }
   
   const handleInputChange = (e) => {
@@ -108,6 +107,7 @@ function Profile() {
             name={'password'}
           />
         </div>
+        {isSuccess && <p>Данные успешно обновлены</p>}
         <div className={profileStyles.buttons}>
           <Button type="secondary" size="medium" onClick={onReset}>
             Отмена

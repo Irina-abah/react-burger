@@ -12,7 +12,7 @@ export const patchUser = (data) => {
       type: PATCH_USER_REQUEST
     })
     fetch(`${BASE_URL}/auth/user`, {
-      method: "POST",
+      method: "PATCH",
       body: JSON.stringify({
         name: data.name,
         email: data.email, 
