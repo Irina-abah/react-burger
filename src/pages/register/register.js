@@ -17,7 +17,6 @@ function Register() {
     password: ""
   });
 
-
   let submit = useCallback(
     e => {
       e.preventDefault()
@@ -25,7 +24,6 @@ function Register() {
     },
     [dispatch, state]
   )
-  
   
   const handleInputChange = (e) => {
       const value = e.target.value;

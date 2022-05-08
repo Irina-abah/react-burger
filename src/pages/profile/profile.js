@@ -79,7 +79,7 @@ function Profile() {
         <div className={`mb-6`}>
           <Input 
             onChange={handleInputChange} 
-            value={''} 
+            value={state.name} 
             name={'name'}
             placeholder={'Имя'}
           />
@@ -87,14 +87,14 @@ function Profile() {
         <div className={`mb-6`}>
           <EmailInput 
             onChange={handleInputChange} 
-            value={''} 
+            value={state.email} 
             name={'email'}
           />
         </div> 
         <div className={`mb-6`}>
           <PasswordInput 
             onChange={handleInputChange} 
-            value={''} 
+            value={state.password} 
             name={'password'}
           />
         </div>

@@ -5,7 +5,10 @@ import {
 } from '../actions/get-user';
 
 const initialState = {
-  user: {},
+  user: { 
+    email: "",
+    name: ""
+  },
   isAuthenticated: false,
   getUserRequest: false,
   getUserFailed: false
@@ -25,7 +28,7 @@ export const getUserReducer = (state = initialState, action) => {
         isAuthenticated: true,
         getUserRequest: false,
         getUserFailed: false,
-        user: action.data.user
+        user: action.user
       }
     }
     case GET_USER_FAILED: {

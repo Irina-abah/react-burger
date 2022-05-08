@@ -5,7 +5,10 @@ import {
 } from "../actions/login";
 
 const initialState = {
-  user: {},
+  user: { 
+    email: "",
+    name: ""
+  },
   isAuthenticated: false,
   loginRequest: false,
   loginFailed: false
@@ -25,7 +28,7 @@ export const loginReducer = (state = initialState, action) => {
         isAuthenticated: true,
         loginRequest: false,
         loginFailed: false,
-        user: action.data.user
+        user: action.user
       }
     }
     case LOGIN_USER_FAILED: {

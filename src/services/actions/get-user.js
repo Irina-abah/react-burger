@@ -28,12 +28,12 @@ export const getUser = () => {
       if (res && res.success) {
         dispatch({
           type: GET_USER_SUCCESS,
-          user: res.data
+          user: res.user
         })
         console.log(res)
-        dispatch({
-          type: LOGIN_USER_SUCCESS,
-        })
+        // dispatch({
+        //   type: LOGIN_USER_SUCCESS,
+        // })
       } else {
         dispatch({
           type: GET_USER_FAILED,
