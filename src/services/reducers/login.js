@@ -25,7 +25,7 @@ export const loginReducer = (state = initialState, action) => {
         isAuthenticated: true,
         loginRequest: false,
         loginFailed: false,
-        user: action.user
+        user: action.data.user
       }
     }
     case LOGIN_USER_FAILED: {

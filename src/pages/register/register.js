@@ -39,7 +39,7 @@ function Register() {
 
     useEffect(() => {
       if (auth) {
-        history.replace({ pathname: '/' });
+        history.replace({ pathname: '/login' });
       }
     }, [history, auth]);
   
@@ -47,7 +47,7 @@ function Register() {
       return (
         <Redirect
           to={{
-            pathname: '/'
+            pathname: '/login'
           }}
         />
       );

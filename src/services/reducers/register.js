@@ -5,11 +5,7 @@ import {
 } from "../actions/register";
 
 const initialState = {
-  user: {
-    email: "",
-    name: "",
-    password: ""
-  },
+  user: {},
   registerRequest: false,
   registerFailed: false,
   isAuthenticated: false
@@ -29,7 +25,7 @@ export const registerReducer = (state = initialState, action) => {
         registerFailed: false,
         registerRequest: false,
         isAuthenticated: true,
-        user: action.payload
+        user: action.data
       }
     }
     case REGISTER_USER_FAILED: {

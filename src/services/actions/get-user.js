@@ -28,7 +28,7 @@ export const getUser = () => {
       if (res && res.success) {
         dispatch({
           type: GET_USER_SUCCESS,
-          data: res.user
+          user: res.data
         })
         console.log(res)
         dispatch({
@@ -41,7 +41,7 @@ export const getUser = () => {
       }
     })
     .catch((err) => {
-      console.log(err)
+      console.log(err.message)
       if (err.message === "jwt expired" || err.message === "Token is invalid") {
         dispatch({
           type: GET_USER_FAILED,

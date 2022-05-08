@@ -31,7 +31,7 @@ export const registerUser = (data) => {
       if (res && res.success) {
         dispatch({
           type: REGISTER_USER_SUCCESS,
-          user: res.user
+          user: res.data
         })
         setCookie('accessToken', res.accessToken)
         localStorage.setItem('refreshToken', res.refreshToken)

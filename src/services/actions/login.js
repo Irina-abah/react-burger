@@ -31,7 +31,7 @@ export const loginUser = (data) => {
       if (res && res.success) {
         dispatch({
           type: LOGIN_USER_SUCCESS,
-          data: res.user
+          user: res.data
         })
         setCookie('accessToken', res.accessToken)
         localStorage.setItem('refreshToken', res.refreshToken)
