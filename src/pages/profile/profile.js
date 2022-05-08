@@ -9,13 +9,13 @@ import { getUser } from '../../services/actions/get-user';
 function Profile() {
 
   const dispatch = useDispatch();
-  const user = useSelector((store) => store.login.user);
+  const user = useSelector((store) => store.getUser.user);
   console.log(user)
 
   const [state, setState] = useState({
-    // name: "",
-    // email: "",
-    // password: ""
+    name: "",
+    email: "",
+    password: ""
   });
 
   useEffect(() => {
@@ -79,7 +79,7 @@ function Profile() {
         <div className={`mb-6`}>
           <Input 
             onChange={handleInputChange} 
-            value={state.name} 
+            value={''} 
             name={'name'}
             placeholder={'Имя'}
           />
@@ -87,14 +87,14 @@ function Profile() {
         <div className={`mb-6`}>
           <EmailInput 
             onChange={handleInputChange} 
-            value={state.email} 
+            value={''} 
             name={'email'}
           />
         </div> 
         <div className={`mb-6`}>
           <PasswordInput 
             onChange={handleInputChange} 
-            value={state.password} 
+            value={''} 
             name={'password'}
           />
         </div>
