@@ -2,12 +2,12 @@
 import { Route, Redirect } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUser } from '../services/actions/get-user';
+// import { getUser } from '../services/actions/get-user';
 
 export function ProtectedRoute({ children, ...rest }) {
     const [isUserLoaded, setUserLoaded] = useState(false);
     const auth = useSelector((store) => store.getUser.isAuthenticated)
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     useEffect(() => {
       setUserLoaded(true);

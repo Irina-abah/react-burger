@@ -4,7 +4,6 @@ import { setCookie} from "../../utils/cookie";
 export const REGISTER_USER_REQUEST = 'REGISTER_USER_REQUEST';
 export const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS';
 export const REGISTER_USER_FAILED = 'REGISTER_USER_FAILED';
-export const SET_REGISTER = "SET_REGISTER";
 
 export const registerUser = (data) => {
   return function (dispatch) {

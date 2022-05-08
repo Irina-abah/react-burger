@@ -1,18 +1,23 @@
 import { BASE_URL } from "../../utils/constants";
 import { getCookie } from "../../utils/cookie";
-import { LOGIN_USER_SUCCESS } from "./login";
 import { refreshToken } from "./refresh-token";
 
-export const GET_USER_REQUEST = "GET_USER_REQUEST";
-export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
-export const GET_USER_FAILED = "GET_USER_FAILED";
+export const PATCH_USER_REQUEST = "PATCH_USER_REQUEST";
+export const PATCH_USER_SUCCESS = "PATCH_USER_SUCCESS";
+export const PATCH_USER_FAILED = "PATCH_USER_FAILED";
 
-export const getUser = () => {
+export const patchUser = (data) => {
   return function (dispatch) {
     dispatch({
-      type: GET_USER_REQUEST
+      type: PATCH_USER_REQUEST
     })
     fetch(`${BASE_URL}/auth/user`, {
+      method: "POST",
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email, 
+        password: data.password
+      }),
       headers: {
         "Content-Type": "application/json;charset=utf-8",
         authorization: getCookie('accessToken')
@@ -27,16 +32,12 @@ export const getUser = () => {
     .then((res) => {
       if (res && res.success) {
         dispatch({
-          type: GET_USER_SUCCESS,
+          type: PATCH_USER_SUCCESS,
           user: res.user
-        })
-        console.log(res)
-        dispatch({
-          type: LOGIN_USER_SUCCESS,
         })
       } else {
         dispatch({
-          type: GET_USER_FAILED,
+          type: PATCH_USER_FAILED,
         })
       }
     })
@@ -44,12 +45,11 @@ export const getUser = () => {
       console.log(err.message)
       if (err.message === "jwt expired" || err.message === "Token is invalid") {
         dispatch({
-          type: GET_USER_FAILED,
+          type: PATCH_USER_FAILED,
         })
         dispatch(refreshToken())
-        dispatch(getUser())
+        dispatch(patchUser(data))
       }
     })
   }
 }
-

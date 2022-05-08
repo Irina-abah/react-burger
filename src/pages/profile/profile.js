@@ -5,13 +5,14 @@ import { Input, PasswordInput, EmailInput, Button } from '@ya.praktikum/react-de
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../../services/actions/logout';
 import { getUser } from '../../services/actions/get-user';
+import { patchUser } from '../../services/actions/patch-user';
 
 function Profile() {
 
   const dispatch = useDispatch();
   const user = useSelector((store) => store.getUser.user);
-  console.log(user)
-
+  const updatedUser = useSelector((store) => store.patchUser.user);
+  const [isEdit, setIsEdit] = useState(false);
   const [state, setState] = useState({
     name: "",
     email: "",
@@ -20,11 +21,13 @@ function Profile() {
 
   useEffect(() => {
     setState(user)
-    console.log(user)
-  }, [dispatch, state, user])
+  }, [])
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const onSubmit = (e) => {
+    e.preventDefault();
+    // if (isEdit) {
+      patchUser(state)
+    // }
   }
   
   const handleInputChange = (e) => {
@@ -35,14 +38,21 @@ function Profile() {
         ...state,
         [name]: value
       })
+      setIsEdit(true)
     }
 
+  const onReset = (e) => {
+    e.preventDefault()
+    setState({
+      ...state,
+      name: user.name,
+      email: user.email,
+      password: ""
+    })
+  }
+  
   const onSignOut = () => {
     dispatch(logoutUser(state))
-  }
-
-  const onReset = () => {
-
   }
 
   return (
@@ -75,7 +85,7 @@ function Profile() {
         </ul>
       </nav>
       
-      <div className={profileStyles.inputs}>
+      <form className={profileStyles.inputs} onSubmit={onSubmit}>
         <div className={`mb-6`}>
           <Input 
             onChange={handleInputChange} 
@@ -94,22 +104,22 @@ function Profile() {
         <div className={`mb-6`}>
           <PasswordInput 
             onChange={handleInputChange} 
-            value={state.password} 
+            value={state.password || ""} 
             name={'password'}
           />
         </div>
-      </div>
+        <div className={profileStyles.buttons}>
+          <Button type="secondary" size="medium" onClick={onReset}>
+            Отмена
+          </Button>
+          <Button type="primary" size="medium" onClick={onSubmit}>
+            Сохранить
+          </Button>
+        </div>
+      </form>
       <p className={`${profileStyles.text} text_type_main-default text_color_inactive`} >
         В этом разделе вы можете изменить свои персональные данные
       </p>
-      <div className={profileStyles.buttons}>
-        <Button type="secondary" size="medium" onClick={onReset}>
-          Отмена
-        </Button>
-        <Button type="primary" size="medium">
-          Сохранить
-        </Button>
-      </div>
     </section>
   )
 }
