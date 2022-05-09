@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import { useHistory } from "react-router-dom";
 import constructorStyles from "./burder-constructor.module.css";
 import { ConstructorElement, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import Modal from "../modal/modal";
@@ -13,9 +14,11 @@ import { ADD_BUN, RESET_CONSTRUSTOR, ADD_INNER_ITEM, UPDATE_CONSTRUCTOR_LIST } f
 function BurgerConstructor() {
 
   const dispatch = useDispatch();
+  const history = useHistory();
   const {innerItems} = useSelector((store) => store.ingredients.constructor);
   const {selectedBun} = useSelector((store) => store.ingredients.constructor);
   const data = useSelector((store) => store.ingredients.foodData);
+  const auth = useSelector((store) => store.login.isAuthenticated);
   const [isOpen, setIsOpen] = React.useState(false);
 
   const allBurgerItems = useMemo(() => {
@@ -82,8 +85,13 @@ function BurgerConstructor() {
 
   function handleSubmit() {
     const items = data.map(item => item._id);
+    if (auth) {
       dispatch(makeOrder(items))
       setIsOpen(!isOpen)
+    } else {
+      history.replace({ pathname: "/login" });
+    }
+      
   }
 
   return (
@@ -123,7 +131,7 @@ function BurgerConstructor() {
         </Button>} 
       </div>
     </div>
-    {isOpen && (<Modal 
+    {isOpen && auth && (<Modal 
       title=""
       onClose={handleCloseModal}>
         <OrderDetails />

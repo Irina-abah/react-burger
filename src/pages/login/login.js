@@ -10,7 +10,7 @@ function Login() {
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const auth = useSelector((store) => store.login.isAuthenticated)
+  const auth = useSelector((store) => store.login.isAuthenticated);
   const [state, setState] = useState({
     email: "",
     password: ""

@@ -5,10 +5,12 @@ import { Input, PasswordInput, EmailInput, Button } from '@ya.praktikum/react-de
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../../services/actions/logout';
 import { patchUser } from '../../services/actions/patch-user';
+import { useHistory } from "react-router-dom";
 
 function Profile() {
 
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((store) => store.getUser.user);
   const isSuccess = useSelector((store) => store.getUser.isSuccess);
   const [isEdit, setIsEdit] = useState(false);
@@ -52,6 +54,7 @@ function Profile() {
   
   const onSignOut = () => {
     dispatch(logoutUser(state))
+    history.replace({ pathname: "/login" });
   }
 
   return (
