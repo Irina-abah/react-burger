@@ -22,6 +22,7 @@ export const getIngredients = () => {
           type: GET_INGREDIENTS_SUCCESS,
           foodData: res.data
         })
+        localStorage.setItem('foodData', JSON.stringify(res.data))
       } else {
         dispatch({
           type: GET_INGREDIENTS_FAILED,

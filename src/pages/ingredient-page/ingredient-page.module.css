@@ -1,0 +1,3 @@
+.main {
+  composes: login from '../login/login.module.css';
+}

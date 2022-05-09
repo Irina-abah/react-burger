@@ -9,7 +9,9 @@ import ResetPassword from '../../pages/reset-password/reset-password';
 import Profile from '../../pages/profile/profile';
 import Modal from '../modal/modal';
 import IngredientsDetails from '../ingredient-details/ingredient-details';
+import IngredientPage from '../../pages/ingredient-page/ingredient-page';
 import PageNotFound from '../../pages/not-found/not-found';
+import { CLOSE_MODAL } from "../../services/actions/ingredient-modal";
 import { ProtectedRoute } from '../../pages/protected-route';
 import { useDispatch } from 'react-redux';
 import { getIngredients } from '../../services/actions/ingredients';
@@ -22,7 +24,10 @@ function App() {
   let background = location.state && location.state.background;
 
   const handleModalClose = () => {
-    history.goBack(); // версия для 5 роутера
+    dispatch({
+      type: CLOSE_MODAL
+    })
+    history.goBack(); 
   };
 
   React.useEffect(() => {
@@ -48,8 +53,8 @@ function App() {
           <ProtectedRoute path="/profile">
             <Profile/>
           </ProtectedRoute>
-          <Route path="/ingredients/:ingredientId">
-            <IngredientsDetails />
+          <Route path="/ingredients/:ingredientId" exact>
+            <IngredientPage />
           </Route>
           <Route exact path="/">
             <Main />

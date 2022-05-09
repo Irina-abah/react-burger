@@ -4,14 +4,13 @@ import { useParams } from 'react-router-dom';
 
 function IngredientsDetails() {
 
-  let { id } = useParams();
-  const item = useSelector((store) => store.modal.selectedItem);
-  // const allItems = useSelector((store) => store.ingredients.foodData);
-  // const item = allItems.find((el) => el._id === id);
-  console.log(item)
+  let { ingredientId } = useParams();
+  const allItems = useSelector((store) => store.ingredients.foodData);
+  const item = allItems.find((c) => c._id === ingredientId);
+  console.log(allItems)
 
   return (
-    <div className={ingredientStyles.container} key={item.id}>
+    <div className={ingredientStyles.container} key={item._id}>
       <img src={item.image_large} alt={item.name}/>
       <h2 className={`text text_type_main-medium mt-4 mb-8`}>{item.name}</h2>
       <ul className={`${ingredientStyles.list} text text_type_main-default text_color_inactive`}>
