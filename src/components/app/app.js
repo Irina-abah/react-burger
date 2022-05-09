@@ -9,6 +9,7 @@ import ResetPassword from '../../pages/reset-password/reset-password';
 import Profile from '../../pages/profile/profile';
 import Modal from '../modal/modal';
 import IngredientsDetails from '../ingredient-details/ingredient-details';
+import PageNotFound from '../../pages/not-found/not-found';
 import { ProtectedRoute } from '../../pages/protected-route';
 import { useDispatch } from 'react-redux';
 import { getIngredients } from '../../services/actions/ingredients';
@@ -52,6 +53,9 @@ function App() {
           </Route>
           <Route exact path="/">
             <Main />
+          </Route>
+          <Route path="*">
+            <PageNotFound />
           </Route>
         </Switch>
         {background && (
