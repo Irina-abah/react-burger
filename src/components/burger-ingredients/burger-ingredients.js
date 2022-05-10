@@ -21,25 +21,38 @@ const BurgerIngredients = () => {
   const allRef = useRef(null);
 
   const handleScroll = () => {
-		const top = allRef.current.scrollTop + allRef.current.offsetTop;
-		if (sausesRef.current.offsetTop > top) {
-			setCurrent("buns");
-		} else if (mainsRef.current.offsetTop > top && top >= sausesRef.current.offsetTop) {
-			setCurrent("sauses");
-		} else {
-			setCurrent("mains");
-		}
-	};
+    const top = allRef.current.scrollTop + allRef.current.offsetTop;
+    
+    if (sausesRef.current.offsetTop > top) {
+      setCurrent("buns");
+    } else if (mainsRef.current.offsetTop > top && top >= sausesRef.current.offsetTop) {
+      setCurrent("sauses");
+    } else {
+      setCurrent("mains");
+    }
+  };
+
+  const onTab = (selectedTab) => {
+    setCurrent(selectedTab);
+
+    if (selectedTab === "buns") {
+      bunsRef.current.scrollIntoView({ block: "start", behavior: "smooth"});
+    } else if (selectedTab === "sauses") {
+      sausesRef.current.scrollIntoView({ block: "start", behavior: "smooth"});
+    } else if (selectedTab === "mains") {
+      mainsRef.current.scrollIntoView({ block: "start", behavior: "smooth"});
+    }
+  }
 
   return (
     <div className={`mr-10`}>
       <h1 className={`text text_type_main-large mb-5`}>Соберите бургер</h1>
       <div style={{ display: 'flex' }}>
-        <Tab innerRef={bunsRef} value="buns" active={current === 'buns'} onClick={setCurrent}><Link className={ingredientsStyles.tab} to="#buns">Булки</Link>
+        <Tab innerRef={bunsRef} value="buns" active={current === 'buns'} onClick={onTab}><Link className={ingredientsStyles.tab} to="#buns">Булки</Link>
         </Tab>
-        <Tab innerRef={sausesRef} value="sauses" active={current === 'sauses'} onClick={setCurrent}><Link className={ingredientsStyles.tab} to="#sauses">Соусы</Link>
+        <Tab innerRef={sausesRef} value="sauses" active={current === 'sauses'} onClick={onTab}><Link className={ingredientsStyles.tab} to="#sauses">Соусы</Link>
         </Tab>
-        <Tab innerRef={mainsRef} value="mains" active={current === 'mains'} onClick={setCurrent}><Link className={ingredientsStyles.tab} to="#mains">Начинки</Link>
+        <Tab innerRef={mainsRef} value="mains" active={current === 'mains'} onClick={onTab}><Link className={ingredientsStyles.tab} to="#mains">Начинки</Link>
         </Tab>
       </div>
       {loadingFailed ? <p className={`${ingredientsStyles.error} text text_type_main-medium pt-15`}>{LOAD_ERROR}</p> : (<div className={ingredientsStyles.menu} onScroll={handleScroll} ref={allRef}>

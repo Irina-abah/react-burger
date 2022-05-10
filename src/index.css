@@ -26,3 +26,7 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+.input_size_default {
+  min-width: 480px;
+}
