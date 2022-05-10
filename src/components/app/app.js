@@ -21,7 +21,7 @@ function App() {
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
-  let background = location.state && location.state.background;
+  const background = location.state && location.state.background;
 
   const handleModalClose = () => {
     dispatch({

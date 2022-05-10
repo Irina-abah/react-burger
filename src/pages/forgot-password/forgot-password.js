@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import UserForm from '../user-form/user-form';
 import forgotStyles from "./forgot-password.module.css";
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -9,7 +9,6 @@ import { useHistory, Redirect } from 'react-router-dom';
 function ForgotPassword() {
 
   const [email, setEmail] = useState("")
-  const history = useHistory();
   const dispatch = useDispatch();
   const emailSent = useSelector((store) => store.forgot.isEmailSent)
 

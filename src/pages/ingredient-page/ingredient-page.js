@@ -1,12 +1,17 @@
 import ingredientPageStyles from "./ingredient-page.module.css";
 import ingredientStyles from "../../components/ingredient-details/ingredient-details.module.css";
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function IngredientPage() {
 
-  const allItems = JSON.parse(localStorage.getItem("foodData"))
-  let { ingredientId } = useParams();
-  const item = allItems.find((c) => c._id === ingredientId);
+  const { ingredientId } = useParams();
+  const allItems = useSelector((store) => store.ingredients.foodData);
+  const selectedItem = useSelector((store) => store.modal.selectedItem);
+  const ingredient = allItems.find((c) => c._id === ingredientId);
+
+  const item = ingredient || selectedItem;
+
 
   return (
     <section className={ingredientPageStyles.main}>

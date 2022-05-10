@@ -39,7 +39,8 @@ function Register() {
       return (
         <Redirect
           to={{
-            pathname: '/login'
+            // pathname: '/login'
+            pathname: '/'
           }}
         />
       );

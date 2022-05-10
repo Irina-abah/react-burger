@@ -5,10 +5,12 @@ import { OPEN_MODAL } from "../../services/actions/ingredient-modal";
 import { useDispatch } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import { Link, useLocation } from 'react-router-dom';
+
 function Ingredient({ item }) {
 
   const location = useLocation();
   const dispatch = useDispatch();
+  
   const ingredientId = item['_id'];
   const [{ opacity }, dragRef] = useDrag({
     type: 'ingredient',
