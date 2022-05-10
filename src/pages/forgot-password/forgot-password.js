@@ -4,7 +4,7 @@ import forgotStyles from "./forgot-password.module.css";
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { forgotPass } from '../../services/actions/forgot-pass';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 function ForgotPassword() {
 
