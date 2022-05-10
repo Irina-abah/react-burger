@@ -34,12 +34,6 @@ function ResetPassword() {
         [name]: value
       })
     }
-
-    useEffect(() => {
-      if (passwordReset) {
-        history.replace({ pathname: '/login' });
-      }
-    }, [history, passwordReset]);
   
     if (passwordReset) {
       return (

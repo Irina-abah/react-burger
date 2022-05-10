@@ -34,12 +34,6 @@ function Login() {
         [name]: value
       })
     }
-
-    useEffect(() => {
-      if (auth) {
-        history.replace({ pathname: '/' });
-      }
-    }, [history, auth]);
   
     if (auth) {
       return (

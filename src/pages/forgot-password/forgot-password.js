@@ -25,12 +25,6 @@ function ForgotPassword() {
     setEmail(e.target.value)
   }
 
-  useEffect(() => {
-    if (emailSent) {
-      history.replace({ pathname: '/reset-password' });
-    }
-  }, [history, emailSent]);
-
   if (emailSent) {
     return (
       <Redirect

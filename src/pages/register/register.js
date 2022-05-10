@@ -34,12 +34,6 @@ function Register() {
         [name]: value
       })
     }
-
-    useEffect(() => {
-      if (auth) {
-        history.replace({ pathname: '/login' });
-      }
-    }, [history, auth]);
   
     if (auth) {
       return (
