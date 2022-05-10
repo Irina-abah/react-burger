@@ -21,15 +21,16 @@ const BurgerIngredients = () => {
   const allRef = useRef(null);
 
   const handleScroll = () => {
-		const top = allRef.current.scrollTop + allRef.current.offsetTop;
-		if (sausesRef.current.offsetTop > top) {
-			setCurrent("buns");
-		} else if (mainsRef.current.offsetTop > top && top >= sausesRef.current.offsetTop) {
-			setCurrent("sauses");
-		} else {
-			setCurrent("mains");
-		}
-	};
+    const top = allRef.current.scrollTop + allRef.current.offsetTop;
+    
+    if (sausesRef.current.offsetTop > top) {
+      setCurrent("buns");
+    } else if (mainsRef.current.offsetTop > top && top >= sausesRef.current.offsetTop) {
+      setCurrent("sauses");
+    } else {
+      setCurrent("mains");
+    }
+  };
 
   const onTab = (selectedTab) => {
     setCurrent(selectedTab);
@@ -41,7 +42,7 @@ const BurgerIngredients = () => {
     } else if (selectedTab === "mains") {
       mainsRef.current.scrollIntoView({ block: "start", behavior: "smooth"});
     }
-}
+  }
 
   return (
     <div className={`mr-10`}>
