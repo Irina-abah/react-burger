@@ -5,6 +5,12 @@ export const RESET_PASSWORD_REQUEST = "RESET_PASSWORD_REQUEST";
 export const RESET_PASSWORD_SUCCESS = "RESET_PASSWORD_SUCCESS";
 export const RESET_PASSWORD_FAILED = "RESET_PASSWORD_FAILED";
 
+function handleResetError() {
+  return {
+    type: RESET_PASSWORD_FAILED
+  }
+}
+
 export const resetPass = (data) => {
   return function (dispatch) {
     dispatch({
@@ -28,16 +34,12 @@ export const resetPass = (data) => {
         })
         console.log(res)
       } else {
-        dispatch({
-          type: RESET_PASSWORD_FAILED,
-        })
+        dispatch(handleResetError())
       }
     })
     .catch((err) => {
       console.log(err)
-      dispatch({
-        type: RESET_PASSWORD_FAILED,
-      })
+      dispatch(handleResetError())
     })
   }
 }

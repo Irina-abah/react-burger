@@ -6,7 +6,13 @@ export const LOGOUT_REQUEST = "LOGOUT_REQUEST";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const LOGOUT_FAILED = "LOGOUT_FAILED";
 
-export const logoutUser = (data) => {
+function handleLogoutError() {
+  return {
+    type: LOGOUT_FAILED
+  }
+}
+
+export const logoutUser = () => {
   return function (dispatch) {
     dispatch({
       type: LOGOUT_REQUEST
@@ -25,21 +31,16 @@ export const logoutUser = (data) => {
       if (res && res.success) {
         dispatch({
           type: LOGOUT_SUCCESS,
-          // data: res.user
         })
         deleteCookie('accessToken')
         localStorage.removeItem('refreshToken')
       } else {
-        dispatch({
-          type: LOGOUT_FAILED,
-        })
+        dispatch(handleLogoutError())
       }
     })
     .catch((err) => {
       console.log(err)
-      dispatch({
-        type: LOGOUT_FAILED,
-      })
+      dispatch(handleLogoutError())
     })
   }
 }

@@ -5,6 +5,12 @@ export const FORGOT_PASSWORD_REQUEST = "FORGOT_PASSWORD_REQUEST";
 export const FORGOT_PASSWORD_SUCCESS = "FORGOT_PASSWORD_SUCCESS";
 export const FORGOT_PASSWORD_FAILED = "FORGOT_PASSWORD_FAILED";
 
+function handlePassError() {
+  return {
+    type: FORGOT_PASSWORD_FAILED
+  }
+}
+
 export const forgotPass = (email) => {
   return function (dispatch) {
     dispatch({
@@ -27,16 +33,12 @@ export const forgotPass = (email) => {
         })
         console.log(res)
       } else {
-        dispatch({
-          type: FORGOT_PASSWORD_FAILED,
-        })
+        dispatch(handlePassError())
       }
     })
     .catch((err) => {
       console.log(err)
-      dispatch({
-        type: FORGOT_PASSWORD_FAILED,
-      })
+      dispatch(handlePassError())
     })
   }
 }

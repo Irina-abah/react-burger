@@ -7,6 +7,12 @@ export const LOGIN_USER_REQUEST = "LOGIN_USER_REQUEST";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
 export const LOGIN_USER_FAILED = "LOGIN_USER_FAILED";
 
+function handleLoginError() {
+  return {
+    type: LOGIN_USER_FAILED
+  }
+}
+
 export const loginUser = (data) => {
   return function (dispatch) {
     dispatch({
@@ -33,16 +39,12 @@ export const loginUser = (data) => {
         localStorage.setItem('refreshToken', res.refreshToken)
         dispatch(getUser())
       } else {
-        dispatch({
-          type: LOGIN_USER_FAILED,
-        })
+        dispatch(handleLoginError())
       }
     })
     .catch((err) => {
       console.log(err)
-      dispatch({
-        type: LOGIN_USER_FAILED,
-      })
+      dispatch(handleLoginError())
     })
   }
 }

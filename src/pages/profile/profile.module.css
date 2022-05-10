@@ -44,3 +44,12 @@
   flex-direction: column;
   justify-content: flex-end;
 }
+
+.invisible {
+  pointer-events: none;
+  opacity: .6;
+}
+
+.buttons {
+  opacity: 1;
+}

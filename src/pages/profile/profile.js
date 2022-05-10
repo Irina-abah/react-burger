@@ -52,31 +52,9 @@ function Profile() {
       password: ""
     })
   }
-
-  useEffect(() => {
-    if (!auth) {
-      return (
-        <Redirect
-          to={{
-            pathname: '/login'
-          }}
-        />
-      );
-    }
-  }, [auth])
   
   const onSignOut = () => {
     dispatch(logoutUser(state))
-    // if (!auth) {
-    //   return (
-    //     <Redirect
-    //       to={{
-    //         pathname: '/login'
-    //       }}
-    //     />
-    //   );
-    // }
-    // history.replace({ pathname: "/login" });
   }
 
   return (
@@ -101,7 +79,7 @@ function Profile() {
           </li>
           <li>
             <Link 
-              to={{pathname: "/" }}
+              to={{pathname: "/login" }}
               className={`${profileStyles.nav_item} text_type_main-medium text_color_inactive pl-5 pr-5 mr-2`} 
               onClick={onSignOut}>Выход
             </Link>
@@ -133,7 +111,7 @@ function Profile() {
           />
         </div>
         {isSuccess && <p>Данные успешно обновлены</p>}
-        <div className={profileStyles.buttons}>
+        <div className={isEdit ? profileStyles.buttons : profileStyles.invisible}>
           <Button type="secondary" size="medium" onClick={onReset}>
             Отмена
           </Button>

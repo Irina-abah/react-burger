@@ -5,6 +5,12 @@ export const MAKE_ORDER_REQUEST = 'MAKE_ORDER';
 export const MAKE_ORDER_SUCCESS = "MAKE_ORDER_SUCCESS";
 export const MAKE_ORDER_FAILED = "MAKE_ORDER_FAILED";
 
+function handleOrderError() {
+  return {
+    type: MAKE_ORDER_FAILED
+  }
+}
+
 export const makeOrder = (data) => {
   return function (dispatch) {
     dispatch({
@@ -27,16 +33,12 @@ export const makeOrder = (data) => {
           number: res.order.number
         })
       } else {
-        dispatch({
-          type: MAKE_ORDER_FAILED,
-        })
+        dispatch(handleOrderError())
       }
     })
     .catch((err) => {
       console.log(err)
-      dispatch({
-        type: MAKE_ORDER_FAILED,
-      })
+      dispatch(handleOrderError())
     })
   }
 }

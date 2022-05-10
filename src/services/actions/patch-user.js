@@ -7,6 +7,12 @@ export const PATCH_USER_REQUEST = "PATCH_USER_REQUEST";
 export const PATCH_USER_SUCCESS = "PATCH_USER_SUCCESS";
 export const PATCH_USER_FAILED = "PATCH_USER_FAILED";
 
+function handlePatchError() {
+  return {
+    type: PATCH_USER_FAILED
+  }
+}
+
 export const patchUser = (data) => {
   return function (dispatch) {
     dispatch({
@@ -32,17 +38,13 @@ export const patchUser = (data) => {
           user: res.user
         })
       } else {
-        dispatch({
-          type: PATCH_USER_FAILED,
-        })
+        dispatch(handlePatchError())
       }
     })
     .catch((err) => {
       console.log(err.message)
       if (err.message === "jwt expired" || err.message === "Token is invalid") {
-        dispatch({
-          type: PATCH_USER_FAILED,
-        })
+        dispatch(handlePatchError())
         dispatch(refreshToken())
         dispatch(patchUser(data))
       }

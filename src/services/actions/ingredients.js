@@ -5,6 +5,12 @@ export const GET_INGREDIENTS_REQUEST = 'GET_INGREDIENTS';
 export const GET_INGREDIENTS_SUCCESS = "GET_INGREDIENTS_SUCCESS";
 export const GET_INGREDIENTS_FAILED = "GET_INGREDIENTS_FAILED";
 
+function handleIngredientsError() {
+  return {
+    type: GET_INGREDIENTS_FAILED
+  }
+}
+
 export const getIngredients = () => {
   return function (dispatch) {
     dispatch({
@@ -19,16 +25,12 @@ export const getIngredients = () => {
           foodData: res.data
         })
       } else {
-        dispatch({
-          type: GET_INGREDIENTS_FAILED,
-        })
+        dispatch(handleIngredientsError())
       }
     })
     .catch((err) => {
       console.log(err)
-      dispatch({
-        type: GET_INGREDIENTS_FAILED,
-      })
+      dispatch(handleIngredientsError())
     })
   }
 }
