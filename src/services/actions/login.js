@@ -1,6 +1,7 @@
 import { BASE_URL } from "../../utils/constants";
 import { setCookie } from "../../utils/cookie";
 import { getUser } from "./get-user";
+import { checkResponse } from "../../utils/check-response";
 
 export const LOGIN_USER_REQUEST = "LOGIN_USER_REQUEST";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
@@ -21,12 +22,7 @@ export const loginUser = (data) => {
         "Content-Type": "application/json;charset=utf-8"
       },
     })
-    .then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Error ${res.status}`)
-    })
+    .then(checkResponse)
     .then((res) => {
       if (res && res.success) {
         dispatch({

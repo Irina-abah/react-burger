@@ -1,4 +1,5 @@
 import { BASE_URL } from "../../utils/constants";
+import { checkResponse } from "../../utils/check-response";
 
 export const MAKE_ORDER_REQUEST = 'MAKE_ORDER';
 export const MAKE_ORDER_SUCCESS = "MAKE_ORDER_SUCCESS";
@@ -18,12 +19,7 @@ export const makeOrder = (data) => {
         "Content-Type": "application/json",
       },
     })
-    .then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Error ${res.status}`)
-    })
+    .then(checkResponse)
     .then((res) => {
       if (res && res.success) {
         dispatch({

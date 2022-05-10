@@ -1,6 +1,7 @@
 import { BASE_URL } from "../../utils/constants";
 import { getCookie } from "../../utils/cookie";
 import { refreshToken } from "./refresh-token";
+import { checkResponse } from "../../utils/check-response";
 
 export const PATCH_USER_REQUEST = "PATCH_USER_REQUEST";
 export const PATCH_USER_SUCCESS = "PATCH_USER_SUCCESS";
@@ -23,12 +24,7 @@ export const patchUser = (data) => {
         authorization: getCookie('accessToken')
       },
     })
-    .then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Error ${res.status}`)
-    })
+    .then(checkResponse)
     .then((res) => {
       if (res && res.success) {
         dispatch({

@@ -2,6 +2,7 @@ import { BASE_URL } from "../../utils/constants";
 import { getCookie } from "../../utils/cookie";
 import { LOGIN_USER_SUCCESS } from "./login";
 import { refreshToken } from "./refresh-token";
+import { checkResponse } from "../../utils/check-response";
 
 export const GET_USER_REQUEST = "GET_USER_REQUEST";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
@@ -18,12 +19,7 @@ export const getUser = () => {
         authorization: getCookie('accessToken')
       },
     })
-    .then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Error ${res.status}`)
-    })
+    .then(checkResponse)
     .then((res) => {
       if (res && res.success) {
         dispatch({
@@ -41,7 +37,7 @@ export const getUser = () => {
       }
     })
     .catch((err) => {
-      console.log(err.message)
+      console.log(err)
       if (err.message === "jwt expired" || err.message === "Token is invalid") {
         dispatch({
           type: GET_USER_FAILED,

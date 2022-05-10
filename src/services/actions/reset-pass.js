@@ -1,4 +1,5 @@
 import { BASE_URL } from "../../utils/constants";
+import { checkResponse } from "../../utils/check-response";
 
 export const RESET_PASSWORD_REQUEST = "RESET_PASSWORD_REQUEST";
 export const RESET_PASSWORD_SUCCESS = "RESET_PASSWORD_SUCCESS";
@@ -19,12 +20,7 @@ export const resetPass = (data) => {
         "Content-Type": "application/json;charset=utf-8"
       },
     })
-    .then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Error ${res.status}`)
-    })
+    .then(checkResponse)
     .then((res) => {
       if (res && res.success) {
         dispatch({

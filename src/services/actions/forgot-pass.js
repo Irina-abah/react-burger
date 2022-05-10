@@ -1,4 +1,5 @@
 import { BASE_URL } from "../../utils/constants";
+import { checkResponse } from "../../utils/check-response";
 
 export const FORGOT_PASSWORD_REQUEST = "FORGOT_PASSWORD_REQUEST";
 export const FORGOT_PASSWORD_SUCCESS = "FORGOT_PASSWORD_SUCCESS";
@@ -18,12 +19,7 @@ export const forgotPass = (email) => {
         "Content-Type": "application/json;charset=utf-8"
       },
     })
-    .then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Error ${res.status}`)
-    })
+    .then(checkResponse)
     .then((res) => {
       if (res && res.success) {
         dispatch({

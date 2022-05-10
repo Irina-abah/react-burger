@@ -1,5 +1,6 @@
 import { BASE_URL } from "../../utils/constants";
 import { deleteCookie } from "../../utils/cookie";
+import { checkResponse } from "../../utils/check-response";
 
 export const LOGOUT_REQUEST = "LOGOUT_REQUEST";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
@@ -19,12 +20,7 @@ export const logoutUser = (data) => {
         "Content-Type": "application/json;charset=utf-8"
       },
     })
-    .then((res) => {
-      if (res.ok) {
-        return res.json()
-      }
-      return Promise.reject(`Error ${res.status}`)
-    })
+    .then(checkResponse)
     .then((res) => {
       if (res && res.success) {
         dispatch({
