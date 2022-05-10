@@ -1,14 +1,13 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import UserForm from '../user-form/user-form';
 import resetStyles from "./reset-password.module.css";
 import { Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { resetPass } from '../../services/actions/reset-pass';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 function ResetPassword() {
 
-  const history = useHistory();
   const dispatch = useDispatch();
   const passwordReset = useSelector((store) => store.reset.isPasswordReset);
   const [state, setState] = useState({

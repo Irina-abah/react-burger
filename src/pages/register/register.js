@@ -1,15 +1,14 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import UserForm from '../user-form/user-form';
 import registerStyles from "./register.module.css";
 import { Input, PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { registerUser } from "../../services/actions/register";
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 function Register() {
 
   const dispatch = useDispatch();
-  const history = useHistory();
   const auth = useSelector((store) => store.register.isAuthenticated)
   const [state, setState] = useState({
     name: "",
