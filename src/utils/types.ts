@@ -16,7 +16,21 @@ const ingredientType = PropTypes.shape({
 
 export default ingredientType;
 
-export interface IResetUser {
+export type TResetUser = {
   password: string,
   token: string
-}
+};
+
+export type TItem = Readonly<{
+  _id: string,
+  name: string,
+  price: number,
+  image: string,
+  type: "bun" | "main" | "sauce";
+  proteins: number,
+  fat: number,
+  carbohydrates: number,
+  calories: number,
+  image_mobile: string,
+  image_large: string
+}>;
