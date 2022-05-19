@@ -20,7 +20,7 @@ function ForgotPassword() {
     [dispatch, email]
   )
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)
   }
 
