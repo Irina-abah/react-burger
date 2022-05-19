@@ -5,16 +5,14 @@ import { Link, Redirect, useLocation } from "react-router-dom";
 import { PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginUser } from "../../services/actions/login";
+import { TUserLogin } from "../../utils/types";
 
 function Login() {
 
   const dispatch = useDispatch();
   const location = useLocation()
-  const auth = useSelector((store) => store.login.isAuthenticated);
-  const [state, setState] = useState({
-    email: "",
-    password: ""
-  });
+  const auth = useSelector((store: any) => store.login.isAuthenticated);
+  const [state, setState] = useState<TUserLogin>({} as TUserLogin);
 
 
   let submit = useCallback(
@@ -25,7 +23,7 @@ function Login() {
     [dispatch, state]
   )
   
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       const name = e.target.name;
   

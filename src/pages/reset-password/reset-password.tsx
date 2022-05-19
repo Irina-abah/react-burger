@@ -5,13 +5,13 @@ import { Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-co
 import { resetPass } from '../../services/actions/reset-pass';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { TResetUser } from "../../utils/types";
+import { TUserReset } from "../../utils/types";
 
 function ResetPassword() {
 
   const dispatch = useDispatch();
   const passwordReset = useSelector((store: any) => store.reset.isPasswordReset);
-  const [state, setState] = useState<TResetUser>({} as TResetUser);
+  const [state, setState] = useState<TUserReset>({} as TUserReset);
 
 
   let submit = useCallback(

@@ -16,17 +16,31 @@ const ingredientType = PropTypes.shape({
 
 export default ingredientType;
 
-export type TResetUser = {
+export type TUser = {
+  name: string,
+  email: string,
   password: string,
   token: string
 };
+
+// export type TUserMain = Omit<TUser, "token">;
+
+export type TUserMain = {
+  name: string,
+  email: string,
+  password: string
+};
+
+export type TUserLogin = Pick<TUser, "email" | "password">;
+
+export type TUserReset = Pick<TUser, "password" | "token">;
 
 export type TItem = Readonly<{
   _id: string,
   name: string,
   price: number,
   image: string,
-  type: "bun" | "main" | "sauce";
+  type: "bun" | "main" | "sauce",
   proteins: number,
   fat: number,
   carbohydrates: number,
