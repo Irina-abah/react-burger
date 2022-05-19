@@ -8,9 +8,9 @@ import { Redirect } from 'react-router-dom';
 
 function ForgotPassword() {
 
-  const [email, setEmail] = useState("")
+  const [email, setEmail] = useState<string>("")
   const dispatch = useDispatch();
-  const emailSent = useSelector((store) => store.forgot.isEmailSent)
+  const emailSent = useSelector((store: any) => store.forgot.isEmailSent)
 
   let submit = useCallback(
     e => {
@@ -53,7 +53,7 @@ function ForgotPassword() {
             name={'email'}
             error={false}
             size={'default'}
-            required={true}
+            // required={true}
           />
         </div> 
       </UserForm>

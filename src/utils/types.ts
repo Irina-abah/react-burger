@@ -15,3 +15,8 @@ const ingredientType = PropTypes.shape({
 })
 
 export default ingredientType;
+
+export interface IResetUser {
+  password: string,
+  token: string
+}
