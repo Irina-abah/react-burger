@@ -1,20 +1,17 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, ChangeEvent, FormEvent } from 'react';
 import UserForm from '../user-form/user-form';
 import registerStyles from "./register.module.css";
 import { Input, PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { registerUser } from "../../services/actions/register";
 import { Redirect } from 'react-router-dom';
+import { TUserMain } from '../../utils/types';
 
 function Register() {
 
   const dispatch = useDispatch();
-  const auth = useSelector((store) => store.register.isAuthenticated)
-  const [state, setState] = useState({
-    name: "",
-    email: "",
-    password: ""
-  });
+  const auth = useSelector((store: any) => store.register.isAuthenticated)
+  const [state, setState] = useState<TUserMain>({} as TUserMain);
 
   let submit = useCallback(
     e => {
@@ -24,7 +21,7 @@ function Register() {
     [dispatch, state]
   )
   
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       const name = e.target.name;
   
@@ -38,7 +35,6 @@ function Register() {
       return (
         <Redirect
           to={{
-            // pathname: '/login'
             pathname: '/'
           }}
         />

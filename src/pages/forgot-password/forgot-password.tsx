@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, ChangeEvent } from 'react';
 import UserForm from '../user-form/user-form';
 import forgotStyles from "./forgot-password.module.css";
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -20,7 +20,7 @@ function ForgotPassword() {
     [dispatch, email]
   )
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)
   }
 

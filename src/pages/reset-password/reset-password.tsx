@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, ChangeEvent } from 'react';
 import UserForm from '../user-form/user-form';
 import resetStyles from "./reset-password.module.css";
 import { Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -22,7 +22,7 @@ function ResetPassword() {
     [dispatch, state]
   )
   
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       const name = e.target.name;
   

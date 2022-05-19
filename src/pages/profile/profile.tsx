@@ -1,4 +1,4 @@
-import { useEffect, useState, FormEvent, SyntheticEvent } from 'react';
+import { useEffect, useState, FormEvent, ChangeEvent } from 'react';
 import profileStyles from "./profile.module.css";
 import { Link, NavLink } from "react-router-dom";
 import { Input, PasswordInput, EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -26,7 +26,7 @@ function Profile() {
     }
   }
   
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       const name = e.target.name;
   

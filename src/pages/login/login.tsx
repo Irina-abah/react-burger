@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, ChangeEvent } from 'react';
 import UserForm from "../user-form/user-form";
 import loginStyles from "./login.module.css";
 import { Link, Redirect, useLocation } from "react-router-dom";
@@ -23,7 +23,7 @@ function Login() {
     [dispatch, state]
   )
   
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       const name = e.target.name;
   
