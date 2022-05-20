@@ -1,9 +1,10 @@
+import { FunctionComponent } from "react";
 import ingredientStyles from "./ingredient-details.module.css";
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { TItem } from '../../utils/types';
 
-function IngredientsDetails() {
+const IngredientsDetails: FunctionComponent = () => {
 
   const { ingredientId } = useParams();
   const allItems = useSelector((store: any) => store.ingredients.foodData);
