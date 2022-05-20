@@ -1,18 +1,29 @@
-import { useRef } from 'react';
+import { useRef, FunctionComponent, SyntheticEvent } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch } from 'react-redux';
-import { useDrop, useDrag } from 'react-dnd';
+import { useDrop, useDrag, DropTargetMonitor } from 'react-dnd';
 import itemStyles from "./constructor-item.module.css";
 import { REMOVE_INNER_ITEM } from "../../services/actions/constructor";
-import PropTypes from 'prop-types';
-import ingredientType from '../../utils/types';
-function ConstructorItem({ item, index, moveCard }) {
+import { TExtendedItem } from '../../utils/types';
 
-  const ref = useRef(null);
+interface IConstructorItem {
+  item: TExtendedItem,
+  index: number,
+  moveCard: (dragIndex: number, hoverIndex: number) => void
+}
+
+type dropItem = {
+  index: number,
+  id: string
+}
+
+const ConstructorItem: FunctionComponent<IConstructorItem> = ({ item, index, moveCard }) => {
+
+  const ref = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
 
-  function deleteIngredient(item) {
+  function deleteIngredient(item: TExtendedItem) {
     dispatch({
       type: REMOVE_INNER_ITEM,
       item: item,
@@ -20,14 +31,15 @@ function ConstructorItem({ item, index, moveCard }) {
     })
   }
   
-  const [{ handlerId }, drop] = useDrop({
+  // const [{ handlerId }, drop] = useDrop({
+    const [, drop] = useDrop({
     accept: 'component',
     collect(monitor) {
       return {
         handlerId: monitor.getHandlerId()
       }
     },
-    hover(item, monitor) {
+    hover(item: dropItem, monitor) {
       if (!ref.current) {
         return;
       }
@@ -52,7 +64,7 @@ function ConstructorItem({ item, index, moveCard }) {
 
   const [{ isDragging }, drag] = useDrag({
     type: 'component',
-    item: () => ({ id: item.id, index }),
+    item: () => ({ id: item._id, index }),
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -61,7 +73,7 @@ function ConstructorItem({ item, index, moveCard }) {
   const opacity = isDragging ? 0 : 1;
 
   if (item.type !== 'bun') drag(drop(ref));
-  const preventDefault = (e) => e.preventDefault();
+  const preventDefault = (e: SyntheticEvent) => e.preventDefault();
 
   return (
   <div ref={ref} style={{ opacity }} onDrop={preventDefault} data-handler-id={handlerId} className={itemStyles.food_item}>
@@ -75,11 +87,5 @@ function ConstructorItem({ item, index, moveCard }) {
     </div>
   )
 }
-
-ConstructorItem.propTypes = {
-  item: ingredientType.isRequired,
-  index: PropTypes.number,
-  moveCard: PropTypes.func.isRequired,
-};
 
 export default ConstructorItem;

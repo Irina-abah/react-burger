@@ -50,5 +50,6 @@ export type TItem = Readonly<{
 }>;
 
 export type TExtendedItem = TItem & {
-  count: number
+  count: number,
+  index?: number
 }
