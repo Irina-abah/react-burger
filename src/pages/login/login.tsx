@@ -10,7 +10,7 @@ import { TUserLogin } from "../../utils/types";
 function Login() {
 
   const dispatch = useDispatch();
-  const location = useLocation()
+  const location = useLocation();
   const auth = useSelector((store: any) => store.login.isAuthenticated);
   const [state, setState] = useState<TUserLogin>({} as TUserLogin);
 

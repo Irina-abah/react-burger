@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux';
 
 function OrderDetails() {
 
-  const number = useSelector((store) => store.order.number);
-  const orderFailed = useSelector((store) => store.order.orderFailed)
+  const number = useSelector((store: any) => store.order.number);
+  const orderFailed = useSelector((store: any) => store.order.orderFailed)
 
   return (
     <>

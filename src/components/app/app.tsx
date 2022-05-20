@@ -53,10 +53,10 @@ function App() {
           <ProtectedRoute path="/profile">
             <Profile/>
           </ProtectedRoute>
-          <Route path="/ingredients/:ingredientId" exact>
+          <Route path="/ingredients/:ingredientId">
             <IngredientPage />
           </Route>
-          <Route exact path="/">
+          <Route path="/">
             <Main />
           </Route>
           <Route path="*">

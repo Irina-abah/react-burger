@@ -1,14 +1,9 @@
-import { Route, Redirect } from 'react-router-dom';
-import { useEffect, useState, FunctionComponent, ReactNode } from 'react';
+import { Route, Redirect, RouteComponentProps } from 'react-router-dom';
+import { useEffect, useState, FunctionComponent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUser } from '../services/actions/get-user';
 
-interface IProtectedRoute {
-  children: ReactNode | "",
-  path: string
-}
-
-export const ProtectedRoute: FunctionComponent<IProtectedRoute> = ({ children, ...rest }) => {
+export const ProtectedRoute: FunctionComponent<RouteComponentProps> = ({children, ...rest }) => {
     const [isUserLoaded, setUserLoaded] = useState(false);
     const auth = useSelector((store: any) => store.getUser.isAuthenticated)
     const dispatch = useDispatch();
