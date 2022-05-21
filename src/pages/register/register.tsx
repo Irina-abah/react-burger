@@ -1,4 +1,4 @@
-import { useState, useCallback, ChangeEvent, FormEvent } from 'react';
+import { useState, useCallback, ChangeEvent } from 'react';
 import UserForm from '../user-form/user-form';
 import registerStyles from "./register.module.css";
 import { Input, PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';

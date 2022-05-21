@@ -31,14 +31,11 @@ const ConstructorItem: FunctionComponent<IConstructorItem> = ({ item, index, mov
     })
   }
   
-  // const [{ handlerIdL }, drop] = useDrop({
-    const [, drop] = useDrop({
+    const [{ handlerId }, drop] = useDrop({
     accept: 'component',
-    // collect(monitor) {
-    //   return {
-    //     handlerId: monitor.getHandlerId()
-    //   }
-    // },
+    collect: (monitor: DropTargetMonitor) => ({
+      handlerId: monitor.getHandlerId()
+    }),
     hover(item: dropItem, monitor) {
       if (!ref.current) {
         return;
@@ -79,7 +76,7 @@ const ConstructorItem: FunctionComponent<IConstructorItem> = ({ item, index, mov
 
   return (
   // <div ref={ref} style={{ opacity }} onDrop={preventDefault} data-handler-id={handlerId} className={itemStyles.food_item}>
-    <div ref={ref} style={{ opacity }} onDrop={preventDefault} className={itemStyles.food_item}> 
+    <div ref={ref} style={{ opacity }} onDrop={preventDefault} data-handler-id={handlerId} className={itemStyles.food_item}> 
       <DragIcon type="primary" />
       <ConstructorElement
         text={item.name}
