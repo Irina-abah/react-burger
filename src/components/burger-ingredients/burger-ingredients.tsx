@@ -7,7 +7,7 @@ import { LOAD_ERROR } from "../../utils/constants";
 import { useSelector } from 'react-redux';
 import { TExtendedItem } from '../../utils/types';
 
-const BurgerIngredients:FunctionComponent = () => {
+const BurgerIngredients: FunctionComponent = () => {
 
   const data = useSelector((store: any) => store.ingredients.foodData);
   const loadingFailed = useSelector((store: any) => store.ingredients.foodDataFailed);

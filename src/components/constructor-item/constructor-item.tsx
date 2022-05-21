@@ -2,7 +2,7 @@ import { useRef, FunctionComponent, SyntheticEvent } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch } from 'react-redux';
-import { useDrop, useDrag, DropTargetMonitor, XYCoord } from 'react-dnd';
+import { useDrop, useDrag, DropTargetMonitor } from 'react-dnd';
 import itemStyles from "./constructor-item.module.css";
 import { REMOVE_INNER_ITEM } from "../../services/actions/constructor";
 import { TExtendedItem } from '../../utils/types';
@@ -13,7 +13,7 @@ interface IConstructorItem {
   moveCard: (dragIndex: number, hoverIndex: number) => void
 }
 
-type dropItem = {
+type TDropItem = {
   index: number,
   id: string
 }
@@ -36,7 +36,7 @@ const ConstructorItem: FunctionComponent<IConstructorItem> = ({ item, index, mov
     collect: (monitor: DropTargetMonitor) => ({
       handlerId: monitor.getHandlerId()
     }),
-    hover(item: dropItem, monitor) {
+    hover(item: TDropItem, monitor) {
       if (!ref.current) {
         return;
       }
