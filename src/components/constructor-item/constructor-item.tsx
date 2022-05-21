@@ -2,7 +2,7 @@ import { useRef, FunctionComponent, SyntheticEvent } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch } from 'react-redux';
-import { useDrop, useDrag, DropTargetMonitor } from 'react-dnd';
+import { useDrop, useDrag, DropTargetMonitor, XYCoord } from 'react-dnd';
 import itemStyles from "./constructor-item.module.css";
 import { REMOVE_INNER_ITEM } from "../../services/actions/constructor";
 import { TExtendedItem } from '../../utils/types';
@@ -31,14 +31,14 @@ const ConstructorItem: FunctionComponent<IConstructorItem> = ({ item, index, mov
     })
   }
   
-  // const [{ handlerId }, drop] = useDrop({
+  // const [{ handlerIdL }, drop] = useDrop({
     const [, drop] = useDrop({
     accept: 'component',
-    collect(monitor) {
-      return {
-        handlerId: monitor.getHandlerId()
-      }
-    },
+    // collect(monitor) {
+    //   return {
+    //     handlerId: monitor.getHandlerId()
+    //   }
+    // },
     hover(item: dropItem, monitor) {
       if (!ref.current) {
         return;
@@ -51,12 +51,14 @@ const ConstructorItem: FunctionComponent<IConstructorItem> = ({ item, index, mov
       const hoverBoundingRect = ref.current?.getBoundingClientRect();
       const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
       const clientOffset = monitor.getClientOffset();
-      const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-        return;
-      } if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-        return;
-      }
+      const hoverClientY = clientOffset && clientOffset.y - hoverBoundingRect.top;
+      if(dragIndex && hoverClientY) {
+        if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+          return;
+        } if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+          return;
+        }
+      }   
       moveCard(dragIndex, hoverIndex);
       item.index = hoverIndex;
     }
@@ -76,7 +78,8 @@ const ConstructorItem: FunctionComponent<IConstructorItem> = ({ item, index, mov
   const preventDefault = (e: SyntheticEvent) => e.preventDefault();
 
   return (
-  <div ref={ref} style={{ opacity }} onDrop={preventDefault} data-handler-id={handlerId} className={itemStyles.food_item}>
+  // <div ref={ref} style={{ opacity }} onDrop={preventDefault} data-handler-id={handlerId} className={itemStyles.food_item}>
+    <div ref={ref} style={{ opacity }} onDrop={preventDefault} className={itemStyles.food_item}> 
       <DragIcon type="primary" />
       <ConstructorElement
         text={item.name}
