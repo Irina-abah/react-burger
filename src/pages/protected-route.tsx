@@ -24,7 +24,7 @@ export const ProtectedRoute: FunctionComponent<RouteComponentProps> = ({children
     return (
     <Route
       {...rest}
-      render={({ location }) =>
+      render={({ location }: any) =>
         auth ? (
           children
         ) : (
