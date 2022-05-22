@@ -1,4 +1,4 @@
-import { useState, useCallback, ChangeEvent } from 'react';
+import { useState, useCallback, ChangeEvent, FunctionComponent } from 'react';
 import UserForm from "../user-form/user-form";
 import loginStyles from "./login.module.css";
 import { Link, Redirect, useLocation } from "react-router-dom";
@@ -6,11 +6,12 @@ import { PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-
 import { useSelector, useDispatch } from 'react-redux';
 import { loginUser } from "../../services/actions/login";
 import { TUserLogin } from "../../utils/types";
+import { Location } from "history";
 
-function Login() {
+const Login: FunctionComponent = () => {
 
   const dispatch = useDispatch();
-  const location = useLocation();
+  const location: Location = useLocation();
   const auth = useSelector((store: any) => store.login.isAuthenticated);
   const [state, setState] = useState<TUserLogin>({} as TUserLogin);
 

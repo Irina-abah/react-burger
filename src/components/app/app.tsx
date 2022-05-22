@@ -15,11 +15,12 @@ import { CLOSE_MODAL } from "../../services/actions/ingredient-modal";
 import { ProtectedRoute } from '../../pages/protected-route';
 import { useDispatch } from 'react-redux';
 import { getIngredients } from '../../services/actions/ingredients';
+import { Location } from "history";
 
 function App() {
 
   const dispatch = useDispatch();
-  const location = useLocation();
+  const location: Location = useLocation();
   const history = useHistory();
   const background = location.state && location.state.background;
 
