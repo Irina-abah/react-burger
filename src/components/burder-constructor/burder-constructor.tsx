@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, FunctionComponent } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import { useHistory } from "react-router-dom";
 import constructorStyles from "./burder-constructor.module.css";
@@ -7,19 +7,20 @@ import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
 import ConstructorItem from "../constructor-item/constructor-item";
 import { useSelector, useDispatch } from 'react-redux';
-import { useDrop } from 'react-dnd';
+import { useDrop, DropTargetMonitor } from 'react-dnd';
 import { makeOrder } from "../../services/actions/order";
 import { ADD_BUN, RESET_CONSTRUSTOR, ADD_INNER_ITEM, UPDATE_CONSTRUCTOR_LIST } from "../../services/actions/constructor";
+import { TExtendedItem } from '../../utils/types';
 
-function BurgerConstructor() {
+const BurgerConstructor: FunctionComponent = () => {
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const {innerItems} = useSelector((store) => store.ingredients.constructor);
-  const {selectedBun} = useSelector((store) => store.ingredients.constructor);
-  const data = useSelector((store) => store.ingredients.foodData);
-  const auth = useSelector((store) => store.login.isAuthenticated);
-  const [isOpen, setIsOpen] = React.useState(false);
+  const {innerItems} = useSelector((store: any) => store.ingredients.constructor);
+  const {selectedBun} = useSelector((store: any) => store.ingredients.constructor);
+  const data = useSelector((store: any) => store.ingredients.foodData);
+  const auth = useSelector((store: any) => store.login.isAuthenticated);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const allBurgerItems = useMemo(() => {
     return selectedBun._id ? innerItems.concat([selectedBun, selectedBun]) : innerItems;
@@ -27,10 +28,10 @@ function BurgerConstructor() {
 
   const [{ isHover }, dropTargerRef] = useDrop({
     accept: 'ingredient',
-    collect: monitor => ({
+    collect: (monitor: DropTargetMonitor) => ({
       isHover: monitor.isOver()
     }),
-    drop(item) {
+    drop(item: TExtendedItem) {
       if (item.type === "bun") {
         dispatch({
           type: ADD_BUN,
@@ -45,11 +46,10 @@ function BurgerConstructor() {
           }
         })
       }
-      
     }
   });
 
-  const moveCard = useCallback((dragIndex, hoverIndex) => {
+  const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
     const dragCard = innerItems[dragIndex];
     const newCards = [...innerItems]
     newCards.splice(dragIndex, 1)
@@ -61,14 +61,14 @@ function BurgerConstructor() {
   }, [innerItems, dispatch]);
 
   const totalPrice = allBurgerItems.reduce(
-    function (sum, item) {
+    function (sum: number, item: TExtendedItem) {
         return sum + item.price
     }, 0
   )
 
   
 
-  function checkPrice(price) {
+  function checkPrice(price: number) {
     if (isNaN(price)) {
       return 0
     } else {
@@ -84,7 +84,7 @@ function BurgerConstructor() {
   }
 
   function handleSubmit() {
-    const items = data.map(item => item._id);
+    const items = data.map((item: TExtendedItem) => item._id);
     if (auth) {
       dispatch(makeOrder(items))
       setIsOpen(!isOpen)
@@ -108,7 +108,7 @@ function BurgerConstructor() {
           />)}
         </div>
         <div className={`${constructorStyles.food_list} pr-2`}>
-          {innerItems.map((item, i) => (
+          {innerItems.map((item: TExtendedItem, i: any) => (
             <ConstructorItem key={item.dragId} index={i} item={item} moveCard={moveCard}/>
           ))}
         </div>

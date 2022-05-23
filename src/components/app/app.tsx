@@ -15,13 +15,16 @@ import { CLOSE_MODAL } from "../../services/actions/ingredient-modal";
 import { ProtectedRoute } from '../../pages/protected-route';
 import { useDispatch } from 'react-redux';
 import { getIngredients } from '../../services/actions/ingredients';
+import { TLocationState } from '../../utils/types';
+
 
 function App() {
 
   const dispatch = useDispatch();
-  const location = useLocation();
+  const location = useLocation(); 
+  const { state } = location as TLocationState;
+  const background = state && state.background;
   const history = useHistory();
-  const background = location.state && location.state.background;
 
   const handleModalClose = () => {
     dispatch({
@@ -53,10 +56,10 @@ function App() {
           <ProtectedRoute path="/profile">
             <Profile/>
           </ProtectedRoute>
-          <Route path="/ingredients/:ingredientId" exact>
+          <Route path="/ingredients/:ingredientId">
             <IngredientPage />
           </Route>
-          <Route exact path="/">
+          <Route path="/">
             <Main />
           </Route>
           <Route path="*">

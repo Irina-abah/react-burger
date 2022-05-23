@@ -1,36 +1,35 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, ChangeEvent, FunctionComponent } from 'react';
 import UserForm from "../user-form/user-form";
 import loginStyles from "./login.module.css";
 import { Link, Redirect, useLocation } from "react-router-dom";
 import { PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginUser } from "../../services/actions/login";
+import { TUserLogin, TLocationState } from "../../utils/types";
 
-function Login() {
+const Login: FunctionComponent = () => {
 
   const dispatch = useDispatch();
-  const location = useLocation()
-  const auth = useSelector((store) => store.login.isAuthenticated);
-  const [state, setState] = useState({
-    email: "",
-    password: ""
-  });
+  const location = useLocation();
+  const { state } = location as TLocationState;
+  const auth = useSelector((store: any) => store.login.isAuthenticated);
+  const [form, setForm] = useState<TUserLogin>({} as TUserLogin);
 
 
   let submit = useCallback(
     e => {
       e.preventDefault()
-      dispatch(loginUser(state))
+      dispatch(loginUser(form))
     },
-    [dispatch, state]
+    [dispatch, form]
   )
   
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       const name = e.target.name;
   
-      setState({
-        ...state,
+      setForm({
+        ...form,
         [name]: value
       })
     }
@@ -38,7 +37,7 @@ function Login() {
     if (auth) {
       return (
         <Redirect
-          to={ location?.state?.from || '/' }
+          to={ state?.from || '/' }
         />
       );
     }
@@ -56,14 +55,14 @@ function Login() {
         <div className={`mb-6`}>
           <EmailInput 
             onChange={handleInputChange} 
-            value={state.email} 
+            value={form.email} 
             name={'email'}
           />
         </div> 
         <div className={`mb-6`}>
           <PasswordInput 
             onChange={handleInputChange} 
-            value={state.password} 
+            value={form.password} 
             name={'password'}
           />
         </div>

@@ -1,11 +1,11 @@
-import { Route, Redirect } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Route, Redirect, RouteComponentProps } from 'react-router-dom';
+import { useEffect, useState, FunctionComponent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUser } from '../services/actions/get-user';
 
-export function ProtectedRoute({ children, ...rest }) {
-    const [isUserLoaded, setUserLoaded] = useState(false);
-    const auth = useSelector((store) => store.getUser.isAuthenticated)
+export const ProtectedRoute: FunctionComponent<RouteComponentProps> = ({children, ...rest }) => {
+    const [isUserLoaded, setUserLoaded] = useState<boolean>(false);
+    const auth = useSelector((store: any) => store.getUser.isAuthenticated)
     const dispatch = useDispatch();
 
     const init = async () => {
@@ -24,7 +24,7 @@ export function ProtectedRoute({ children, ...rest }) {
     return (
     <Route
       {...rest}
-      render={({ location }) =>
+      render={({ location }: any) =>
         auth ? (
           children
         ) : (

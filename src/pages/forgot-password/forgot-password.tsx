@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, ChangeEvent } from 'react';
 import UserForm from '../user-form/user-form';
 import forgotStyles from "./forgot-password.module.css";
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -8,9 +8,9 @@ import { Redirect } from 'react-router-dom';
 
 function ForgotPassword() {
 
-  const [email, setEmail] = useState("")
+  const [email, setEmail] = useState<string>("")
   const dispatch = useDispatch();
-  const emailSent = useSelector((store) => store.forgot.isEmailSent)
+  const emailSent = useSelector((store: any) => store.forgot.isEmailSent)
 
   let submit = useCallback(
     e => {
@@ -20,7 +20,7 @@ function ForgotPassword() {
     [dispatch, email]
   )
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value)
   }
 
@@ -53,7 +53,7 @@ function ForgotPassword() {
             name={'email'}
             error={false}
             size={'default'}
-            required={true}
+            // required={true}
           />
         </div> 
       </UserForm>

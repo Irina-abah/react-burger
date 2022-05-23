@@ -1,8 +1,9 @@
+import { FunctionComponent } from "react";
 import { BurgerIcon, ListIcon, ProfileIcon, Logo } from "@ya.praktikum/react-developer-burger-ui-components";
 import { Link, NavLink } from "react-router-dom";
 import headerStyles from "./app-header.module.css";
 
-function Header() {
+const Header: FunctionComponent = () => {
   return (
     <header className={`${headerStyles.header} text text_type_main-default pb-4 pt-4`}>
       <div className={headerStyles.wrapper}>
@@ -36,8 +37,7 @@ function Header() {
           <ProfileIcon type="secondary" />
           <p className={`${headerStyles.text} ml-2`}>Личный кабинет</p>
         </NavLink>
-      </div>
-      
+      </div>  
     </header>
   )
 }

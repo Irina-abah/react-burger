@@ -1,35 +1,32 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, FormEvent, ChangeEvent } from 'react';
 import profileStyles from "./profile.module.css";
 import { Link, NavLink } from "react-router-dom";
 import { Input, PasswordInput, EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../../services/actions/logout';
 import { patchUser } from '../../services/actions/patch-user';
+import { TUserMain } from '../../utils/types';
 
 function Profile() {
 
   const dispatch = useDispatch();
-  const user = useSelector((store) => store.getUser.user);
-  const isSuccess = useSelector((store) => store.getUser.isSuccess);
-  const [isEdit, setIsEdit] = useState(false);
-  const [state, setState] = useState({
-    name: "",
-    email: "",
-    password: ""
-  });
+  const user = useSelector((store: any) => store.getUser.user);
+  const isSuccess = useSelector((store: any) => store.getUser.isSuccess);
+  const [isEdit, setIsEdit] = useState<boolean>(false);
+  const [state, setState] = useState<TUserMain>({} as TUserMain);
 
   useEffect(() => {
     setState(user)
   }, [])
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (isEdit) {
       dispatch(patchUser(state))
     }
   }
   
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       const name = e.target.name;
   
@@ -40,7 +37,7 @@ function Profile() {
       setIsEdit(true)
     }
 
-  const onReset = (e) => {
+  const onReset = (e: FormEvent) => {
     e.preventDefault()
     setState({
       ...state,
@@ -51,7 +48,7 @@ function Profile() {
   }
   
   const onSignOut = () => {
-    dispatch(logoutUser(state))
+    dispatch(logoutUser())
   }
 
   return (

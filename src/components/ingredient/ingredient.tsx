@@ -1,12 +1,17 @@
+import { FunctionComponent } from "react";
 import { CurrencyIcon, Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import ingredientStyles from "./ingredient.module.css";
-import ingredientType from "../../utils/types";
 import { OPEN_MODAL } from "../../services/actions/ingredient-modal";
 import { useDispatch } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import { Link, useLocation } from 'react-router-dom';
+import { TExtendedItem } from '../../utils/types';
 
-function Ingredient({ item }) {
+interface TIngredient {
+  item: TExtendedItem
+}
+
+const Ingredient: FunctionComponent<TIngredient> = ({item }) => {
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -51,10 +56,6 @@ function Ingredient({ item }) {
     </Link>
   </>
   )
-}
-
-Ingredient.propTypes = {
-  item: ingredientType.isRequired
 }
 
 export default Ingredient;

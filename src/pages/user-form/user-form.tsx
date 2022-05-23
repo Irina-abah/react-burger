@@ -1,8 +1,19 @@
+import { FunctionComponent, ReactNode, FormEvent } from "react";
 import { Link } from "react-router-dom";
 import userStyles from "./user-form.module.css";
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 
-function UserForm({title, onSubmit, children, buttonName, message, link, linkName}) {
+interface IUserFormProps {
+  title: string,
+  onSubmit: (e: FormEvent) => void,
+  children: ReactNode | "",
+  buttonName: string,
+  message: string,
+  link: string,
+  linkName: string
+}
+
+const UserForm: FunctionComponent<IUserFormProps> = ({title, onSubmit, children, buttonName, message, link, linkName}) => {
 
   return (
     <form 

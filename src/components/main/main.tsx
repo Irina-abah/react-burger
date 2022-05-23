@@ -1,11 +1,11 @@
-import React from "react";
+import { FunctionComponent } from "react";
 import mainStyles from "./main.module.css";
 import BurgerConstructor from "../burder-constructor/burder-constructor";
 import BurgerIngredients from "../burger-ingredients/burger-ingredients";
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
-function Main() {
+const Main: FunctionComponent = () => {
   
   return (
     <section className={`${mainStyles.main} pl-5 pr-5 pb-10 pt-10`}>
