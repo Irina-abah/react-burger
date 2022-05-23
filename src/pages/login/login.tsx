@@ -5,21 +5,13 @@ import { Link, Redirect, useLocation } from "react-router-dom";
 import { PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginUser } from "../../services/actions/login";
-import { TUserLogin } from "../../utils/types";
-import { Location } from "history";
-
-type LocationState = {
-  state: {
-    background: Location,
-    from: string
-  }
-}; 
+import { TUserLogin, TLocationState } from "../../utils/types";
 
 const Login: FunctionComponent = () => {
 
   const dispatch = useDispatch();
   const location = useLocation();
-  const { state } = location as LocationState;
+  const { state } = location as TLocationState;
   const auth = useSelector((store: any) => store.login.isAuthenticated);
   const [form, setForm] = useState<TUserLogin>({} as TUserLogin);
 

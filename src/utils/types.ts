@@ -1,20 +1,20 @@
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
-const ingredientType = PropTypes.shape({
-  _id: PropTypes.string,
-  name: PropTypes.string,
-  price: PropTypes.number,
-  image: PropTypes.string,
-  type: PropTypes.string,
-  proteins: PropTypes.number,
-  fat: PropTypes.number,
-  carbohydrates: PropTypes.number,
-  calories: PropTypes.number,
-  image_mobile: PropTypes.string,
-  image_large: PropTypes.string,
-})
+// const ingredientType = PropTypes.shape({
+//   _id: PropTypes.string,
+//   name: PropTypes.string,
+//   price: PropTypes.number,
+//   image: PropTypes.string,
+//   type: PropTypes.string,
+//   proteins: PropTypes.number,
+//   fat: PropTypes.number,
+//   carbohydrates: PropTypes.number,
+//   calories: PropTypes.number,
+//   image_mobile: PropTypes.string,
+//   image_large: PropTypes.string,
+// })
 
-export default ingredientType;
+// export default ingredientType;
 
 export type TUser = {
   name: string,
@@ -23,13 +23,7 @@ export type TUser = {
   token: string
 };
 
-// export type TUserMain = Omit<TUser, "token">;
-
-export type TUserMain = {
-  name: string,
-  email: string,
-  password: string
-};
+export type TUserMain = Omit<TUser, "token">;
 
 export type TUserLogin = Pick<TUser, "email" | "password">;
 
@@ -53,4 +47,12 @@ export type TExtendedItem = TItem & {
   count: number,
   index?: number,
   dragId?: number
-}
+};
+
+export type TLocationState = {
+  state: {
+    background?: Location,
+    from?: string
+  }
+};
+
