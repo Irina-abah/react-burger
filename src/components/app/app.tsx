@@ -17,12 +17,19 @@ import { useDispatch } from 'react-redux';
 import { getIngredients } from '../../services/actions/ingredients';
 import { Location } from "history";
 
+type LocationState = {
+  state: {
+    background: Location;
+  }
+};
+
 function App() {
 
   const dispatch = useDispatch();
-  const location: Location = useLocation();
+  const location = useLocation(); 
+  const { state } = location as LocationState;
+  const background = state && state.background;
   const history = useHistory();
-  const background = location.state && location.state.background;
 
   const handleModalClose = () => {
     dispatch({

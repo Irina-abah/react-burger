@@ -8,28 +8,36 @@ import { loginUser } from "../../services/actions/login";
 import { TUserLogin } from "../../utils/types";
 import { Location } from "history";
 
+type LocationState = {
+  state: {
+    background: Location,
+    from: string
+  }
+}; 
+
 const Login: FunctionComponent = () => {
 
   const dispatch = useDispatch();
-  const location: Location = useLocation();
+  const location = useLocation();
+  const { state } = location as LocationState;
   const auth = useSelector((store: any) => store.login.isAuthenticated);
-  const [state, setState] = useState<TUserLogin>({} as TUserLogin);
+  const [form, setForm] = useState<TUserLogin>({} as TUserLogin);
 
 
   let submit = useCallback(
     e => {
       e.preventDefault()
-      dispatch(loginUser(state))
+      dispatch(loginUser(form))
     },
-    [dispatch, state]
+    [dispatch, form]
   )
   
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       const name = e.target.name;
   
-      setState({
-        ...state,
+      setForm({
+        ...form,
         [name]: value
       })
     }
@@ -37,7 +45,7 @@ const Login: FunctionComponent = () => {
     if (auth) {
       return (
         <Redirect
-          to={ location?.state?.from || '/' }
+          to={ state?.from || '/' }
         />
       );
     }
@@ -55,14 +63,14 @@ const Login: FunctionComponent = () => {
         <div className={`mb-6`}>
           <EmailInput 
             onChange={handleInputChange} 
-            value={state.email} 
+            value={form.email} 
             name={'email'}
           />
         </div> 
         <div className={`mb-6`}>
           <PasswordInput 
             onChange={handleInputChange} 
-            value={state.password} 
+            value={form.password} 
             name={'password'}
           />
         </div>
