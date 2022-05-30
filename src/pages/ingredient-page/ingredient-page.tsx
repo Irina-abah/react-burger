@@ -6,7 +6,7 @@ import { TItem } from "../../utils/types";
 
 function IngredientPage() {
 
-  const { ingredientId } = useParams();
+  const { ingredientId } = useParams<{ingredientId: string}>();
   const allItems = useSelector((store: any) => store.ingredients.foodData);
   const selectedItem = useSelector((store: any) => store.modal.selectedItem);
   const ingredient = allItems.find((c: TItem) => c._id === ingredientId);

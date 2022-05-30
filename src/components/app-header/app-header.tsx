@@ -11,7 +11,8 @@ const Header: FunctionComponent = () => {
           <ul className={headerStyles.nav}>
             <li> 
               <NavLink 
-                to="/constructor" 
+                to="/" 
+                exact
                 className={`${headerStyles.nav_item} text_color_inactive pl-5 pr-5 mr-2`} 
                 activeClassName={headerStyles.active}>
               <BurgerIcon type="secondary"/>
@@ -19,7 +20,8 @@ const Header: FunctionComponent = () => {
             </NavLink></li>
               <li>
                 <NavLink 
-                to="/orders" 
+                to="/feed" 
+                exact
                 className={`${headerStyles.nav_item} text_color_inactive pl-5 pr-5`}
                 activeClassName={headerStyles.active}>
               <ListIcon type="secondary" />

@@ -1,4 +1,4 @@
-import React from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import { Switch, Route, useLocation, useHistory } from 'react-router-dom';
 import Header from "../app-header/app-header";
 import Main from "../main/main";
@@ -11,14 +11,14 @@ import Modal from '../modal/modal';
 import IngredientsDetails from '../ingredient-details/ingredient-details';
 import IngredientPage from '../../pages/ingredient-page/ingredient-page';
 import PageNotFound from '../../pages/not-found/not-found';
+import GeneralOrders from '../general-orders/general-orders';
 import { CLOSE_MODAL } from "../../services/actions/ingredient-modal";
 import { ProtectedRoute } from '../../pages/protected-route';
 import { useDispatch } from 'react-redux';
 import { getIngredients } from '../../services/actions/ingredients';
 import { TLocationState } from '../../utils/types';
 
-
-function App() {
+const App: FunctionComponent = () => {
 
   const dispatch = useDispatch();
   const location = useLocation(); 
@@ -33,7 +33,7 @@ function App() {
     history.goBack(); 
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(getIngredients())
   }, [dispatch])
 
@@ -59,8 +59,11 @@ function App() {
           <Route path="/ingredients/:ingredientId">
             <IngredientPage />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Main />
+          </Route>
+          <Route path="/feed">
+            <GeneralOrders />
           </Route>
           <Route path="*">
             <PageNotFound />
