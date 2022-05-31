@@ -57,3 +57,13 @@ export type TLocationState = {
   }
 };
 
+export type TOrder = Readonly<{
+  _id: string,
+  status: "created" | "done" | "pending",
+  number: number,
+  ingredients: Array<string>,
+  createdAt: string,
+  updatedAt: string,
+  name: string
+}>;
+

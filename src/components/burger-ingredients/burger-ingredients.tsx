@@ -85,7 +85,6 @@ const BurgerIngredients: FunctionComponent = () => {
           </div>
         </div>
       </div>)}
-      
     </div>
   )
 }

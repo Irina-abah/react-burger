@@ -7,11 +7,11 @@ import { useDrag } from 'react-dnd';
 import { Link, useLocation } from 'react-router-dom';
 import { TExtendedItem } from '../../utils/types';
 
-interface TIngredient {
+interface IIngredient {
   item: TExtendedItem
 }
 
-const Ingredient: FunctionComponent<TIngredient> = ({item }) => {
+const Ingredient: FunctionComponent<IIngredient> = ({item }) => {
 
   const location = useLocation();
   const dispatch = useDispatch();
