@@ -1,9 +1,25 @@
 import { BASE_URL } from "../../utils/constants";
 import { checkResponse } from "../../utils/check-response";
+import { TAppDispatch } from "../../utils/types";
 
 export const FORGOT_PASSWORD_REQUEST: "FORGOT_PASSWORD_REQUEST" = "FORGOT_PASSWORD_REQUEST";
 export const FORGOT_PASSWORD_SUCCESS: "FORGOT_PASSWORD_SUCCESS" = "FORGOT_PASSWORD_SUCCESS";
 export const FORGOT_PASSWORD_FAILED: "FORGOT_PASSWORD_FAILED" = "FORGOT_PASSWORD_FAILED";
+
+export interface IForgotPassAction {
+  readonly type: typeof FORGOT_PASSWORD_REQUEST;
+};
+export interface IForgotPassSuccessAction {
+  readonly type: typeof FORGOT_PASSWORD_SUCCESS;
+}
+export interface IForgotPassFailedAction {
+  readonly type: typeof FORGOT_PASSWORD_FAILED;
+}
+
+export type TForgotPassActions = 
+  | IForgotPassAction
+  | IForgotPassSuccessAction
+  | IForgotPassFailedAction;
 
 function handlePassError() {
   return {
@@ -12,7 +28,7 @@ function handlePassError() {
 }
 
 export const forgotPass = (email: string) => {
-  return function (dispatch: any) {
+  return function (dispatch: TAppDispatch) {
     dispatch({
       type: FORGOT_PASSWORD_REQUEST
     })
