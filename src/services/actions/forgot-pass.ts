@@ -1,9 +1,9 @@
 import { BASE_URL } from "../../utils/constants";
 import { checkResponse } from "../../utils/check-response";
 
-export const FORGOT_PASSWORD_REQUEST = "FORGOT_PASSWORD_REQUEST";
-export const FORGOT_PASSWORD_SUCCESS = "FORGOT_PASSWORD_SUCCESS";
-export const FORGOT_PASSWORD_FAILED = "FORGOT_PASSWORD_FAILED";
+export const FORGOT_PASSWORD_REQUEST: "FORGOT_PASSWORD_REQUEST" = "FORGOT_PASSWORD_REQUEST";
+export const FORGOT_PASSWORD_SUCCESS: "FORGOT_PASSWORD_SUCCESS" = "FORGOT_PASSWORD_SUCCESS";
+export const FORGOT_PASSWORD_FAILED: "FORGOT_PASSWORD_FAILED" = "FORGOT_PASSWORD_FAILED";
 
 function handlePassError() {
   return {
@@ -11,8 +11,8 @@ function handlePassError() {
   }
 }
 
-export const forgotPass = (email) => {
-  return function (dispatch) {
+export const forgotPass = (email: string) => {
+  return function (dispatch: any) {
     dispatch({
       type: FORGOT_PASSWORD_REQUEST
     })
