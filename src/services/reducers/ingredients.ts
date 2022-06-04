@@ -3,7 +3,6 @@ import {
   GET_INGREDIENTS_SUCCESS,
   GET_INGREDIENTS_FAILED
 } from "../actions/ingredients";
-
 import {
   ADD_BUN,
   ADD_INNER_ITEM,
@@ -11,8 +10,28 @@ import {
   UPDATE_CONSTRUCTOR_LIST,
   RESET_CONSTRUSTOR
 } from "../actions/constructor";
+import { TGetIngredientsActions } from '../actions/ingredients';
+import { TConstructorActions } from '../actions/constructor';
+import { TExtendedItem } from "../../utils/types";
 
-const initialState = {
+type TIngredientsActions = 
+  | TGetIngredientsActions
+  | TConstructorActions;
+
+
+type TGetIngredientsrState = {
+  foodData: Array<TExtendedItem>;
+  foodDataRequest: boolean;
+  foodDataFailed: boolean;
+  constructor: {
+    selectedBun: TExtendedItem | {},
+    innerItems: Array<TExtendedItem>;
+  };
+  selectedIngredient: TExtendedItem | {};
+}
+
+
+const initialState: TGetIngredientsrState = {
   foodData: [],
   foodDataRequest: false,
   foodDataFailed: false,
@@ -23,7 +42,7 @@ const initialState = {
   selectedIngredient: {}
 }
 
-export const ingredientsReducer = (state = initialState, action) => {
+export const ingredientsReducer = (state = initialState, action: TIngredientsActions) => {
   switch (action.type) {
     case GET_INGREDIENTS_REQUEST: {
       return {

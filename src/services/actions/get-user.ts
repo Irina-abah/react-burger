@@ -9,7 +9,6 @@ import { TUserGet } from "../../utils/types";
 export const GET_USER_REQUEST: "GET_USER_REQUEST" = "GET_USER_REQUEST";
 export const GET_USER_SUCCESS: "GET_USER_SUCCESS" = "GET_USER_SUCCESS";
 export const GET_USER_FAILED: "GET_USER_FAILED" = "GET_USER_FAILED";
-
 export interface IGetUserAction {
   readonly type: typeof GET_USER_REQUEST;
 };
