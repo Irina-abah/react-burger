@@ -3,10 +3,28 @@ import { getCookie } from "../../utils/cookie";
 import { LOGIN_USER_SUCCESS } from "./login";
 import { refreshToken } from "./refresh-token";
 import { checkResponse } from "../../utils/check-response";
+import { TAppDispatch } from "../../utils/types";
+import { TUserGet } from "../../utils/types";
 
-export const GET_USER_REQUEST = "GET_USER_REQUEST";
-export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
-export const GET_USER_FAILED = "GET_USER_FAILED";
+export const GET_USER_REQUEST: "GET_USER_REQUEST" = "GET_USER_REQUEST";
+export const GET_USER_SUCCESS: "GET_USER_SUCCESS" = "GET_USER_SUCCESS";
+export const GET_USER_FAILED: "GET_USER_FAILED" = "GET_USER_FAILED";
+
+export interface IGetUserAction {
+  readonly type: typeof GET_USER_REQUEST;
+};
+export interface IGetUserSuccessAction {
+  readonly type: typeof GET_USER_SUCCESS;
+  readonly user: TUserGet;
+}
+export interface IGetUserFailedAction {
+  readonly type: typeof GET_USER_FAILED;
+}
+
+export type TGetUserActions = 
+  | IGetUserAction
+  | IGetUserSuccessAction
+  | IGetUserFailedAction;
 
 function handleUserError() {
   return {
@@ -15,14 +33,14 @@ function handleUserError() {
 }
 
 export const getUser = () => {
-  return function (dispatch) {
+  return function (dispatch: TAppDispatch) {
     dispatch({
       type: GET_USER_REQUEST
     })
     fetch(`${BASE_URL}/auth/user`, {
       headers: {
         "Content-Type": "application/json;charset=utf-8",
-        authorization: getCookie('accessToken')
+        authorization: getCookie('accessToken') as string
       },
     })
     .then(checkResponse)

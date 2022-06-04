@@ -3,8 +3,17 @@ import {
   PATCH_USER_SUCCESS,
   PATCH_USER_FAILED
 } from "../actions/patch-user";
+import { TUserGet } from '../../utils/types';
+import { TPatchUserActions } from '../actions/patch-user';
 
-const initialState = {
+type TPatchUserState = {
+  user: TUserGet;
+  patchUserRequest: boolean;
+  isSuccess: boolean;
+  patchUserFailed: boolean;
+} 
+
+const initialState: TPatchUserState = {
   user: { 
     email: "",
     name: ""
@@ -14,7 +23,7 @@ const initialState = {
   patchUserFailed: false
 }
 
-export const patchUserReducer = (state = initialState, action) => {
+export const patchUserReducer = (state = initialState, action: TPatchUserActions) => {
   switch (action.type) {
     case PATCH_USER_REQUEST: {
       return {

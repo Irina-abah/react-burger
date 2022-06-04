@@ -2,10 +2,28 @@ import { BASE_URL } from "../../utils/constants";
 import { getCookie } from "../../utils/cookie";
 import { refreshToken } from "./refresh-token";
 import { checkResponse } from "../../utils/check-response";
+import { TAppDispatch } from "../../utils/types";
+import { TUserMain } from '../../utils/types';
 
-export const PATCH_USER_REQUEST = "PATCH_USER_REQUEST";
-export const PATCH_USER_SUCCESS = "PATCH_USER_SUCCESS";
-export const PATCH_USER_FAILED = "PATCH_USER_FAILED";
+export const PATCH_USER_REQUEST: "PATCH_USER_REQUEST" = "PATCH_USER_REQUEST";
+export const PATCH_USER_SUCCESS: "PATCH_USER_SUCCESS" = "PATCH_USER_SUCCESS";
+export const PATCH_USER_FAILED: "PATCH_USER_FAILED" = "PATCH_USER_FAILED";
+
+export interface IPatchUserAction {
+  readonly type: typeof PATCH_USER_REQUEST;
+};
+export interface IPatchUserSuccessAction {
+  readonly type: typeof PATCH_USER_SUCCESS;
+  user: TUserMain;
+}
+export interface IPatchUserFailedAction {
+  readonly type: typeof PATCH_USER_FAILED;
+}
+
+export type TPatchUserActions = 
+  | IPatchUserAction
+  | IPatchUserSuccessAction
+  | IPatchUserFailedAction;
 
 function handlePatchError() {
   return {
@@ -13,8 +31,8 @@ function handlePatchError() {
   }
 }
 
-export const patchUser = (data) => {
-  return function (dispatch) {
+export const patchUser = (data: TUserMain) => {
+  return function (dispatch: TAppDispatch) {
     dispatch({
       type: PATCH_USER_REQUEST
     })
@@ -27,7 +45,7 @@ export const patchUser = (data) => {
       }),
       headers: {
         "Content-Type": "application/json;charset=utf-8",
-        authorization: getCookie('accessToken')
+        authorization: getCookie('accessToken') as string
       },
     })
     .then(checkResponse)

@@ -34,6 +34,8 @@ export type TUserLogin = Pick<TUser, "email" | "password">;
 
 export type TUserReset = Pick<TUser, "password" | "token">;
 
+export type TUserGet = Pick<TUser, "name" | "email">;
+
 export type TItem = Readonly<{
   _id: string,
   name: string,

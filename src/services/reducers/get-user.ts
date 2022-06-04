@@ -3,8 +3,17 @@ import {
   GET_USER_SUCCESS,
   GET_USER_FAILED
 } from '../actions/get-user';
+import { TGetUserActions } from '../actions/get-user';
+import { TUserGet } from '../../utils/types';
 
-const initialState = {
+type TGetUserState = {
+  user: TUserGet;
+  isAuthenticated: boolean;
+  getUserRequest: boolean;
+  getUserFailed: boolean;
+} 
+
+const initialState: TGetUserState = {
   user: { 
     email: "",
     name: ""
@@ -14,7 +23,7 @@ const initialState = {
   getUserFailed: false
 }
 
-export const getUserReducer = (state = initialState, action) => {
+export const getUserReducer = (state = initialState, action: TGetUserActions) => {
   switch (action.type) {
     case GET_USER_REQUEST: {
       return {
