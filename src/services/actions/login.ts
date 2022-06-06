@@ -2,10 +2,28 @@ import { BASE_URL } from "../../utils/constants";
 import { setCookie } from "../../utils/cookie";
 import { getUser } from "./get-user";
 import { checkResponse } from "../../utils/check-response";
+import { TAppDispatch } from "../../utils/types";
+import { TUserLogin } from "../../utils/types";
 
-export const LOGIN_USER_REQUEST = "LOGIN_USER_REQUEST";
-export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
-export const LOGIN_USER_FAILED = "LOGIN_USER_FAILED";
+export const LOGIN_USER_REQUEST: "LOGIN_USER_REQUEST" = "LOGIN_USER_REQUEST";
+export const LOGIN_USER_SUCCESS: "LOGIN_USER_SUCCESS" = "LOGIN_USER_SUCCESS";
+export const LOGIN_USER_FAILED: "LOGIN_USER_FAILED" = "LOGIN_USER_FAILED";
+
+export interface ILoginUserAction {
+  readonly type: typeof LOGIN_USER_REQUEST;
+};
+export interface ILoginUserSuccessAction {
+  readonly type: typeof LOGIN_USER_SUCCESS;
+  user: TUserLogin;
+}
+export interface ILoginUserFailedAction {
+  readonly type: typeof LOGIN_USER_FAILED;
+}
+
+export type TLoginUserActions = 
+  | ILoginUserAction
+  | ILoginUserSuccessAction
+  | ILoginUserFailedAction;
 
 function handleLoginError() {
   return {
@@ -13,8 +31,8 @@ function handleLoginError() {
   }
 }
 
-export const loginUser = (data) => {
-  return function (dispatch) {
+export const loginUser = (data: TUserLogin) => {
+  return function (dispatch: TAppDispatch) {
     dispatch({
       type: LOGIN_USER_REQUEST
     })

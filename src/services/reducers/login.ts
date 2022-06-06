@@ -2,9 +2,18 @@ import {
   LOGIN_USER_REQUEST,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAILED
-} from "../actions/login";
+} from '../actions/login';
+import { TUserGet } from '../../utils/types';
+import { TLoginUserActions } from '../actions/login';
 
-const initialState = {
+type TLoginUserState = {
+  user: TUserGet;
+  isAuthenticated: boolean;
+  loginRequest: boolean;
+  loginFailed: boolean;
+}
+
+const initialState: TLoginUserState = {
   user: { 
     email: "",
     name: ""
@@ -14,7 +23,7 @@ const initialState = {
   loginFailed: false
 }
 
-export const loginReducer = (state = initialState, action) => {
+export const loginReducer = (state = initialState, action: TLoginUserActions) => {
   switch (action.type) {
     case LOGIN_USER_REQUEST: {
       return {
