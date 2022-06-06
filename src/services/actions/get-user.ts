@@ -52,6 +52,7 @@ export const getUser = () => {
         console.log(res)
         dispatch({
           type: LOGIN_USER_SUCCESS,
+          user: res.user
         })
       } else {
         dispatch(handleUserError())
