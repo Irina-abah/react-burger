@@ -3,14 +3,21 @@ import {
   REFRESH_TOKEN_SUCCESS,
   REFRESH_TOKEN_FAILED
 } from '../actions/refresh-token';
+import { TRefreshTokenActions } from '../actions/refresh-token';
 
-const initialState = {
+type TPatchUserState = {
+  token: string;
+  tokenRequest: boolean;
+  tokenFailed: boolean;
+}
+
+const initialState: TPatchUserState = {
   token: "",
   tokenRequest: false,
   tokenFailed: false
 }
 
-export const tokenReducer = (state = initialState, action) => {
+export const tokenReducer = (state = initialState, action: TRefreshTokenActions) => {
   switch (action.type) {
     case REFRESH_TOKEN_REQUEST: {
       return {

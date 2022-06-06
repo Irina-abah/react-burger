@@ -1,10 +1,27 @@
 import { BASE_URL } from "../../utils/constants";
 import { setCookie} from "../../utils/cookie";
 import { checkResponse } from "../../utils/check-response";
+import { TAppDispatch } from "../../utils/types";
 
-export const REFRESH_TOKEN_REQUEST = "REFRESH_TOKEN_REQUEST";
-export const REFRESH_TOKEN_SUCCESS = "REFRESH_TOKEN_SUCCESS";
-export const REFRESH_TOKEN_FAILED = "REFRESH_TOKEN_FAILED";
+export const REFRESH_TOKEN_REQUEST: "REFRESH_TOKEN_REQUEST" = "REFRESH_TOKEN_REQUEST";
+export const REFRESH_TOKEN_SUCCESS: "REFRESH_TOKEN_SUCCESS" = "REFRESH_TOKEN_SUCCESS";
+export const REFRESH_TOKEN_FAILED: "REFRESH_TOKEN_FAILED" = "REFRESH_TOKEN_FAILED";
+
+export interface IRefreshTokenAction {
+  readonly type: typeof REFRESH_TOKEN_REQUEST;
+};
+export interface IRefreshTokenSuccessAction {
+  readonly type: typeof REFRESH_TOKEN_SUCCESS;
+  accessToken: string;
+}
+export interface IRefreshTokenFailedAction {
+  readonly type: typeof REFRESH_TOKEN_FAILED;
+}
+
+export type TRefreshTokenActions = 
+  | IRefreshTokenAction
+  | IRefreshTokenSuccessAction
+  | IRefreshTokenFailedAction;
 
 function handleTokenError() {
   return {
@@ -13,7 +30,7 @@ function handleTokenError() {
 }
 
 export const refreshToken = () => {
-  return function (dispatch) {
+  return function (dispatch: TAppDispatch) {
     dispatch({
       type: REFRESH_TOKEN_REQUEST,
     });
