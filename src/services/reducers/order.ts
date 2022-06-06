@@ -3,14 +3,21 @@ import {
   MAKE_ORDER_SUCCESS,
   MAKE_ORDER_FAILED
 } from "../actions/order";
+import { TMakeOrderActions } from '../actions/order';
 
-const initialState = {
+type TMakeOrderState = {
+  number: number | null;
+  orderRequest: boolean;
+  orderFailed: boolean;
+}
+
+const initialState: TMakeOrderState = {
   number: null,
   orderRequest: false,
   orderFailed: false,
 }
 
-export const orderReducer = (state = initialState, action) => {
+export const orderReducer = (state = initialState, action: TMakeOrderActions) => {
   switch (action.type) {
     case MAKE_ORDER_REQUEST: {
       return {

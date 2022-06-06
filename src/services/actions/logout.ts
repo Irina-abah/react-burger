@@ -8,20 +8,19 @@ export const LOGOUT_SUCCESS: "LOGOUT_SUCCESS" = "LOGOUT_SUCCESS";
 export const LOGOUT_FAILED: "LOGOUT_FAILED" = "LOGOUT_FAILED";
 
 export interface ILogoutUserAction {
-  readonly type: typeof LOGIN_USER_REQUEST;
+  readonly type: typeof LOGOUT_REQUEST;
 };
 export interface ILogoutUserSuccessAction {
-  readonly type: typeof LOGIN_USER_SUCCESS;
-  user: TUserLogin;
+  readonly type: typeof LOGOUT_SUCCESS;
 }
-export interface ILoginUserFailedAction {
-  readonly type: typeof LOGIN_USER_FAILED;
+export interface ILogoutUserFailedAction {
+  readonly type: typeof LOGOUT_FAILED;
 }
 
-export type TLoginUserActions = 
-  | ILoginUserAction
-  | ILoginUserSuccessAction
-  | ILoginUserFailedAction;
+export type TLogoutUserActions = 
+  | ILogoutUserAction
+  | ILogoutUserSuccessAction
+  | ILogoutUserFailedAction;
 
 function handleLogoutError() {
   return {
