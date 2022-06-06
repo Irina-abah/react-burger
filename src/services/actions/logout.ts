@@ -1,10 +1,27 @@
 import { BASE_URL } from "../../utils/constants";
 import { deleteCookie } from "../../utils/cookie";
 import { checkResponse } from "../../utils/check-response";
+import { TAppDispatch } from "../../utils/types";
 
-export const LOGOUT_REQUEST = "LOGOUT_REQUEST";
-export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
-export const LOGOUT_FAILED = "LOGOUT_FAILED";
+export const LOGOUT_REQUEST: "LOGOUT_REQUEST" = "LOGOUT_REQUEST";
+export const LOGOUT_SUCCESS: "LOGOUT_SUCCESS" = "LOGOUT_SUCCESS";
+export const LOGOUT_FAILED: "LOGOUT_FAILED" = "LOGOUT_FAILED";
+
+export interface ILogoutUserAction {
+  readonly type: typeof LOGIN_USER_REQUEST;
+};
+export interface ILogoutUserSuccessAction {
+  readonly type: typeof LOGIN_USER_SUCCESS;
+  user: TUserLogin;
+}
+export interface ILoginUserFailedAction {
+  readonly type: typeof LOGIN_USER_FAILED;
+}
+
+export type TLoginUserActions = 
+  | ILoginUserAction
+  | ILoginUserSuccessAction
+  | ILoginUserFailedAction;
 
 function handleLogoutError() {
   return {
@@ -13,7 +30,7 @@ function handleLogoutError() {
 }
 
 export const logoutUser = () => {
-  return function (dispatch) {
+  return function (dispatch: TAppDispatch) {
     dispatch({
       type: LOGOUT_REQUEST
     })

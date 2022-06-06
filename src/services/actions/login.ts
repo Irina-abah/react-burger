@@ -8,7 +8,6 @@ import { TUserLogin } from "../../utils/types";
 export const LOGIN_USER_REQUEST: "LOGIN_USER_REQUEST" = "LOGIN_USER_REQUEST";
 export const LOGIN_USER_SUCCESS: "LOGIN_USER_SUCCESS" = "LOGIN_USER_SUCCESS";
 export const LOGIN_USER_FAILED: "LOGIN_USER_FAILED" = "LOGIN_USER_FAILED";
-
 export interface ILoginUserAction {
   readonly type: typeof LOGIN_USER_REQUEST;
 };
