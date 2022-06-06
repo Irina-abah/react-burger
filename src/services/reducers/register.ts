@@ -3,8 +3,17 @@ import {
   REGISTER_USER_SUCCESS,
   REGISTER_USER_FAILED
 } from "../actions/register";
+import { TRegisterUserActions } from '../actions/register';
+import { TUserGet } from '../../utils/types';
 
-const initialState = {
+type TRegisterUserState = {
+  user: TUserGet;
+  registerRequest: boolean;
+  registerFailed: boolean;
+  isAuthenticated: boolean;
+}
+
+const initialState: TRegisterUserState = {
   user: { 
     email: "",
     name: ""
@@ -14,7 +23,7 @@ const initialState = {
   isAuthenticated: false
 }
 
-export const registerReducer = (state = initialState, action) => {
+export const registerReducer = (state = initialState, action: TRegisterUserActions) => {
   switch (action.type) {
     case REGISTER_USER_REQUEST: {
       return {
