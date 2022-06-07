@@ -1,25 +1,14 @@
-// import PropTypes from "prop-types";
-
-// const ingredientType = PropTypes.shape({
-//   _id: PropTypes.string,
-//   name: PropTypes.string,
-//   price: PropTypes.number,
-//   image: PropTypes.string,
-//   type: PropTypes.string,
-//   proteins: PropTypes.number,
-//   fat: PropTypes.number,
-//   carbohydrates: PropTypes.number,
-//   calories: PropTypes.number,
-//   image_mobile: PropTypes.string,
-//   image_large: PropTypes.string,
-// })
-
-// export default ingredientType;
 import { Location } from 'history';
 import { store } from '../index';
 import { ThunkAction } from 'redux-thunk';
 import { Action, ActionCreator } from 'redux';
-
+import {
+  WS_CONNECTION_START,
+  WS_CONNECTION_SUCCESS,
+  WS_CONNECTION_ERROR,
+  WS_GET_MESSAGE,
+  WS_CONNECTION_CLOSED
+} from '../services/actions/websocket';
 import { TForgotPassActions }from '../services/actions/forgot-pass';
 import { TGetUserActions } from '../services/actions/get-user';
 import { TModalActions } from '../services/actions/ingredient-modal';
@@ -113,3 +102,10 @@ export type TOrders = {
   totalToday: number,
 }
 
+export type TWsActions = {
+  wsStart: typeof WS_CONNECTION_START,
+  onOpen: typeof WS_CONNECTION_SUCCESS,
+  onClose: typeof WS_CONNECTION_CLOSED,
+  onError: typeof WS_CONNECTION_ERROR,
+  onMessage: typeof WS_GET_MESSAGE
+}
