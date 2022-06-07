@@ -50,7 +50,6 @@ export const getUser = () => {
           type: GET_USER_SUCCESS,
           user: res.user
         })
-        console.log(res)
         dispatch({
           type: LOGIN_USER_SUCCESS,
           user: res.user

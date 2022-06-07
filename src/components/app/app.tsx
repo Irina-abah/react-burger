@@ -14,7 +14,7 @@ import PageNotFound from '../../pages/not-found/not-found';
 import GeneralOrders from '../general-orders/general-orders';
 import { CLOSE_MODAL } from "../../services/actions/ingredient-modal";
 import { ProtectedRoute } from '../../pages/protected-route';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../utils/hooks';
 import { getIngredients } from '../../services/actions/ingredients';
 import { TLocationState } from '../../utils/types';
 
