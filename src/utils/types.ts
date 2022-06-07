@@ -33,7 +33,7 @@ import { TRegisterUserActions } from '../services/actions/register';
 import { TResetPassActions } from '../services/actions/reset-pass';
 import { rootReducer } from '../services/reducers/index';
 
-type TApplicationActions = 
+export type TApplicationActions = 
 | TForgotPassActions
 | TGetUserActions
 | TModalActions
@@ -52,7 +52,7 @@ export type TAppThunk<TReturn = void> = ActionCreator<
   ThunkAction<TReturn, Action, TRootState, TApplicationActions>
 >;
 
-export type TAppDispatch = typeof store.dispatch;; 
+export type TAppDispatch = typeof store.dispatch;
 
 export type TUser = {
   name?: string,
@@ -103,6 +103,13 @@ export type TOrder = Readonly<{
   ingredients: Array<string>,
   createdAt: string,
   updatedAt: string,
-  name: string
+  name?: string
 }>;
+
+export type TOrders = {
+  success: boolean,
+  orders: Array<TOrder>,
+  total: number,
+  totalToday: number,
+}
 
