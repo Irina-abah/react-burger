@@ -3,7 +3,7 @@ import UserForm from "../user-form/user-form";
 import loginStyles from "./login.module.css";
 import { Link, Redirect, useLocation } from "react-router-dom";
 import { PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from '../../utils/hooks';
 import { loginUser } from "../../services/actions/login";
 import { TUserLogin, TLocationState } from "../../utils/types";
 
@@ -12,7 +12,7 @@ const Login: FunctionComponent = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const { state } = location as TLocationState;
-  const auth = useSelector((store: any) => store.login.isAuthenticated);
+  const auth = useSelector((store) => store.login.isAuthenticated);
   const [form, setForm] = useState<TUserLogin>({} as TUserLogin);
 
 

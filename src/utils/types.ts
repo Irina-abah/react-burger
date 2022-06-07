@@ -17,15 +17,48 @@
 // export default ingredientType;
 import { Location } from 'history';
 import { store } from '../index';
+import { ThunkAction } from 'redux-thunk';
+import { Action, ActionCreator } from 'redux';
+import { TConstructorActions } from '../services/actions/constructor';
+import { TForgotPassActions }from '../services/actions/forgot-pass';
+import { TGetUserActions } from '../services/actions/get-user';
+import { TModalActions } from '../services/actions/ingredient-modal';
+import { TGetIngredientsActions } from '../services/actions/ingredients';
+import { TLoginUserActions } from '../services/actions/login';
+import { TLogoutUserActions } from '../services/actions/logout';
+import { TMakeOrderActions } from '../services/actions/order';
+import { TPatchUserActions } from '../services/actions/patch-user';
+import { TRefreshTokenActions } from '../services/actions/refresh-token';
+import { TRegisterUserActions } from '../services/actions/register';
+import { TResetPassActions } from '../services/actions/reset-pass';
+
+type TApplicationActions = 
+| TConstructorActions
+| TForgotPassActions
+| TGetUserActions
+| TModalActions
+| TGetIngredientsActions
+| TLoginUserActions
+| TLogoutUserActions
+| TMakeOrderActions
+| TPatchUserActions
+| TRefreshTokenActions
+| TRegisterUserActions
+| TResetPassActions;
 
 export type TRootState = ReturnType<typeof store.getState>; 
-export type TAppDispatch = typeof store.dispatch; 
+
+export type TAppThunk<TReturn = void> = ActionCreator<
+  ThunkAction<TReturn, Action, TRootState, TApplicationActions>
+>;
+
+export type TAppDispatch = typeof store.dispatch;; 
 
 export type TUser = {
-  name: string,
-  email: string,
-  password: string,
-  token: string
+  name?: string,
+  email?: string,
+  password?: string,
+  token?: string
 };
 
 export type TUserMain = Omit<TUser, "token">;

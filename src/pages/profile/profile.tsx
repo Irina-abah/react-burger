@@ -2,7 +2,7 @@ import { useEffect, useState, FormEvent, ChangeEvent } from 'react';
 import profileStyles from "./profile.module.css";
 import { Link, NavLink } from "react-router-dom";
 import { Input, PasswordInput, EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from '../../utils/hooks';
 import { logoutUser } from '../../services/actions/logout';
 import { patchUser } from '../../services/actions/patch-user';
 import { TUserMain } from '../../utils/types';
@@ -10,8 +10,8 @@ import { TUserMain } from '../../utils/types';
 function Profile() {
 
   const dispatch = useDispatch();
-  const user = useSelector((store: any) => store.getUser.user);
-  const isSuccess = useSelector((store: any) => store.getUser.isSuccess);
+  const user = useSelector((state) => state.getUser.user);
+  const isSuccess = useSelector((state) => state.patchUser.isSuccess);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [state, setState] = useState<TUserMain>({} as TUserMain);
 
@@ -93,7 +93,7 @@ function Profile() {
         <div className={`mb-6`}>
           <EmailInput 
             onChange={handleInputChange} 
-            value={state.email} 
+            value={state.email | ""} 
             name={'email'}
           />
         </div> 

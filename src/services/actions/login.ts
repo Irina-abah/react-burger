@@ -31,7 +31,7 @@ function handleLoginError() {
 }
 
 export const loginUser = (data: TUserLogin) => {
-  return function (dispatch: TAppDispatch) {
+  return function (dispatch: any) {
     dispatch({
       type: LOGIN_USER_REQUEST
     })

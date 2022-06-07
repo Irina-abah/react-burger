@@ -19,7 +19,7 @@ type TIngredientsActions =
   | TConstructorActions;
 
 
-type TGetIngredientsrState = {
+type TGetIngredientsState = {
   foodData: Array<TExtendedItem>;
   foodDataRequest: boolean;
   foodDataFailed: boolean;
@@ -31,7 +31,7 @@ type TGetIngredientsrState = {
 }
 
 
-const initialState: TGetIngredientsrState = {
+const initialState: TGetIngredientsState = {
   foodData: [],
   foodDataRequest: false,
   foodDataFailed: false,

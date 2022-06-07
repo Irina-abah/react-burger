@@ -32,7 +32,7 @@ function handlePatchError() {
 }
 
 export const patchUser = (data: TUserMain) => {
-  return function (dispatch: TAppDispatch) {
+  return function (dispatch: any) {
     dispatch({
       type: PATCH_USER_REQUEST
     })

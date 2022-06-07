@@ -3,14 +3,14 @@ import UserForm from '../user-form/user-form';
 import resetStyles from "./reset-password.module.css";
 import { Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { resetPass } from '../../services/actions/reset-pass';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from '../../utils/hooks';
 import { Redirect } from 'react-router-dom';
 import { TUserReset } from "../../utils/types";
 
 function ResetPassword() {
 
   const dispatch = useDispatch();
-  const passwordReset = useSelector((store: any) => store.reset.isPasswordReset);
+  const passwordReset = useSelector((store) => store.reset.isPasswordReset);
   const [state, setState] = useState<TUserReset>({} as TUserReset);
 
 

@@ -5,13 +5,13 @@ import {
 } from '../actions/refresh-token';
 import { TRefreshTokenActions } from '../actions/refresh-token';
 
-type TPatchUserState = {
+type TRefreshTokenState = {
   token: string;
   tokenRequest: boolean;
   tokenFailed: boolean;
 }
 
-const initialState: TPatchUserState = {
+const initialState: TRefreshTokenState = {
   token: "",
   tokenRequest: false,
   tokenFailed: false

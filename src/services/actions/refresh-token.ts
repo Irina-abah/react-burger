@@ -12,7 +12,7 @@ export interface IRefreshTokenAction {
 };
 export interface IRefreshTokenSuccessAction {
   readonly type: typeof REFRESH_TOKEN_SUCCESS;
-  accessToken: string;
+  accessToken?: string;
 }
 export interface IRefreshTokenFailedAction {
   readonly type: typeof REFRESH_TOKEN_FAILED;

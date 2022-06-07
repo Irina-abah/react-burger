@@ -3,14 +3,14 @@ import UserForm from '../user-form/user-form';
 import forgotStyles from "./forgot-password.module.css";
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { forgotPass } from '../../services/actions/forgot-pass';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from '../../utils/hooks';
 import { Redirect } from 'react-router-dom';
 
 function ForgotPassword() {
 
   const [email, setEmail] = useState<string>("")
   const dispatch = useDispatch();
-  const emailSent = useSelector((store: any) => store.forgot.isEmailSent)
+  const emailSent = useSelector((state) => state.forgot.isEmailSent)
 
   let submit = useCallback(
     e => {

@@ -1,7 +1,6 @@
 import { BASE_URL } from "../../utils/constants";
 import { checkResponse } from "../../utils/check-response";
-import { TAppDispatch } from "../../utils/types";
-import { TExtendedItem } from "../../utils/types";
+import { TAppDispatch, TItem } from "../../utils/types";
 
 export const GET_INGREDIENTS_REQUEST: "GET_INGREDIENTS_REQUEST" = "GET_INGREDIENTS_REQUEST";
 export const GET_INGREDIENTS_SUCCESS: "GET_INGREDIENTS_SUCCESS" = "GET_INGREDIENTS_SUCCESS";
@@ -12,7 +11,7 @@ export interface IGetIngredientsAction {
 };
 export interface IGetIngredientsSuccessAction {
   readonly type: typeof GET_INGREDIENTS_SUCCESS;
-  foodData: Array<TExtendedItem>;
+  foodData: Array<TItem>;
 }
 export interface IGetIngredientsFailedAction {
   readonly type: typeof GET_INGREDIENTS_FAILED;
