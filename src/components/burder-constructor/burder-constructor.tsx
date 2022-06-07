@@ -6,18 +6,18 @@ import { ConstructorElement, CurrencyIcon, Button } from "@ya.praktikum/react-de
 import Modal from "../modal/modal";
 import OrderDetails from "../order-details/order-details";
 import ConstructorItem from "../constructor-item/constructor-item";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from '../../utils/hooks';
 import { useDrop, DropTargetMonitor } from 'react-dnd';
 import { makeOrder } from "../../services/actions/order";
-import { ADD_BUN, RESET_CONSTRUSTOR, ADD_INNER_ITEM, UPDATE_CONSTRUCTOR_LIST } from "../../services/actions/constructor";
+import { ADD_BUN, RESET_CONSTRUSTOR, ADD_INNER_ITEM, UPDATE_CONSTRUCTOR_LIST } from "../../services/actions/ingredients";
 import { TExtendedItem } from '../../utils/types';
 
 const BurgerConstructor: FunctionComponent = () => {
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const {innerItems} = useSelector((store: any) => store.ingredients.constructor);
-  const {selectedBun} = useSelector((store: any) => store.ingredients.constructor);
+  const { innerItems } = useSelector((store: any) => store.ingredients.constructor);
+  const { selectedBun } = useSelector((store: any) => store.ingredients.constructor);
   const data = useSelector((store: any) => store.ingredients.foodData);
   const auth = useSelector((store: any) => store.login.isAuthenticated);
   const [isOpen, setIsOpen] = useState<boolean>(false);

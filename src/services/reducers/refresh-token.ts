@@ -6,7 +6,7 @@ import {
 import { TRefreshTokenActions } from '../actions/refresh-token';
 
 type TRefreshTokenState = {
-  token: string;
+  token: string | undefined;
   tokenRequest: boolean;
   tokenFailed: boolean;
 }
@@ -17,7 +17,7 @@ const initialState: TRefreshTokenState = {
   tokenFailed: false
 }
 
-export const tokenReducer = (state = initialState, action: TRefreshTokenActions) => {
+export const tokenReducer = (state = initialState, action: TRefreshTokenActions): TRefreshTokenState => {
   switch (action.type) {
     case REFRESH_TOKEN_REQUEST: {
       return {

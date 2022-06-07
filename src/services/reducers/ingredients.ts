@@ -1,30 +1,22 @@
 import {
   GET_INGREDIENTS_REQUEST,
   GET_INGREDIENTS_SUCCESS,
-  GET_INGREDIENTS_FAILED
-} from "../actions/ingredients";
-import {
+  GET_INGREDIENTS_FAILED,
   ADD_BUN,
   ADD_INNER_ITEM,
   REMOVE_INNER_ITEM,
   UPDATE_CONSTRUCTOR_LIST,
   RESET_CONSTRUSTOR
-} from "../actions/constructor";
+} from "../actions/ingredients";
 import { TGetIngredientsActions } from '../actions/ingredients';
-import { TConstructorActions } from '../actions/constructor';
 import { TExtendedItem } from "../../utils/types";
-
-type TIngredientsActions = 
-  | TGetIngredientsActions
-  | TConstructorActions;
-
 
 type TGetIngredientsState = {
   foodData: Array<TExtendedItem>;
   foodDataRequest: boolean;
   foodDataFailed: boolean;
   constructor: {
-    selectedBun: TExtendedItem | {},
+    selectedBun: TExtendedItem | {};
     innerItems: Array<TExtendedItem>;
   };
   selectedIngredient: TExtendedItem | {};
@@ -37,17 +29,17 @@ const initialState: TGetIngredientsState = {
   foodDataFailed: false,
   constructor: {
     selectedBun: {},
-    innerItems: []
+    innerItems: [],
   },
   selectedIngredient: {}
 }
 
-export const ingredientsReducer = (state = initialState, action: TIngredientsActions) => {
+export const ingredientsReducer = (state = initialState, action: TGetIngredientsActions): TGetIngredientsState => {
   switch (action.type) {
     case GET_INGREDIENTS_REQUEST: {
       return {
         ...state,
-        ingredientsRequest: true,
+        foodDataRequest: true,
       };
     }
     case GET_INGREDIENTS_SUCCESS: {
@@ -70,6 +62,7 @@ export const ingredientsReducer = (state = initialState, action: TIngredientsAct
     }
     case ADD_BUN: {
       return {
+        ...state,
         constructor: {
           ...state.constructor,
           selectedBun: action.bun

@@ -57,6 +57,7 @@ const Login: FunctionComponent = () => {
             onChange={handleInputChange} 
             value={form.email} 
             name={'email'}
+            // required
           />
         </div> 
         <div className={`mb-6`}>

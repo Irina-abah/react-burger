@@ -3,10 +3,10 @@ import {
   CLOSE_MODAL
 } from "../actions/ingredient-modal";
 import { TModalActions} from '../actions/ingredient-modal';
-import { TItem } from "../../utils/types";
+import { TExtendedItem } from "../../utils/types";
 
 type TIngredientState = {
-  selectedItem: TItem | {};
+  selectedItem: TExtendedItem | {};
   modalOpened: boolean;
   modalClosed: boolean;
 }

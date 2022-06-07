@@ -4,7 +4,7 @@ import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burg
 import { useDispatch } from 'react-redux';
 import { useDrop, useDrag, DropTargetMonitor } from 'react-dnd';
 import itemStyles from "./constructor-item.module.css";
-import { REMOVE_INNER_ITEM } from "../../services/actions/constructor";
+import { REMOVE_INNER_ITEM } from "../../services/actions/ingredients";
 import { TExtendedItem } from '../../utils/types';
 
 interface IConstructorItem {
