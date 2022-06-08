@@ -18,7 +18,7 @@ type TWsState = {
   wsConnected: false,
   messages: {
     success: false,
-    orders:[],
+    orders: [],
     total: 0,
     totalToday: 0,
   }

@@ -9,12 +9,12 @@ export const socketMiddleware = (wsUrl: string, wsActions: TWsActions ): Middlew
     return next => (action) => {
       const { dispatch } = store;
       const { type, payload } = action;
-      const { wsStart, onOpen, onClose, onError, onMessage } = wsActions;
+      const { wsStart, wsClose, onOpen, onClose, onError, onMessage } = wsActions;
  
       if (type === wsStart) {
         socket = new WebSocket(`${wsUrl}/${payload}`);
       }
-      if (type === onClose) {
+      if (type === wsClose) {
         socket?.close();
       }
       if (socket) {

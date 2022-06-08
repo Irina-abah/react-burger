@@ -1,6 +1,7 @@
 import { TOrders } from '../../utils/types';
 
 export const WS_CONNECTION_START: "WS_CONNECTION_START" = "WS_CONNECTION_START";
+export const WS_CONNECTION_CLOSE: "WS_CONNECTION_CLOSE" = "WS_CONNECTION_CLOSE";
 export const WS_CONNECTION_SUCCESS: "WS_CONNECTION_SUCCESS" = "WS_CONNECTION_SUCCESS";
 export const WS_CONNECTION_ERROR: "WS_CONNECTION_ERROR" = "WS_CONNECTION_ERROR";
 export const WS_CONNECTION_CLOSED: "WS_CONNECTION_CLOSED" = "WS_CONNECTION_CLOSED";
@@ -9,6 +10,7 @@ export const WS_SEND_MESSAGE: "WS_SEND_MESSAGE" = "WS_SEND_MESSAGE";
 
 export const wsActions = {
   wsStart: WS_CONNECTION_START,
+  wsClose: WS_CONNECTION_CLOSE,
   onOpen: WS_CONNECTION_SUCCESS,
   onClose: WS_CONNECTION_CLOSED,
   onError: WS_CONNECTION_ERROR,
@@ -20,9 +22,15 @@ export interface IWsConnectionStartAction {
   readonly payload: string;
 }
 
+export interface IWsConnectionCloseAction {
+  readonly type: typeof WS_CONNECTION_CLOSE;
+  readonly payload: string;
+}
+
 export interface IWsConnectionSuccessAction {
   readonly type: typeof WS_CONNECTION_SUCCESS;
   readonly payload: any;
+
 }
 
 export interface IWsConnectionErrorAction {
@@ -47,6 +55,7 @@ export interface IWsSendMessageAction {
 
 export type TWebSocketActions =
   | IWsConnectionStartAction
+  | IWsConnectionCloseAction
   | IWsConnectionSuccessAction
   | IWsConnectionErrorAction
   | IWsGetMessageAction
@@ -55,7 +64,14 @@ export type TWebSocketActions =
 
 export const wsConnectionStart = () => {
   return {
-    type: WS_CONNECTION_START
+    type: WS_CONNECTION_START,
+    payload: 'all'
+  };
+};
+
+export const wsConnectionClose = () => {
+  return {
+    type: WS_CONNECTION_CLOSE
   };
 };
 

@@ -11,7 +11,7 @@ import Modal from '../modal/modal';
 import IngredientsDetails from '../ingredient-details/ingredient-details';
 import IngredientPage from '../../pages/ingredient-page/ingredient-page';
 import PageNotFound from '../../pages/not-found/not-found';
-import GeneralOrders from '../general-orders/general-orders';
+import Feed from '../feed/feed';
 import { CLOSE_MODAL } from "../../services/actions/ingredient-modal";
 import { ProtectedRoute } from '../../pages/protected-route';
 import { useDispatch } from '../../utils/hooks';
@@ -63,7 +63,7 @@ const App: FunctionComponent = () => {
             <Main />
           </Route>
           <Route path="/feed">
-            <GeneralOrders />
+            <Feed />
           </Route>
           <Route path="*">
             <PageNotFound />

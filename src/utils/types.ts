@@ -4,6 +4,7 @@ import { ThunkAction } from 'redux-thunk';
 import { Action, ActionCreator } from 'redux';
 import {
   WS_CONNECTION_START,
+  WS_CONNECTION_CLOSE,
   WS_CONNECTION_SUCCESS,
   WS_CONNECTION_ERROR,
   WS_GET_MESSAGE,
@@ -106,6 +107,7 @@ export type TOrders = {
 
 export type TWsActions = {
   wsStart: typeof WS_CONNECTION_START,
+  wsClose: typeof WS_CONNECTION_CLOSE,
   onOpen: typeof WS_CONNECTION_SUCCESS,
   onClose: typeof WS_CONNECTION_CLOSED,
   onError: typeof WS_CONNECTION_ERROR,
