@@ -1,7 +1,21 @@
-.complete_list {
+.list {
   list-style: none;
   margin: 0;
   padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));;
+  gap: 8px;
+  max-height: 310px;
+  overflow-y: scroll;
+}
+
+.list::-webkit-scrollbar {
+  width: 8px;
+  background-color: #2F2F37;
+}
+
+.list::-webkit-scrollbar-thumb {
+  background-color: #8585AD;
 }
 
 .number {
@@ -15,5 +29,5 @@
 }
 
 .container {
-  composes: container from '../burder-constructor/burder-constructor.module.css';
+
 }

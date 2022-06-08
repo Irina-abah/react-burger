@@ -10,6 +10,7 @@ import Profile from '../../pages/profile/profile';
 import Modal from '../modal/modal';
 import IngredientsDetails from '../ingredient-details/ingredient-details';
 import IngredientPage from '../../pages/ingredient-page/ingredient-page';
+import OrderPage from '../../pages/order-page/order-page';
 import PageNotFound from '../../pages/not-found/not-found';
 import Feed from '../feed/feed';
 import { CLOSE_MODAL } from "../../services/actions/ingredient-modal";
@@ -17,6 +18,7 @@ import { ProtectedRoute } from '../../pages/protected-route';
 import { useDispatch } from '../../utils/hooks';
 import { getIngredients } from '../../services/actions/ingredients';
 import { TLocationState } from '../../utils/types';
+import Order from '../order/order';
 
 const App: FunctionComponent = () => {
 
@@ -64,6 +66,9 @@ const App: FunctionComponent = () => {
           </Route>
           <Route path="/feed">
             <Feed />
+          </Route>
+          <Route path="/feed/:orderId">
+            <OrderPage />
           </Route>
           <Route path="*">
             <PageNotFound />

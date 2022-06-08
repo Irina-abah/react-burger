@@ -88,15 +88,15 @@ export type TLocationState = {
   }
 };
 
-export type TOrder = Readonly<{
+export type TOrder = {
   _id: string,
-  status: "created" | "done" | "pending",
+  status: "created" | "done" | "pending" | undefined,
   number: number,
   ingredients: Array<string>,
   createdAt: string,
   updatedAt: string,
   name?: string
-}>;
+};
 
 export type TOrders = {
   success: boolean,

@@ -18,7 +18,7 @@ const OrdersSummary: FunctionComponent<IOrdersSummary> = ({allOrders}) => {
           <p className={`${summaryStyles.subtitle} mb-4 text text_type_main-medium`}>
             Готовы:
           </p>
-          <ul className={summaryStyles.complete_list}>
+          <ul className={summaryStyles.list}>
             {completedOrders.map((item: TOrder, i) => (
               <li key={item._id}>
                 <p className={`${summaryStyles.number} text text_type_digits-default`}>
@@ -32,7 +32,7 @@ const OrdersSummary: FunctionComponent<IOrdersSummary> = ({allOrders}) => {
         <p className={`${summaryStyles.subtitle} mb-4 text text_type_main-medium`}>
             В работе:
           </p>
-          <ul className={summaryStyles.complete_list}>
+          <ul className={summaryStyles.list}>
             {progressOrders.map((item: TOrder) => (
               <li key={item._id}>
                 <p className="text text_type_digits-default">
