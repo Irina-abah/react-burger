@@ -88,7 +88,7 @@ function Profile() {
             value={state.name} 
             name={'name'}
             placeholder={'Имя'}
-            required
+            // required
           />
         </div>
         <div className={`mb-6`}>
@@ -96,7 +96,7 @@ function Profile() {
             onChange={handleInputChange} 
             value={state.email} 
             name={'email'}
-            required
+            // required
           />
         </div> 
         <div className={`mb-6`}>

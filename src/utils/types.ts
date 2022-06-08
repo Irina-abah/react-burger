@@ -20,6 +20,7 @@ import { TPatchUserActions } from '../services/actions/patch-user';
 import { TRefreshTokenActions } from '../services/actions/refresh-token';
 import { TRegisterUserActions } from '../services/actions/register';
 import { TResetPassActions } from '../services/actions/reset-pass';
+import { TWebSocketActions } from '../services/actions/websocket';
 import { rootReducer } from '../services/reducers/index';
 
 export type TApplicationActions = 
@@ -33,7 +34,8 @@ export type TApplicationActions =
 | TPatchUserActions
 | TRefreshTokenActions
 | TRegisterUserActions
-| TResetPassActions;
+| TResetPassActions
+| TWebSocketActions;
 
 export type TRootState = ReturnType<typeof rootReducer>; 
 

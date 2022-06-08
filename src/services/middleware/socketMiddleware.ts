@@ -27,9 +27,8 @@ export const socketMiddleware = (wsUrl: string, wsActions: TWsActions ): Middlew
         socket.onmessage = event => {
           const { data } = event;
           const parsedData = JSON.parse(data);
-          dispatch({ type: onMessage, payload: data });
+          dispatch({ type: onMessage, payload: parsedData });
         };
-                // функция, которая вызывается при закрытии соединения
         socket.onclose = event => {
           dispatch({ type: onClose, payload: event });
         };

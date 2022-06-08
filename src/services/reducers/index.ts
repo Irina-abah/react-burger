@@ -10,6 +10,7 @@ import { resetReducer } from './reset-pass';
 import { getUserReducer } from './get-user';
 import { tokenReducer } from './refresh-token';
 import { patchUserReducer } from './patch-user';
+import { wsReducer } from './websocket';
 
 export const rootReducer = combineReducers({
   order: orderReducer,
@@ -22,5 +23,6 @@ export const rootReducer = combineReducers({
   reset: resetReducer,
   getUser: getUserReducer,
   patchUser: patchUserReducer,
-  token: tokenReducer
+  token: tokenReducer,
+  ws: wsReducer
 });
