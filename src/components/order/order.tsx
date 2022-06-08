@@ -20,9 +20,21 @@ const Order: FunctionComponent<IOrder> = ({item}) => {
   const feedId = item['_id'];
   const ingredients = useSelector((store) => store.ingredients.foodData);
 
- const orderIngredients = item.ingredients.map((i: string) => {
+  const orderIngredients = item.ingredients.map((i: string) => {
     return ingredients.filter((item: TExtendedItem) => item._id === i);
   }).flat(1);
+
+  const images = () => {
+    if (orderIngredients.length > 6) {
+      return orderIngredients.slice(0, 6)
+    } else {
+      return orderIngredients
+    }
+  }
+
+  const otherImages = orderIngredients.length > 6
+    ? `+${orderIngredients.length - 6}`
+    : null;
 
   const totalPrice = orderIngredients.reduce(
     function (sum: number, item: TExtendedItem) {
@@ -36,7 +48,6 @@ const Order: FunctionComponent<IOrder> = ({item}) => {
       item
     })
   }
-
 
   return (
     <>
@@ -55,10 +66,21 @@ const Order: FunctionComponent<IOrder> = ({item}) => {
           <p className={`text text_type_digits-default mr-2`}>#{item.number}</p>
           <p className={`text text_type_main-default text_color_inactive`}>{date}</p>
         </div>
-      <h2 className={`${orderStyles.title} text text_type_main-medium`}>{item.name}</h2>
-      <div>
-        <div className={`${orderStyles.logos} mt-2 mb-2`}>
-
+      <h2 className={`${orderStyles.title} text text_type_main-medium mb-6`}>{item.name}</h2>
+      <div className={orderStyles.basic}>
+        <div className={`${orderStyles.logos}`}>
+          {images().map((item, i) => (
+            <div className={orderStyles.image} key={i}>
+              <img
+              alt="Фото"
+              src={item.image_mobile}
+              className={orderStyles.round}
+              />
+          </div>
+          ))}
+          {otherImages && (
+              <div className={`${orderStyles.other} text text_type_main-medium`}>{otherImages}</div>
+          )}
         </div>
         <div className={`${orderStyles.total} mt-2 mb-2`}>
           <p className={`text text_type_digits-default mr-2`}>{totalPrice}</p>
