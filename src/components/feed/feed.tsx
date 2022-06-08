@@ -24,10 +24,12 @@ const Feed: FunctionComponent = () => {
   return (
     <section className={`${feedStyles.orders} pl-5 pr-5 pb-10 pt-10`}>
       <h1 className={`text text_type_main-large mb-5`}>Лента заказов</h1> 
-      <div className={`mr-15`}>
+      <div className={feedStyles.container}>
+        <div className={`mr-15`}>
+        </div>
+        <OrdersSummary allOrders={orders}/>
       </div>
-      <OrdersSummary allOrders={orders}/>
-      {/* <OrdersSummary /> */}
+      
     </section>
   )
 }

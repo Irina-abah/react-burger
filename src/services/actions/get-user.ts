@@ -40,7 +40,7 @@ export const getUser = () => {
     fetch(`${BASE_URL}/auth/user`, {
       headers: {
         "Content-Type": "application/json;charset=utf-8",
-        authorization: getCookie('accessToken') as string
+        Authorization: getCookie('accessToken') as string
       },
     })
     .then(checkResponse)
