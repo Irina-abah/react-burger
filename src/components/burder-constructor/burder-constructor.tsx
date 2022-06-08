@@ -65,7 +65,6 @@ const BurgerConstructor: FunctionComponent = () => {
         return sum + item.price
     }, 0
   )
-
   
 
   function checkPrice(price: number) {

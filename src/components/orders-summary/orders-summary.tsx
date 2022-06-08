@@ -12,23 +12,23 @@ const OrdersSummary: FunctionComponent<IOrdersSummary> = ({allOrders}) => {
   const progressOrders = allOrders.orders.filter((item) => item.status !== 'done');
 
   return (
-    <div className={`${summaryStyles.container} mt-25 mb-4 pr-4`}>
+    <div className={`${summaryStyles.container}`}>
       <div className={summaryStyles.status}>
-        <div className={summaryStyles.complete}>
+        <div className={summaryStyles.status_column}>
           <p className={`${summaryStyles.subtitle} mb-4 text text_type_main-medium`}>
             Готовы:
           </p>
           <ul className={summaryStyles.complete_list}>
             {completedOrders.map((item: TOrder, i) => (
               <li key={item._id}>
-                <p className="text text_type_digits-default text_color_inactive">
+                <p className={`${summaryStyles.number} text text_type_digits-default`}>
                   {item.number}
                 </p>
               </li>
             ))}
           </ul>
         </div>
-        <div className={summaryStyles.progress}>
+        <div className={summaryStyles.status_column}>
         <p className={`${summaryStyles.subtitle} mb-4 text text_type_main-medium`}>
             В работе:
           </p>

@@ -1,5 +1,6 @@
 import { FunctionComponent, useEffect } from 'react';
 import OrdersSummary from '../orders-summary/orders-summary';
+import Order from '../order/order';
 import feedStyles from './feed.module.css';
 import { useSelector, useDispatch } from '../../utils/hooks';
 import {
@@ -22,10 +23,13 @@ const Feed: FunctionComponent = () => {
   }, [dispatch]);
 
   return (
-    <section className={`${feedStyles.orders} pl-5 pr-5 pb-10 pt-10`}>
+    <section className={`${feedStyles.orders} pb-10 pt-10`}>
       <h1 className={`text text_type_main-large mb-5`}>Лента заказов</h1> 
       <div className={feedStyles.container}>
-        <div className={`mr-15`}>
+        <div className={`${feedStyles.orders_list}`}>
+          {orders.orders.map((item, i) => (
+            <Order item={item} />
+          ))}
         </div>
         <OrdersSummary allOrders={orders}/>
       </div>
