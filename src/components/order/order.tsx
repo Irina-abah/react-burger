@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { Link, useLocation } from 'react-router-dom';
+import { Route, Link, useLocation } from 'react-router-dom';
 import orderStyles from './order.module.css';
 import { TOrder, TExtendedItem } from '../../utils/types';
 import { OPEN_MODAL } from '../../services/actions/ingredient-modal';
@@ -19,7 +19,6 @@ const Order: FunctionComponent<IOrder> = ({item}) => {
   const date = sayDate(item.createdAt);
   const orderId = item['_id'];
   const ingredients = useSelector((store) => store.ingredients.foodData);
-  const auth = useSelector((store) => store.getUser.isAuthenticated);
 
   const orderIngredients = item.ingredients.map((i: string) => {
     return ingredients.filter((item: TExtendedItem) => item._id === i);
@@ -80,7 +79,9 @@ const Order: FunctionComponent<IOrder> = ({item}) => {
           <p className={`text text_type_main-default text_color_inactive`}>{date}</p>
         </div>
       <h2 className={`${orderStyles.title} text text_type_main-medium mb-6`}>{item.name}</h2>
-      {auth && <p className={`${statusClassname} text text_type_main-default `}>{statusOrder()}</p>}
+      <Route exact path="/profile/orders"> 
+        <p className={`${statusClassname} text text_type_main-default mb-6 `}>{statusOrder()}</p>
+      </Route>
       <div className={orderStyles.basic}>
         <div className={`${orderStyles.logos}`}>
           {images().map((item, i) => (

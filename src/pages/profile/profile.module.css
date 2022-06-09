@@ -1,10 +1,11 @@
 .profile {
   margin: 0 auto;
   display: grid;
-  max-width: 860px;
+  max-width: 1240px;
   width: 100%;
   grid-column-gap: 60px;
   grid-template-columns: 320px 480px;
+  justify-content: center;
 }
 
 .text {

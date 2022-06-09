@@ -6,4 +6,5 @@
 
 .profile_orders {
   composes: profile from '../profile/profile.module.css';
+  grid-template-columns: 320px 844px;
 }
