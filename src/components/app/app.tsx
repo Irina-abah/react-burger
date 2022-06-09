@@ -14,12 +14,12 @@ import OrderPage from '../../pages/order-page/order-page';
 import ProfileOrders from '../../pages/profile-orders/profile-orders';
 import PageNotFound from '../../pages/not-found/not-found';
 import Feed from '../feed/feed';
-import { CLOSE_MODAL } from "../../services/actions/ingredient-modal";
+import { CLOSE_MODAL } from "../../services/actions/modal";
 import { ProtectedRoute } from '../../pages/protected-route';
 import { useDispatch } from '../../utils/hooks';
 import { getIngredients } from '../../services/actions/ingredients';
 import { TLocationState } from '../../utils/types';
-import Order from '../order/order';
+import OrderModal from '../order-modal/order-modal';
 
 const App: FunctionComponent = () => {
 
@@ -68,7 +68,7 @@ const App: FunctionComponent = () => {
           <Route exact path="/">
             <Main />
           </Route>
-          <Route path="/feed">
+          <Route exact path="/feed">
             <Feed />
           </Route>
           <Route path="/feed/:orderId">
@@ -87,6 +87,32 @@ const App: FunctionComponent = () => {
               onClose={handleModalClose}
             >
             <IngredientsDetails/>
+          </Modal>
+          }
+        />
+      )}
+      {background && (
+        <Route 
+          path="/feed/:orderId"
+          children={
+            <Modal
+              title="" 
+              onClose={handleModalClose}
+            >
+            <OrderModal />
+          </Modal>
+          }
+        />
+      )}
+      {background && (
+        <Route 
+          path="/profile/orders/:orderId"
+          children={
+            <Modal
+              title="" 
+              onClose={handleModalClose}
+            >
+            <OrderModal />
           </Modal>
           }
         />

@@ -1,18 +1,21 @@
 import {
   OPEN_MODAL,
-  CLOSE_MODAL
-} from "../actions/ingredient-modal";
-import { TModalActions} from '../actions/ingredient-modal';
-import { TExtendedItem } from "../../utils/types";
+  CLOSE_MODAL,
+  OPEN_MODAL_ORDER
+} from "../actions/modal";
+import { TModalActions} from '../actions/modal';
+import { TExtendedItem, TOrder } from "../../utils/types";
 
 type TIngredientState = {
   selectedItem: TExtendedItem | {};
+  selectedOrder: TOrder | {};
   modalOpened: boolean;
   modalClosed: boolean;
 }
 
 const initialState: TIngredientState = {
   selectedItem: {},
+  selectedOrder: {},
   modalOpened: false,
   modalClosed: true,
 }
@@ -23,6 +26,14 @@ export const modalReducer = (state = initialState, action: TModalActions) => {
       return {
         ...state,
         selectedItem: action.item,
+        modalOpened: true,
+        modalClosed: false
+      }
+    }
+    case OPEN_MODAL_ORDER: {
+      return {
+        ...state,
+        selectedOrder: action.item,
         modalOpened: true,
         modalClosed: false
       }

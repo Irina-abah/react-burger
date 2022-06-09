@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { CurrencyIcon, Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import ingredientStyles from "./ingredient.module.css";
-import { OPEN_MODAL } from "../../services/actions/ingredient-modal";
+import { OPEN_MODAL } from "../../services/actions/modal";
 import { useDispatch } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import { Link, useLocation } from 'react-router-dom';

@@ -12,7 +12,7 @@ import {
 } from '../services/actions/websocket';
 import { TForgotPassActions }from '../services/actions/forgot-pass';
 import { TGetUserActions } from '../services/actions/get-user';
-import { TModalActions } from '../services/actions/ingredient-modal';
+import { TModalActions } from '../services/actions/modal';
 import { TGetIngredientsActions } from '../services/actions/ingredients';
 import { TLoginUserActions } from '../services/actions/login';
 import { TLogoutUserActions } from '../services/actions/logout';

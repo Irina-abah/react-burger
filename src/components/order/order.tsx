@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import { Route, Link, useLocation } from 'react-router-dom';
 import orderStyles from './order.module.css';
 import { TOrder, TExtendedItem } from '../../utils/types';
-import { OPEN_MODAL } from '../../services/actions/ingredient-modal';
+import { OPEN_MODAL_ORDER } from '../../services/actions/modal';
 import { useDispatch } from 'react-redux';
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useSelector } from '../../utils/hooks';
@@ -56,7 +56,7 @@ const Order: FunctionComponent<IOrder> = ({item}) => {
 
   const handleOpenModal = () => {
     dispatch({
-      type: OPEN_MODAL,
+      type: OPEN_MODAL_ORDER,
       item
     })
   }

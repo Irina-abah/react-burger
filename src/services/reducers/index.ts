@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { orderReducer } from './order';
 import { ingredientsReducer } from './ingredients';
-import { modalReducer } from './ingredient-modal';
+import { modalReducer } from './modal';
 import { registerReducer } from './register';
 import { loginReducer } from './login';
 import { logoutReducer } from './logout';
