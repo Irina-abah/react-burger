@@ -18,9 +18,11 @@ function OrderModal() {
   const orderIngredients = order?.ingredients.map((i: string) => {
     return ingredients.filter((item: TExtendedItem) => item._id === i);
   }).flat(1);
-  console.log(orderIngredients)
 
-  // https://stackoverflow.com/questions/68418717/count-same-key-in-array-of-objects
+const newArr = orderIngredients?.filter((v, i, a) => a.findIndex(v2 => (v2._id === v._id)) === i)
+
+console.log(newArr)
+
 
   const totalPrice = orderIngredients?.reduce(
     function (sum: number, item: TExtendedItem) {
