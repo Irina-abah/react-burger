@@ -11,6 +11,7 @@ import Modal from '../modal/modal';
 import IngredientsDetails from '../ingredient-details/ingredient-details';
 import IngredientPage from '../../pages/ingredient-page/ingredient-page';
 import OrderPage from '../../pages/order-page/order-page';
+import ProfileOrders from '../profile-orders/profile-orders';
 import PageNotFound from '../../pages/not-found/not-found';
 import Feed from '../feed/feed';
 import { CLOSE_MODAL } from "../../services/actions/ingredient-modal";
@@ -55,8 +56,11 @@ const App: FunctionComponent = () => {
           <Route path="/reset-password">
             <ResetPassword/>
           </Route>
-          <ProtectedRoute path="/profile">
+          <ProtectedRoute exact path="/profile">
             <Profile/>
+          </ProtectedRoute>
+          <ProtectedRoute path="/profile/orders">
+            <ProfileOrders/>
           </ProtectedRoute>
           <Route path="/ingredients/:ingredientId">
             <IngredientPage />

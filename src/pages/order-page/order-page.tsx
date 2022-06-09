@@ -27,7 +27,7 @@ function OrderPage() {
     if (order?.status === "done") {
       return "Выполнен"
     } else if (order?.status === "pending") {
-      return "Выполняется"
+      return "Готовится"
     } else {
       return "Создан"
     }

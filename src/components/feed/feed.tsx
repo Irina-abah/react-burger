@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect } from 'react';
-import OrdersSummary from '../orders-summary/orders-summary';
+import FeedSummary from '../feed-summary/feed-summary';
 import Order from '../order/order';
 import feedStyles from './feed.module.css';
 import { useSelector, useDispatch } from '../../utils/hooks';
@@ -31,7 +31,7 @@ const Feed: FunctionComponent = () => {
             <Order item={item} />
           ))}
         </div>
-        <OrdersSummary allOrders={orders}/>
+        <FeedSummary allOrders={orders}/>
       </div>
       
     </section>

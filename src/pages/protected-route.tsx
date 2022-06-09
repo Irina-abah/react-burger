@@ -5,7 +5,7 @@ import { getUser } from '../services/actions/get-user';
 
 export const ProtectedRoute: FunctionComponent<RouteProps> = ({children, ...rest }) => {
     const [isUserLoaded, setUserLoaded] = useState<boolean>(false);
-    const auth = useSelector((store) => store.getUser.isAuthenticated)
+    const auth = useSelector((store) => store.getUser.isAuthenticated);
     const dispatch = useDispatch();
 
     const init = async () => {

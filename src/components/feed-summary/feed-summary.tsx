@@ -1,12 +1,12 @@
 import { FunctionComponent } from 'react';
-import summaryStyles from './orders-summary.module.css';
+import summaryStyles from './feed-summary.module.css';
 import { TOrders, TOrder } from '../../utils/types';
 
 interface IOrdersSummary {
   allOrders: TOrders;
 }
 
-const OrdersSummary: FunctionComponent<IOrdersSummary> = ({allOrders}) => {
+const FeedSummary: FunctionComponent<IOrdersSummary> = ({ allOrders }) => {
 
   const completedOrders = allOrders.orders.filter((item) => item.status === 'done');
   const progressOrders = allOrders.orders.filter((item) => item.status !== 'done');
@@ -19,7 +19,7 @@ const OrdersSummary: FunctionComponent<IOrdersSummary> = ({allOrders}) => {
             Готовы:
           </p>
           <ul className={summaryStyles.list}>
-            {completedOrders.map((item: TOrder, i) => (
+            {completedOrders.map((item: TOrder) => (
               <li key={item._id}>
                 <p className={`${summaryStyles.number} text text_type_digits-default`}>
                   {item.number}
@@ -44,9 +44,7 @@ const OrdersSummary: FunctionComponent<IOrdersSummary> = ({allOrders}) => {
         </div>
       </div>
       <div className={summaryStyles.total}>
-        <p className="text text_type_main-medium mt-15">
-          Выполнено за все время:
-        </p>
+        <p className="text text_type_main-medium mt-15">Выполнено за все время:</p>
         <p className="text text_type_digits-large">{allOrders.total}</p>
       </div>
       <div className={summaryStyles.total}>
@@ -57,4 +55,4 @@ const OrdersSummary: FunctionComponent<IOrdersSummary> = ({allOrders}) => {
   )
 };
 
-export default OrdersSummary;
+export default FeedSummary;
