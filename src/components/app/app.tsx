@@ -56,18 +56,18 @@ const App: FunctionComponent = () => {
           <Route path="/reset-password">
             <ResetPassword/>
           </Route>
-          <Route exact path="/profile">
+          <ProtectedRoute exact path="/profile">
             <Profile/>
-          </Route>
+          </ProtectedRoute>
           <ProtectedRoute exact path="/profile/orders">
             <ProfileOrders/>
           </ProtectedRoute>
-          <ProtectedRoute  path="/profile/orders/:orderId">
+          <ProtectedRoute path="/profile/orders/:orderId">
             <OrderPage/>
           </ProtectedRoute>
-          <ProtectedRoute path="/ingredients/:ingredientId">
+          <Route path="/ingredients/:ingredientId">
             <IngredientPage />
-          </ProtectedRoute>
+          </Route>
           <Route exact path="/">
             <Main />
           </Route>

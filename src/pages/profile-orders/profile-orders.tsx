@@ -27,7 +27,7 @@ const ProfileOrders: FunctionComponent = () => {
         type: WS_CONNECTION_CLOSE
       });
     };
-  }, [dispatch]);
+  }, [dispatch, wsToken]);
 
   return (
     <div className={`${profileOrdersStyles.profile_orders} pt-10`}>

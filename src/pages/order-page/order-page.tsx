@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import orderModalStyles from '../../components/order-modal/order-modal.module.css';
 import orderPageStyles from './order-page.module.css';
-import { useParams } from 'react-router-dom';
+import { useParams, useRouteMatch } from 'react-router-dom';
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useSelector, useDispatch } from '../../utils/hooks';
 import { TOrder, TExtendedItem } from "../../utils/types";
 import { sayDate } from '../../utils/say-date';
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSE } from '../../services/actions/websocket';
+import { getCookie } from '../../utils/cookie';
 
 function OrderPage() {
 
@@ -15,6 +16,10 @@ function OrderPage() {
   const orders = useSelector((store) => store.ws.messages.orders);
   const order = orders.find((c: TOrder) => c._id === orderId);
   const ingredients = useSelector((store) => store.ingredients.foodData);
+  const userPath = useRouteMatch({ path: "/profile/orders" });
+
+  const accessToken = getCookie('accessToken') as string;
+  const wsToken = accessToken.replace('Bearer ', '');
 
   const statusClassname = order?.status === "done" ? orderModalStyles.green : "";
 
@@ -30,17 +35,21 @@ function OrderPage() {
   )
 
   useEffect(() => {
-    dispatch({
+    dispatch(
+      userPath ? ({
       type: WS_CONNECTION_START,
-      payload: 'all'
-    });
+      payload: `?token=${wsToken}`
+    }) : ({
+      type: WS_CONNECTION_START,
+      payload: `all`
+    }));
 
     return () => {
       dispatch({
         type: WS_CONNECTION_CLOSE
       });
     };
-  }, [dispatch]);
+  }, [dispatch, wsToken, userPath]);
 
   const statusOrder = () => {
     if (order?.status === "done") {
