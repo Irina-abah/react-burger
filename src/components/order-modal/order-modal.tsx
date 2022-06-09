@@ -20,6 +20,8 @@ function OrderModal() {
   }).flat(1);
   console.log(orderIngredients)
 
+  // https://stackoverflow.com/questions/68418717/count-same-key-in-array-of-objects
+
   const totalPrice = orderIngredients?.reduce(
     function (sum: number, item: TExtendedItem) {
         return sum + item.price
