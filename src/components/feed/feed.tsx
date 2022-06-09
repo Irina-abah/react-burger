@@ -1,4 +1,5 @@
 import { FunctionComponent, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import FeedSummary from '../feed-summary/feed-summary';
 import Order from '../order/order';
 import feedStyles from './feed.module.css';
@@ -9,6 +10,7 @@ import { TOrder } from '../../utils/types';
 const Feed: FunctionComponent = () => {
 
   const dispatch = useDispatch();
+  const location = useLocation();
   const orders = useSelector((store) => store.ws.messages);
   console.log(orders)
 
@@ -31,7 +33,16 @@ const Feed: FunctionComponent = () => {
       <div className={feedStyles.container}>
         <div className={`${feedStyles.orders_list}`}>
           {orders.orders.map((item: TOrder, i: any) => (
-            <Order item={item} key={i}/>
+            <Link
+              key={item['_id']}
+              to={{
+                pathname: `/feed/${item['_id']}`,
+                state: { background: location },
+              }}
+              className={feedStyles.link}
+            >
+              <Order item={item} key={i}/>
+            </Link> 
           ))}
         </div>
         <FeedSummary allOrders={orders}/>

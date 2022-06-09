@@ -1,4 +1,5 @@
 import { FunctionComponent, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import Order from '../../components/order/order';
 import ProfileMenu from '../profile-menu/profile-menu';
 import profileOrdersStyles from './profile-orders.module.css';
@@ -9,6 +10,7 @@ import { TOrder } from '../../utils/types';
 
 const ProfileOrders: FunctionComponent = () => {
 
+  const location = useLocation();
   const dispatch = useDispatch();
   const orders = useSelector((store) => store.ws.messages);
   const accessToken = getCookie('accessToken') as string;
@@ -32,7 +34,16 @@ const ProfileOrders: FunctionComponent = () => {
     <ProfileMenu />
     <div className={`${profileOrdersStyles.orders_list}`}>
           {orders.orders.map((item: TOrder, i: any) => (
-            <Order item={item} key={i} />
+            <Link
+              key={item['_id']}
+              to={{
+                pathname: `/profile/orders/${item['_id']}`,
+                state: { background: location },
+              }}
+              className={profileOrdersStyles.link}
+            >
+              <Order item={item} key={i} />
+            </Link>
           ))}
         </div>
     </div>
