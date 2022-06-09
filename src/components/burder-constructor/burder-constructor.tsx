@@ -66,7 +66,6 @@ const BurgerConstructor: FunctionComponent = () => {
     }, 0
   )
   
-
   function checkPrice(price: number) {
     if (isNaN(price)) {
       return 0
@@ -85,7 +84,6 @@ const BurgerConstructor: FunctionComponent = () => {
   function handleSubmit() {
     const items = allBurgerItems.map((item: TExtendedItem) => item._id);
     if (auth) {
-      debugger
       dispatch(makeOrder(items))
       setIsOpen(!isOpen)
     } else {

@@ -50,3 +50,26 @@
 .total {
   display: flex; 
 }
+
+.ingredient {
+  display: flex;
+  justify-content: space-between;
+}
+
+.image {
+  composes: image from '../order/order.module.css'
+}
+
+.round {
+  composes: round from '../order/order.module.css';
+}
+
+.item_name {
+  text-align: left;
+  max-width: 414px;
+}
+
+.name_info, .prices {
+  display: flex;
+  align-items: center;
+}

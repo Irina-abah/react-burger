@@ -10,6 +10,7 @@ function OrderModal() {
   const { orderId } = useParams<{orderId: string}>();
   const { orders } = useSelector((store) => store.ws.messages);
   const order = orders.find((c: TOrder) => c._id === orderId);
+  console.log(order)
   const ingredients = useSelector((store) => store.ingredients.foodData);
 
   const statusClassname = order?.status === "done" ? orderModalStyles.green : "";
@@ -47,23 +48,26 @@ function OrderModal() {
         <h2 className={`${orderModalStyles.title} text text_type_main-medium mb-6`}>Состав:</h2>
         <div className={orderModalStyles.ingredients}>
         {orderIngredients?.map((item: TExtendedItem, i) => (
-          <>
-          <div className={orderModalStyles.image} key={i}>
-            <img
-            alt="Фото"
-            src={item.image_mobile}
-            className={orderModalStyles.round}
-            />
+          <div className={`${orderModalStyles.ingredient} mb-4 mr-6`}>
+            <div className={orderModalStyles.name_info}>
+              <div className={orderModalStyles.image} key={i}>
+                <img
+                alt="Фото"
+                src={item.image_mobile}
+                className={orderModalStyles.round}
+                />
+              </div>
+              <h3 className={`${orderModalStyles.item_name} text text_type_main-default ml-4 `}>{item.name}</h3>
+            </div>
+            
+            <div className={orderModalStyles.prices}>
+              <p className={orderModalStyles.quantity + " text text_type_digits-default mr-2"}>
+                {orderIngredients &&
+                  `${item.count} x ${item.price}`}
+              </p>
+              <CurrencyIcon type="primary" />
+            </div>
           </div>
-          <h3>{item.name}</h3>
-          <div className={orderModalStyles.prices}>
-            <p className={orderModalStyles.quantity + " text text_type_digits-default"}>
-              {orderIngredients &&
-                `${item.count} x ${item.price}`}
-            </p>
-            <CurrencyIcon type="primary" />
-          </div>
-          </>
         ))}
         </div>
       <div className={`${orderModalStyles.footer} mt-10`}>
