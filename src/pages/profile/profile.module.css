@@ -1,5 +1,5 @@
 .profile {
-  margin: 180px auto;
+  margin: 0 auto;
   display: grid;
   max-width: 860px;
   width: 100%;
@@ -7,35 +7,11 @@
   grid-template-columns: 320px 480px;
 }
 
-.nav_item {
-  height: 64px;
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-
-.active, .active path{
-  color: #fff;
-  fill: #fff;
-}
-
-.nav_item:hover path, .nav_item:hover{
-  transition: all 0.8s ease;
-  fill: #fff;
-  color: #fff;
-}
-
-.nav {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
 .text {
   margin: 0;
 }
 
-.inputs, .buttons {
+.buttons {
   margin: 0 0 0 auto;
 }
 
@@ -48,6 +24,7 @@
 .invisible {
   pointer-events: none;
   opacity: .6;
+  margin: 0 0 0 auto;
 }
 
 .buttons {

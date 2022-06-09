@@ -1,9 +1,8 @@
 import { useEffect, useState, FormEvent, ChangeEvent } from 'react';
 import profileStyles from "./profile.module.css";
-import { Link, NavLink } from "react-router-dom";
+import ProfileMenu from '../profile-menu/profile-menu';
 import { Input, PasswordInput, EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector, useDispatch } from '../../utils/hooks';
-import { logoutUser } from '../../services/actions/logout';
 import { patchUser } from '../../services/actions/patch-user';
 import { TUserMain } from '../../utils/types';
 
@@ -47,41 +46,12 @@ function Profile() {
     })
   }
   
-  const onSignOut = () => {
-    dispatch(logoutUser())
-  }
+
 
   return (
-    <section className={profileStyles.profile}>
-      <nav>
-        <ul className={profileStyles.nav}>
-          <li>
-            <NavLink 
-              to={{pathname: "/profile" }}
-              exact
-              className={`${profileStyles.nav_item} text_type_main-medium text_color_inactive pl-5 pr-5 mr-2`} 
-              activeClassName={profileStyles.active}>Профиль
-            </NavLink>
-          </li>
-          <li>
-            <NavLink 
-              to={{pathname: "/profile/orders" }}
-              exact 
-              className={`${profileStyles.nav_item} text_type_main-medium text_color_inactive pl-5 pr-5 mr-2`} 
-              activeClassName={profileStyles.active}>История заказов
-            </NavLink>
-          </li>
-          <li>
-            <Link 
-              to={{pathname: "/login" }}
-              className={`${profileStyles.nav_item} text_type_main-medium text_color_inactive pl-5 pr-5 mr-2`} 
-              onClick={onSignOut}>Выход
-            </Link>
-          </li>
-        </ul>
-      </nav>
-      
-      <form className={profileStyles.inputs} onSubmit={onSubmit}>
+    <section className={`${profileStyles.profile} pt-10`}>
+      <ProfileMenu />
+      <form className={`${profileStyles.inputs} mt-20`} onSubmit={onSubmit}>
         <div className={`mb-6`}>
           <Input 
             onChange={handleInputChange} 
