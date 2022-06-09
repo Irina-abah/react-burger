@@ -1,0 +1,5 @@
+.orders_list {
+  composes: orders_list from '../feed/feed.module.css';
+  display: flex;
+  flex-direction: column-reverse;
+}

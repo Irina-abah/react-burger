@@ -1,6 +1,7 @@
 import { FunctionComponent, useEffect } from 'react';
 import Order from '../order/order';
 import feedStyles from '../feed/feed.module.css';
+import profileOrdersStyles from './profile-orders.module.css'
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSE } from '../../services/actions/websocket';
 import { useSelector, useDispatch } from '../../utils/hooks';
 import { getCookie } from '../../utils/cookie';
@@ -12,7 +13,6 @@ const ProfileOrders: FunctionComponent = () => {
   const orders = useSelector((store) => store.ws.messages);
   const accessToken = getCookie('accessToken') as string;
   const wsToken = accessToken.replace('Bearer ', '');
-  console.log(wsToken)
 
   useEffect(() => {
     dispatch({
@@ -29,9 +29,9 @@ const ProfileOrders: FunctionComponent = () => {
 
   return (
     <>
-    <div className={`${feedStyles.orders_list}`}>
-          {orders.orders.map((item: TOrder, i) => (
-            <Order item={item} />
+    <div className={`${profileOrdersStyles.orders_list}`}>
+          {orders.orders.map((item: TOrder, i: any) => (
+            <Order item={item} key={i} />
           ))}
         </div>
     </>

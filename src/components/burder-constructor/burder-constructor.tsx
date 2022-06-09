@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from '../../utils/hooks';
 import { useDrop, DropTargetMonitor } from 'react-dnd';
 import { makeOrder } from "../../services/actions/order";
 import { ADD_BUN, RESET_CONSTRUSTOR, ADD_INNER_ITEM, UPDATE_CONSTRUCTOR_LIST } from "../../services/actions/ingredients";
-import { TExtendedItem } from '../../utils/types';
+import { TItem, TExtendedItem } from '../../utils/types';
 
 const BurgerConstructor: FunctionComponent = () => {
 
@@ -18,8 +18,8 @@ const BurgerConstructor: FunctionComponent = () => {
   const history = useHistory();
   const { innerItems } = useSelector((store: any) => store.ingredients.constructor);
   const { selectedBun } = useSelector((store: any) => store.ingredients.constructor);
-  const data = useSelector((store: any) => store.ingredients.foodData);
-  const auth = useSelector((store: any) => store.login.isAuthenticated);
+  const data = useSelector((store) => store.ingredients.foodData);
+  const auth = useSelector((store) => store.login.isAuthenticated);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const allBurgerItems = useMemo(() => {
@@ -78,13 +78,14 @@ const BurgerConstructor: FunctionComponent = () => {
   function handleCloseModal() {
     setIsOpen(!isOpen)
     dispatch({
-      type: RESET_CONSTRUSTOR
+      type: RESET_CONSTRUSTOR 
     })
   }
 
   function handleSubmit() {
-    const items = data.map((item: TExtendedItem) => item._id);
+    const items = allBurgerItems.map((item: TExtendedItem) => item._id);
     if (auth) {
+      debugger
       dispatch(makeOrder(items))
       setIsOpen(!isOpen)
     } else {

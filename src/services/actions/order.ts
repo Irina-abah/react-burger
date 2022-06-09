@@ -30,7 +30,7 @@ function handleOrderError() {
   }
 }
 
-export const makeOrder = (data: Array<TExtendedItem>) => {
+export const makeOrder = (data: Array<string>) => {
   return function (dispatch: TAppDispatch) {
     dispatch({
       type: MAKE_ORDER_REQUEST

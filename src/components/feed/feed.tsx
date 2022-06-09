@@ -3,10 +3,8 @@ import FeedSummary from '../feed-summary/feed-summary';
 import Order from '../order/order';
 import feedStyles from './feed.module.css';
 import { useSelector, useDispatch } from '../../utils/hooks';
-import {
-  wsConnectionStart,
-  wsConnectionClose
-} from '../../services/actions/websocket';
+import { WS_CONNECTION_START, WS_CONNECTION_CLOSE } from '../../services/actions/websocket';
+import { TOrder } from '../../utils/types';
 
 const Feed: FunctionComponent = () => {
 
@@ -15,10 +13,15 @@ const Feed: FunctionComponent = () => {
   console.log(orders)
 
   useEffect(() => {
-    dispatch(wsConnectionStart());
+    dispatch({
+      type: WS_CONNECTION_START,
+      payload: 'all'
+    });
 
     return () => {
-      dispatch(wsConnectionClose());
+      dispatch({
+        type: WS_CONNECTION_CLOSE
+      });
     };
   }, [dispatch]);
 
@@ -27,8 +30,8 @@ const Feed: FunctionComponent = () => {
       <h1 className={`text text_type_main-large mb-5`}>Лента заказов</h1> 
       <div className={feedStyles.container}>
         <div className={`${feedStyles.orders_list}`}>
-          {orders.orders.map((item, i) => (
-            <Order item={item} />
+          {orders.orders.map((item: TOrder, i: any) => (
+            <Order item={item} key={i}/>
           ))}
         </div>
         <FeedSummary allOrders={orders}/>

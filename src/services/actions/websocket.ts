@@ -65,7 +65,7 @@ export type TWebSocketActions =
 export const wsConnectionStart = () => {
   return {
     type: WS_CONNECTION_START,
-    payload: 'all'
+    payload: ''
   };
 };
 
