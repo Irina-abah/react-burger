@@ -8,6 +8,7 @@ import { TOrder, TExtendedItem } from "../../utils/types";
 import { sayDate } from '../../utils/say-date';
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSE } from '../../services/actions/websocket';
 import { getCookie } from '../../utils/cookie';
+import { countIgredients } from '../../utils/filter-count';
 
 function OrderPage() {
 
@@ -26,7 +27,7 @@ function OrderPage() {
   const orderIngredients = order?.ingredients.map((i: string) => {
     return ingredients.filter((item: TExtendedItem) => item._id === i);
   }).flat(1);
-  console.log(orderIngredients)
+  const uniqueIngredients = countIgredients(orderIngredients || []);
 
   const totalPrice = orderIngredients?.reduce(
     function (sum: number, item: TExtendedItem) {
@@ -73,7 +74,7 @@ function OrderPage() {
       <h2 className={`${orderModalStyles.title} text text_type_main-medium mb-6`}>Состав:</h2>
     
       <div className={orderModalStyles.ingredients}>
-        {orderIngredients?.map((item: TExtendedItem, i) => (
+        {uniqueIngredients.map((item: TExtendedItem, i) => (
           <div className={`${orderModalStyles.ingredient} mb-4 mr-6`}>
             <div className={orderModalStyles.name_info}>
               <div className={orderModalStyles.image} key={i}>
