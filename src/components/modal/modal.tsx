@@ -1,8 +1,8 @@
-import { useEffect, FunctionComponent} from "react";
-import ModalOverlay from "../modal-overlay/modal-overlay";
-import { createPortal } from "react-dom";
-import modalStyles from "./modal.module.css";
-import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import { useEffect, FunctionComponent} from 'react';
+import { createPortal } from 'react-dom';
+import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import ModalOverlay from '../modal-overlay/modal-overlay';
+import modalStyles from './modal.module.css';
 
 const modalRoot = document.getElementById("react-modals") as HTMLElement;
 

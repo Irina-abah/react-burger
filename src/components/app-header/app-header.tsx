@@ -1,7 +1,7 @@
-import { FunctionComponent } from "react";
-import { BurgerIcon, ListIcon, ProfileIcon, Logo } from "@ya.praktikum/react-developer-burger-ui-components";
-import { Link, NavLink } from "react-router-dom";
-import headerStyles from "./app-header.module.css";
+import { FunctionComponent } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { BurgerIcon, ListIcon, ProfileIcon, Logo } from '@ya.praktikum/react-developer-burger-ui-components';
+import headerStyles from './app-header.module.css';
 
 const Header: FunctionComponent = () => {
   return (

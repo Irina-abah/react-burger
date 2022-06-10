@@ -1,7 +1,7 @@
-import { BASE_URL } from "../../utils/constants";
-import { setCookie} from "../../utils/cookie";
-import { checkResponse } from "../../utils/check-response";
-import { TAppDispatch } from "../../utils/types";
+import { BASE_URL } from '../../utils/constants';
+import { setCookie} from '../../utils/cookie';
+import { checkResponse } from '../../utils/check-response';
+import { TAppDispatch } from '../../utils/types';
 
 export const REFRESH_TOKEN_REQUEST: "REFRESH_TOKEN_REQUEST" = "REFRESH_TOKEN_REQUEST";
 export const REFRESH_TOKEN_SUCCESS: "REFRESH_TOKEN_SUCCESS" = "REFRESH_TOKEN_SUCCESS";

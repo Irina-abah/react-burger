@@ -1,7 +1,12 @@
 import { FunctionComponent, useEffect } from 'react';
 import { Switch, Route, useLocation, useHistory } from 'react-router-dom';
-import Header from "../app-header/app-header";
-import Main from "../main/main";
+import { CLOSE_MODAL } from '../../services/actions/modal';
+import { ProtectedRoute } from '../../pages/protected-route';
+import { useDispatch } from '../../utils/hooks';
+import { getIngredients } from '../../services/actions/ingredients';
+import { TLocationState } from '../../utils/types';
+import Header from '../app-header/app-header';
+import Main from '../main/main';
 import Login from '../../pages/login/login';
 import Register from '../../pages/register/register';
 import ForgotPassword from '../../pages/forgot-password/forgot-password';
@@ -14,11 +19,6 @@ import OrderPage from '../../pages/order-page/order-page';
 import ProfileOrders from '../../pages/profile-orders/profile-orders';
 import PageNotFound from '../../pages/not-found/not-found';
 import Feed from '../feed/feed';
-import { CLOSE_MODAL } from "../../services/actions/modal";
-import { ProtectedRoute } from '../../pages/protected-route';
-import { useDispatch } from '../../utils/hooks';
-import { getIngredients } from '../../services/actions/ingredients';
-import { TLocationState } from '../../utils/types';
 import OrderModal from '../order-modal/order-modal';
 
 const App: FunctionComponent = () => {

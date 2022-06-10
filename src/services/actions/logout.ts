@@ -1,7 +1,7 @@
-import { BASE_URL } from "../../utils/constants";
-import { deleteCookie } from "../../utils/cookie";
-import { checkResponse } from "../../utils/check-response";
-import { TAppDispatch } from "../../utils/types";
+import { BASE_URL } from '../../utils/constants';
+import { deleteCookie } from '../../utils/cookie';
+import { checkResponse } from '../../utils/check-response';
+import { TAppDispatch } from '../../utils/types';
 
 export const LOGOUT_REQUEST: "LOGOUT_REQUEST" = "LOGOUT_REQUEST";
 export const LOGOUT_SUCCESS: "LOGOUT_SUCCESS" = "LOGOUT_SUCCESS";

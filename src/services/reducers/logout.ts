@@ -2,7 +2,7 @@ import {
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
   LOGOUT_FAILED,
-} from "../actions/logout";
+} from '../actions/logout';
 import { TLogoutUserActions } from '../actions/logout';
 
 type TLogoutUserState = {

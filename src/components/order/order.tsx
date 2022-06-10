@@ -1,12 +1,12 @@
-import { FunctionComponent } from "react";
-import { Route, Link, useLocation } from 'react-router-dom';
-import orderStyles from './order.module.css';
+import { FunctionComponent } from 'react';
+import { Route } from 'react-router-dom';
+import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import { useDispatch } from '../../utils/hooks';
 import { TOrder, TExtendedItem } from '../../utils/types';
 import { OPEN_MODAL_ORDER } from '../../services/actions/modal';
-import { useDispatch } from 'react-redux';
-import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useSelector } from '../../utils/hooks';
 import { sayDate } from '../../utils/say-date';
+import orderStyles from './order.module.css';
 
 interface IOrder {
   item: TOrder

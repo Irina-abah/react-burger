@@ -2,7 +2,7 @@ import {
   REGISTER_USER_REQUEST,
   REGISTER_USER_SUCCESS,
   REGISTER_USER_FAILED
-} from "../actions/register";
+} from '../actions/register';
 import { TRegisterUserActions } from '../actions/register';
 import { TUserGet } from '../../utils/types';
 

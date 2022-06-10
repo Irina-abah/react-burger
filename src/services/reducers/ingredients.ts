@@ -7,9 +7,9 @@ import {
   REMOVE_INNER_ITEM,
   UPDATE_CONSTRUCTOR_LIST,
   RESET_CONSTRUSTOR
-} from "../actions/ingredients";
+} from '../actions/ingredients';
 import { TGetIngredientsActions } from '../actions/ingredients';
-import { TExtendedItem } from "../../utils/types";
+import { TExtendedItem } from '../../utils/types';
 
 type TGetIngredientsState = {
   foodData: Array<TExtendedItem>;

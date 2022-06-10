@@ -1,8 +1,8 @@
-import { BASE_URL } from "../../utils/constants";
-import { getCookie } from "../../utils/cookie";
-import { refreshToken } from "./refresh-token";
-import { checkResponse } from "../../utils/check-response";
-import { TAppDispatch } from "../../utils/types";
+import { BASE_URL } from '../../utils/constants';
+import { getCookie } from '../../utils/cookie';
+import { refreshToken } from './refresh-token';
+import { checkResponse } from '../../utils/check-response';
+// import { TAppDispatch } from '../../utils/types';
 import { TUserMain } from '../../utils/types';
 
 export const PATCH_USER_REQUEST: "PATCH_USER_REQUEST" = "PATCH_USER_REQUEST";

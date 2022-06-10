@@ -1,11 +1,11 @@
 import { FunctionComponent, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import FeedSummary from '../feed-summary/feed-summary';
-import Order from '../order/order';
-import feedStyles from './feed.module.css';
 import { useSelector, useDispatch } from '../../utils/hooks';
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSE } from '../../services/actions/websocket';
 import { TOrder } from '../../utils/types';
+import FeedSummary from '../feed-summary/feed-summary';
+import Order from '../order/order';
+import feedStyles from './feed.module.css';
 
 const Feed: FunctionComponent = () => {
 

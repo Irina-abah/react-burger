@@ -1,8 +1,8 @@
-import { BASE_URL } from "../../utils/constants";
-import { checkResponse } from "../../utils/check-response";
-import { TAppDispatch } from "../../utils/types";
-import { TExtendedItem } from "../../utils/types";
-import { getCookie } from "../../utils/cookie";
+import { BASE_URL } from '../../utils/constants';
+import { checkResponse } from '../../utils/check-response';
+import { TAppDispatch } from '../../utils/types';
+// import { TExtendedItem } from '../../utils/types';
+import { getCookie } from '../../utils/cookie';
 
 export const MAKE_ORDER_REQUEST: "MAKE_ORDER_REQUEST" = "MAKE_ORDER_REQUEST";
 export const MAKE_ORDER_SUCCESS: "MAKE_ORDER_SUCCESS" = "MAKE_ORDER_SUCCESS";

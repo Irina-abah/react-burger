@@ -1,12 +1,12 @@
 import { FunctionComponent, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import Order from '../../components/order/order';
-import ProfileMenu from '../profile-menu/profile-menu';
-import profileOrdersStyles from './profile-orders.module.css';
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSE } from '../../services/actions/websocket';
 import { useSelector, useDispatch } from '../../utils/hooks';
 import { getCookie } from '../../utils/cookie';
 import { TOrder } from '../../utils/types';
+import Order from '../../components/order/order';
+import ProfileMenu from '../profile-menu/profile-menu';
+import profileOrdersStyles from './profile-orders.module.css';
 
 const ProfileOrders: FunctionComponent = () => {
 

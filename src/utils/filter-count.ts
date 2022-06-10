@@ -1,18 +1,19 @@
-import { TExtendedItem } from "./types";
+import { TExtendedItem } from './types';
 
-export const countIgredients = (data: Array<TExtendedItem>) => {
+export function countIgredients(data: Array<TExtendedItem>) {
 
   const counts: any = {};
   const arrayToRender: Array<TExtendedItem> = []
+  const newArr = [...data];
   
-  data.forEach((x: any) => { 
+  newArr.forEach((x: any) => { 
     return counts[x._id] = (counts[x._id] || 0) + 1; 
   });
   
   const arrCounts: Array<{}> = Object.keys(counts).map((key) => [(key), counts[key]]);
 
   // crossmatch each [id, count] with every ingredient in the order
-  data.forEach((i: TExtendedItem) => {
+  newArr.forEach((i: TExtendedItem) => {
     arrCounts.forEach((item: any) => {
       console.log(item)
       if (i._id === item[0]) {

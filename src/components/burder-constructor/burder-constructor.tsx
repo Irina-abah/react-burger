@@ -1,29 +1,31 @@
-import { useState, useCallback, useMemo, FunctionComponent } from "react";
+import { useState, useCallback, useMemo, FunctionComponent } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { useHistory } from "react-router-dom";
-import constructorStyles from "./burder-constructor.module.css";
-import { ConstructorElement, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import Modal from "../modal/modal";
-import OrderDetails from "../order-details/order-details";
-import ConstructorItem from "../constructor-item/constructor-item";
-import { useSelector, useDispatch } from '../../utils/hooks';
+import { useHistory } from 'react-router-dom';
 import { useDrop, DropTargetMonitor } from 'react-dnd';
-import { makeOrder } from "../../services/actions/order";
-import { ADD_BUN, RESET_CONSTRUSTOR, ADD_INNER_ITEM, UPDATE_CONSTRUCTOR_LIST } from "../../services/actions/ingredients";
-import { TItem, TExtendedItem } from '../../utils/types';
+import { makeOrder } from '../../services/actions/order';
+import { ADD_BUN, RESET_CONSTRUSTOR, ADD_INNER_ITEM, UPDATE_CONSTRUCTOR_LIST } from '../../services/actions/ingredients';
+import { TExtendedItem } from '../../utils/types';
+import { useSelector, useDispatch } from '../../utils/hooks';
+import { ConstructorElement, CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import constructorStyles from './burder-constructor.module.css';
+import Modal from '../modal/modal';
+import OrderDetails from '../order-details/order-details';
+import ConstructorItem from '../constructor-item/constructor-item';
 
 const BurgerConstructor: FunctionComponent = () => {
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const { innerItems } = useSelector((store: any) => store.ingredients.constructor);
-  const { selectedBun } = useSelector((store: any) => store.ingredients.constructor);
+  const { innerItems } = useSelector((store) => store.ingredients.constructor);
+  // const { selectedBun } = useSelector((store: any) => store.ingredients.constructor);
+   
   const data = useSelector((store) => store.ingredients.foodData);
+  const selectedBun = data.find((m: TExtendedItem) => m.type === 'bun');
   const auth = useSelector((store) => store.login.isAuthenticated);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const allBurgerItems = useMemo(() => {
-    return selectedBun._id ? innerItems.concat([selectedBun, selectedBun]) : innerItems;
+      return selectedBun ? innerItems.concat([selectedBun, selectedBun]) : innerItems;
   }, [innerItems, selectedBun]);
 
   const [{ isHover }, dropTargerRef] = useDrop({
@@ -97,7 +99,7 @@ const BurgerConstructor: FunctionComponent = () => {
     <div ref={dropTargerRef} className={`${constructorStyles.container} mt-15 pl-4 ${isHover ? constructorStyles.hover : ''}`}>
       <div className={`${constructorStyles.wrapper} mb-10`}>
         <div className={`pr-4`}>
-          {selectedBun.type &&(<ConstructorElement
+          {selectedBun &&(<ConstructorElement
             type="top"
             isLocked={true}
             text={`${selectedBun.name} (верх)`}
@@ -111,7 +113,7 @@ const BurgerConstructor: FunctionComponent = () => {
           ))}
         </div>
         <div className={`pr-4`}>
-          {selectedBun.type && (<ConstructorElement
+          {selectedBun && (<ConstructorElement
             type="bottom"
             isLocked={true}
             text={`${selectedBun.name} (низ)`}
@@ -124,7 +126,7 @@ const BurgerConstructor: FunctionComponent = () => {
         <span className={`${constructorStyles.price} text text_type_digits-medium mr-10`}>{checkPrice(totalPrice)} 
           <CurrencyIcon type="primary" />
         </span>
-        {selectedBun.type && <Button type="primary" size="large" onClick={handleSubmit}>
+        {selectedBun && <Button type="primary" size="large" onClick={handleSubmit}>
           Оформить заказ 
         </Button>} 
       </div>

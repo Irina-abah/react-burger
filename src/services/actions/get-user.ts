@@ -1,10 +1,10 @@
-import { BASE_URL } from "../../utils/constants";
-import { getCookie } from "../../utils/cookie";
-import { LOGIN_USER_SUCCESS } from "./login";
-import { refreshToken } from "./refresh-token";
-import { checkResponse } from "../../utils/check-response";
-import { TAppDispatch } from "../../utils/types";
-import { TUser } from "../../utils/types";
+import { BASE_URL } from '../../utils/constants';
+import { getCookie } from '../../utils/cookie';
+import { LOGIN_USER_SUCCESS } from './login';
+import { refreshToken } from './refresh-token';
+import { checkResponse } from '../../utils/check-response';
+// import { TAppDispatch } from '../../utils/types';
+import { TUser } from '../../utils/types';
 
 export const GET_USER_REQUEST: "GET_USER_REQUEST" = "GET_USER_REQUEST";
 export const GET_USER_SUCCESS: "GET_USER_SUCCESS" = "GET_USER_SUCCESS";

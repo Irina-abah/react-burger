@@ -1,9 +1,9 @@
-import { BASE_URL } from "../../utils/constants";
-import { setCookie } from "../../utils/cookie";
-import { getUser } from "./get-user";
-import { checkResponse } from "../../utils/check-response";
-import { TAppDispatch } from "../../utils/types";
-import { TUserLogin } from "../../utils/types";
+import { BASE_URL } from '../../utils/constants';
+import { setCookie } from '../../utils/cookie';
+import { getUser } from './get-user';
+import { checkResponse } from '../../utils/check-response';
+// import { TAppDispatch } from '../../utils/types';
+import { TUserLogin } from '../../utils/types';
 
 export const LOGIN_USER_REQUEST: "LOGIN_USER_REQUEST" = "LOGIN_USER_REQUEST";
 export const LOGIN_USER_SUCCESS: "LOGIN_USER_SUCCESS" = "LOGIN_USER_SUCCESS";

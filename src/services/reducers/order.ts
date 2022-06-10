@@ -2,7 +2,7 @@ import {
   MAKE_ORDER_REQUEST,
   MAKE_ORDER_SUCCESS,
   MAKE_ORDER_FAILED
-} from "../actions/order";
+} from '../actions/order';
 import { TMakeOrderActions } from '../actions/order';
 
 type TMakeOrderState = {

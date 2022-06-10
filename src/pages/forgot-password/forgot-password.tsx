@@ -1,12 +1,12 @@
-import { useState, useCallback, ChangeEvent } from 'react';
-import UserForm from '../user-form/user-form';
-import forgotStyles from "./forgot-password.module.css";
+import { useState, useCallback, ChangeEvent, FunctionComponent } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { forgotPass } from '../../services/actions/forgot-pass';
 import { useSelector, useDispatch } from '../../utils/hooks';
-import { Redirect } from 'react-router-dom';
+import UserForm from '../user-form/user-form';
+import forgotStyles from './forgot-password.module.css';
 
-function ForgotPassword() {
+const ForgotPassword: FunctionComponent = () => {
 
   const [email, setEmail] = useState<string>("")
   const dispatch = useDispatch();

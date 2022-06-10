@@ -1,12 +1,13 @@
-import { useEffect, useState, FormEvent, ChangeEvent } from 'react';
-import profileStyles from "./profile.module.css";
-import ProfileMenu from '../profile-menu/profile-menu';
+import { useEffect, useState, FormEvent, ChangeEvent, FunctionComponent } from 'react';
 import { Input, PasswordInput, EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector, useDispatch } from '../../utils/hooks';
 import { patchUser } from '../../services/actions/patch-user';
 import { TUserMain } from '../../utils/types';
+import profileStyles from './profile.module.css';
+import ProfileMenu from '../profile-menu/profile-menu';
 
-function Profile() {
+
+const Profile: FunctionComponent = () => {
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.getUser.user);

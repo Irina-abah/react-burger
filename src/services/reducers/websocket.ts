@@ -1,6 +1,5 @@
-import { TOrders } from "../../utils/types";
+import { TOrders } from '../../utils/types';
 import {
-  // WS_CONNECTION_START,
   WS_CONNECTION_SUCCESS,
   WS_CONNECTION_ERROR,
   WS_GET_MESSAGE,

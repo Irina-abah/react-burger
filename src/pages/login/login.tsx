@@ -1,11 +1,11 @@
 import { useState, useCallback, ChangeEvent, FunctionComponent } from 'react';
-import UserForm from "../user-form/user-form";
-import loginStyles from "./login.module.css";
-import { Link, Redirect, useLocation } from "react-router-dom";
+import { Link, Redirect, useLocation } from 'react-router-dom';
 import { PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector, useDispatch } from '../../utils/hooks';
-import { loginUser } from "../../services/actions/login";
-import { TUserLogin, TLocationState } from "../../utils/types";
+import { loginUser } from '../../services/actions/login';
+import { TUserLogin, TLocationState } from '../../utils/types';
+import UserForm from '../user-form/user-form';
+import loginStyles from './login.module.css';
 
 const Login: FunctionComponent = () => {
 

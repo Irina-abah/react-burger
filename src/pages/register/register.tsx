@@ -1,16 +1,16 @@
-import { useState, useCallback, ChangeEvent } from 'react';
-import UserForm from '../user-form/user-form';
-import registerStyles from "./register.module.css";
+import { useState, useCallback, ChangeEvent, FunctionComponent } from 'react';
 import { Input, PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useSelector, useDispatch } from 'react-redux';
-import { registerUser } from "../../services/actions/register";
+import { useSelector, useDispatch } from '../../utils/hooks';
+import { registerUser } from '../../services/actions/register';
 import { Redirect } from 'react-router-dom';
 import { TUserMain } from '../../utils/types';
+import UserForm from '../user-form/user-form';
+import registerStyles from './register.module.css';
 
-function Register() {
+const Register: FunctionComponent = () => {
 
   const dispatch = useDispatch();
-  const auth = useSelector((store: any) => store.register.isAuthenticated)
+  const auth = useSelector((store) => store.register.isAuthenticated)
   const [state, setState] = useState<TUserMain>({} as TUserMain);
 
   let submit = useCallback(

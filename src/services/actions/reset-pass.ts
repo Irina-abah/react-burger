@@ -1,7 +1,7 @@
-import { BASE_URL } from "../../utils/constants";
-import { checkResponse } from "../../utils/check-response";
-import { TAppDispatch } from "../../utils/types";
-import { TUserReset } from "../../utils/types";
+import { BASE_URL } from '../../utils/constants';
+import { checkResponse } from '../../utils/check-response';
+import { TAppDispatch } from '../../utils/types';
+import { TUserReset } from '../../utils/types';
 
 export const RESET_PASSWORD_REQUEST: "RESET_PASSWORD_REQUEST" = "RESET_PASSWORD_REQUEST";
 export const RESET_PASSWORD_SUCCESS: "RESET_PASSWORD_SUCCESS" = "RESET_PASSWORD_SUCCESS";

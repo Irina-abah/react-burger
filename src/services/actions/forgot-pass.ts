@@ -1,6 +1,6 @@
-import { BASE_URL } from "../../utils/constants";
-import { checkResponse } from "../../utils/check-response";
-import { TAppDispatch } from "../../utils/types";
+import { BASE_URL } from '../../utils/constants';
+import { checkResponse } from '../../utils/check-response';
+import { TAppDispatch } from '../../utils/types';
 
 export const FORGOT_PASSWORD_REQUEST: "FORGOT_PASSWORD_REQUEST" = "FORGOT_PASSWORD_REQUEST";
 export const FORGOT_PASSWORD_SUCCESS: "FORGOT_PASSWORD_SUCCESS" = "FORGOT_PASSWORD_SUCCESS";

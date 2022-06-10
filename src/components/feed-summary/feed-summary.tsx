@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react';
-import summaryStyles from './feed-summary.module.css';
 import { TOrders, TOrder } from '../../utils/types';
+import summaryStyles from './feed-summary.module.css';
 
 interface IOrdersSummary {
   allOrders: TOrders;

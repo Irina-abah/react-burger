@@ -1,5 +1,5 @@
-import overlayStyles from "./modal-overlay.module.css";
-import { FunctionComponent, FormEvent } from "react";
+import { FunctionComponent, FormEvent } from 'react';
+import overlayStyles from './modal-overlay.module.css';
 
 interface IOverlay {
   onClose: (e: FormEvent) => void,

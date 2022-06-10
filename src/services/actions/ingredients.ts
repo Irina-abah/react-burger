@@ -1,6 +1,6 @@
-import { BASE_URL } from "../../utils/constants";
-import { checkResponse } from "../../utils/check-response";
-import { TAppDispatch, TExtendedItem } from "../../utils/types";
+import { BASE_URL } from '../../utils/constants';
+import { checkResponse } from '../../utils/check-response';
+import { TAppDispatch, TExtendedItem } from '../../utils/types';
 
 export const GET_INGREDIENTS_REQUEST: "GET_INGREDIENTS_REQUEST" = "GET_INGREDIENTS_REQUEST";
 export const GET_INGREDIENTS_SUCCESS: "GET_INGREDIENTS_SUCCESS" = "GET_INGREDIENTS_SUCCESS";

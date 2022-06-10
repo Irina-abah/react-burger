@@ -2,7 +2,7 @@ import {
   PATCH_USER_REQUEST,
   PATCH_USER_SUCCESS,
   PATCH_USER_FAILED
-} from "../actions/patch-user";
+} from '../actions/patch-user';
 import { TUserGet } from '../../utils/types';
 import { TPatchUserActions } from '../actions/patch-user';
 

@@ -1,11 +1,11 @@
 import { useRef, FunctionComponent, SyntheticEvent } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch } from 'react-redux';
 import { useDrop, useDrag, DropTargetMonitor } from 'react-dnd';
-import itemStyles from "./constructor-item.module.css";
-import { REMOVE_INNER_ITEM } from "../../services/actions/ingredients";
+import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useDispatch } from '../../utils/hooks';
+import { REMOVE_INNER_ITEM } from '../../services/actions/ingredients';
 import { TExtendedItem } from '../../utils/types';
+import itemStyles from './constructor-item.module.css';
 
 interface IConstructorItem {
   item: TExtendedItem,

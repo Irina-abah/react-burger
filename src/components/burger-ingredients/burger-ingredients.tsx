@@ -1,16 +1,16 @@
-import { useState, useRef, FunctionComponent } from "react";
-import { HashLink as Link } from "react-router-hash-link";
-import ingredientsStyles from "./burger-ingredients.module.css";
-import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import Ingredient from "../ingredient/ingredient";
-import { LOAD_ERROR } from "../../utils/constants";
-import { useSelector } from 'react-redux';
+import { useState, useRef, FunctionComponent } from 'react';
+import { HashLink as Link } from 'react-router-hash-link';
+import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
+import { LOAD_ERROR } from '../../utils/constants';
+import { useSelector } from '../../utils/hooks';
 import { TExtendedItem } from '../../utils/types';
+import Ingredient from '../ingredient/ingredient';
+import ingredientsStyles from './burger-ingredients.module.css';
 
 const BurgerIngredients: FunctionComponent = () => {
 
-  const data = useSelector((store: any) => store.ingredients.foodData);
-  const loadingFailed = useSelector((store: any) => store.ingredients.foodDataFailed);
+  const data = useSelector((store) => store.ingredients.foodData);
+  const loadingFailed = useSelector((store) => store.ingredients.foodDataFailed);
   const [current, setCurrent] = useState('buns');
   const buns = data.filter((item: TExtendedItem) => item.type === 'bun');
   const sauses = data.filter((item: TExtendedItem) => item.type === 'sauce');

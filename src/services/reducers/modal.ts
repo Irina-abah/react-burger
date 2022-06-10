@@ -2,9 +2,9 @@ import {
   OPEN_MODAL,
   CLOSE_MODAL,
   OPEN_MODAL_ORDER
-} from "../actions/modal";
+} from '../actions/modal';
 import { TModalActions} from '../actions/modal';
-import { TExtendedItem, TOrder } from "../../utils/types";
+import { TExtendedItem, TOrder } from '../../utils/types';
 
 type TIngredientState = {
   selectedItem: TExtendedItem | {};

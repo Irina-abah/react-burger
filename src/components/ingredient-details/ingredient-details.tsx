@@ -1,8 +1,8 @@
-import { FunctionComponent } from "react";
-import ingredientStyles from "./ingredient-details.module.css";
-import { useSelector } from '../../utils/hooks';
+import { FunctionComponent } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector } from '../../utils/hooks';
 import { TExtendedItem } from '../../utils/types';
+import ingredientStyles from './ingredient-details.module.css';
 
 const IngredientsDetails: FunctionComponent = () => {
 

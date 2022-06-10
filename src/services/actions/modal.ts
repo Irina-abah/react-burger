@@ -1,4 +1,4 @@
-import { TExtendedItem, TOrder } from "../../utils/types";
+import { TExtendedItem, TOrder } from '../../utils/types';
 
 export const OPEN_MODAL: "OPEN_MODAL" = "OPEN_MODAL";
 export const CLOSE_MODAL: "CLOSE_MODAL" = "CLOSE_MODAL";
