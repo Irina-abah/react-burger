@@ -47,10 +47,10 @@ export type TAppThunk<TReturn = void> = ActionCreator<
 export type TAppDispatch = typeof store.dispatch;
 
 export type TUser = {
-  name?: string,
-  email?: string,
+  name?: string | undefined,
+  email?: string | undefined,
   password?: string | undefined,
-  token?: string
+  token?: string | undefined
 };
 
 export type TUserMain = Omit<TUser, "token">;

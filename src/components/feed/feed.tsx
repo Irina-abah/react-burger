@@ -12,7 +12,6 @@ const Feed: FunctionComponent = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const orders = useSelector((store) => store.ws.messages);
-  console.log(orders)
 
   useEffect(() => {
     dispatch({

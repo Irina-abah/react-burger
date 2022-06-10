@@ -14,9 +14,7 @@ export function countIgredients(data: Array<TExtendedItem>) {
   // crossmatch each [id, count] with every ingredient in the order
   data.forEach((i: TExtendedItem) => {
     arrCounts.forEach((item: any) => {
-      console.log(item)
       if (i._id === item[0]) {
-        console.log(item)
         arrayToRender.push(i, i['count'] = item[1])
       }
     })
