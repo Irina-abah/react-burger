@@ -34,6 +34,8 @@ function OrderPage() {
     }, 0
   )
 
+  // https://disk.yandex.ru/i/Go8KdIz7b5kDLg
+
   useEffect(() => {
     dispatch(
       userPath ? ({
