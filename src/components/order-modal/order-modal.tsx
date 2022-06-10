@@ -19,10 +19,32 @@ function OrderModal() {
     return ingredients.filter((item: TExtendedItem) => item._id === i);
   }).flat(1);
 
-const newArr = orderIngredients?.filter((v, i, a) => a.findIndex(v2 => (v2._id === v._id)) === i)
+  // counte ingredients with the same id and create an array with [id, count] values
+  
+  const counts: any = {};
+  orderIngredients?.forEach((x: any) => { 
+    return counts[x._id] = (counts[x._id] || 0) + 1; 
+  });
 
-console.log(newArr)
+  const arrCounts = Object.keys(counts).map((key) => [(key), counts[key]]);
+  console.log(arrCounts)
 
+  // crossmatch each [id, count] with every ingredient in the order
+
+  let arrayToRender: any = []
+  orderIngredients?.forEach((i: any) => {
+    arrCounts.forEach((item) => {
+      if (i._id === item[0]) {
+        console.log(item[0])
+        // arrayToRender.push({i: item[1]})
+        arrayToRender.push(i, i['count'] = item[1])
+      }
+    })
+  })
+
+  // filter final array to render with ingredients & updated counts only
+
+  const finalArray = arrayToRender.filter((i: any) => typeof i === 'object')
 
   const totalPrice = orderIngredients?.reduce(
     function (sum: number, item: TExtendedItem) {
@@ -51,7 +73,7 @@ console.log(newArr)
         </div>
         <h2 className={`${orderModalStyles.title} text text_type_main-medium mb-6`}>Состав:</h2>
         <div className={orderModalStyles.ingredients}>
-        {orderIngredients?.map((item: TExtendedItem, i) => (
+        {finalArray?.map((item: TExtendedItem, i: any) => (
           <div className={`${orderModalStyles.ingredient} mb-4 mr-6`}>
             <div className={orderModalStyles.name_info}>
               <div className={orderModalStyles.image} key={i}>
