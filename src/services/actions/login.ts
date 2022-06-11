@@ -31,7 +31,7 @@ function handleLoginError() {
 }
 
 export const loginUser: TAppThunk = (data: TUserLogin) => {
-  return function (dispatch: TAppDispatch) {
+  return function (dispatch) {
     dispatch({
       type: LOGIN_USER_REQUEST
     })
@@ -54,7 +54,7 @@ export const loginUser: TAppThunk = (data: TUserLogin) => {
         })
         setCookie('accessToken', res.accessToken)
         localStorage.setItem('refreshToken', res.refreshToken)
-        // dispatch(getUser())
+        dispatch(getUser())
       } else {
         dispatch(handleLoginError())
       }

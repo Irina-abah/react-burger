@@ -1,6 +1,7 @@
 import { useEffect, useState, FunctionComponent } from 'react';
 import { Route, Redirect, RouteProps } from 'react-router-dom';
 import { useSelector, useDispatch } from '../utils/hooks';
+import { TLocationState } from '../utils/types';
 import { getUser } from '../services/actions/get-user';
 
 export const ProtectedRoute: FunctionComponent<RouteProps> = ({children, ...rest }) => {
@@ -24,7 +25,7 @@ export const ProtectedRoute: FunctionComponent<RouteProps> = ({children, ...rest
     return (
     <Route
       {...rest}
-      render={({ location }: any) =>
+      render={({ location }) =>
         auth ? (
           children
         ) : (

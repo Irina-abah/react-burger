@@ -7,7 +7,7 @@ import orderStyles from './order-details.module.css';
 const OrderDetails: FunctionComponent = () => {
 
   const number = useSelector((store) => store.order.number);
-  const orderFailed = useSelector((store) => store.order.orderFailed)
+  const orderFailed = useSelector((store) => store.order.orderMakeFailed);
 
   return (
     <>

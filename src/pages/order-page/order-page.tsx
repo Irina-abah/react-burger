@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from '../../utils/hooks';
 import { TOrder, TExtendedItem } from "../../utils/types";
 import { sayDate } from '../../utils/say-date';
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSE } from '../../services/actions/websocket';
+import { getOrder } from '../../services/actions/order';
 import { getCookie } from '../../utils/cookie';
 import { countIgredients } from '../../utils/filter-count';
 import orderModalStyles from '../../components/order-modal/order-modal.module.css';
@@ -15,6 +16,8 @@ const OrderPage: FunctionComponent = () => {
   const dispatch = useDispatch();
   const { orderId } = useParams<{orderId: string}>();
   const orders = useSelector((store) => store.ws.messages.orders);
+  // const order = useSelector((store: any) => store.order.order);
+  // console.log(order)
   const order = orders.find((c: TOrder) => c._id === orderId);
   const ingredients = useSelector((store) => store.ingredients.foodData);
   const userPath = useRouteMatch({ path: "/profile/orders" });
@@ -34,6 +37,10 @@ const OrderPage: FunctionComponent = () => {
         return sum + item.price
     }, 0
   )
+
+  // useEffect(() => {
+  //   dispatch(getOrder(order?.number))
+  // }, [dispatch, order?.number]);
 
   useEffect(() => {
     dispatch(
@@ -97,7 +104,7 @@ const OrderPage: FunctionComponent = () => {
         <div className={`${orderModalStyles.footer} mt-10`}>
           <p className={`text text_type_main-default text_color_inactive`}>{sayDate(order.createdAt)}</p>
           <div className={`${orderModalStyles.total} mt-2 mb-2`}>
-            <p className={`text text_type_digits-default mr-2`}>{totalPrice}</p>
+            {/* <p className={`text text_type_digits-default mr-2`}>{totalPrice}</p> */}
             <CurrencyIcon type="primary" />
           </div>
         </div>

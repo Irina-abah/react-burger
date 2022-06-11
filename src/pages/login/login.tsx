@@ -12,7 +12,7 @@ const Login: FunctionComponent = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const { state } = location as TLocationState;
-  const auth = useSelector((store) => store.login.isAuthenticated);
+  const auth = useSelector((store) => store.getUser.isAuthenticated);
   const [form, setForm] = useState<TUserLogin>({} as TUserLogin);
 
 
