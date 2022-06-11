@@ -1,6 +1,6 @@
 import { BASE_URL } from '../../utils/constants';
 import { checkResponse } from '../../utils/check-response';
-import { TAppDispatch } from '../../utils/types';
+import { TAppDispatch, TAppThunk } from '../../utils/types';
 // import { TExtendedItem } from '../../utils/types';
 import { getCookie } from '../../utils/cookie';
 
@@ -30,7 +30,7 @@ function handleOrderError() {
   }
 }
 
-export const makeOrder = (data: Array<string>) => {
+export const makeOrder: TAppThunk = (data: Array<string>) => {
   return function (dispatch: TAppDispatch) {
     dispatch({
       type: MAKE_ORDER_REQUEST

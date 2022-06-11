@@ -2,7 +2,7 @@ import { BASE_URL } from '../../utils/constants';
 import { setCookie} from '../../utils/cookie';
 import { checkResponse } from '../../utils/check-response';
 import { TAppDispatch } from '../../utils/types';
-import { TUserMain } from '../../utils/types';
+import { TUserMain, TAppThunk} from '../../utils/types';
 
 export const REGISTER_USER_REQUEST: "REGISTER_USER_REQUEST" = "REGISTER_USER_REQUEST";
 export const REGISTER_USER_SUCCESS: "REGISTER_USER_SUCCESS" = "REGISTER_USER_SUCCESS";
@@ -30,7 +30,7 @@ function handleRegisterError() {
   }
 }
 
-export const registerUser = (data: TUserMain) => {
+export const registerUser: TAppThunk = (data: TUserMain) => {
   return function (dispatch: TAppDispatch) {
     dispatch({
       type: REGISTER_USER_REQUEST

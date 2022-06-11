@@ -1,6 +1,6 @@
 import { BASE_URL } from '../../utils/constants';
 import { checkResponse } from '../../utils/check-response';
-import { TAppDispatch } from '../../utils/types';
+import { TAppDispatch, TAppThunk } from '../../utils/types';
 
 export const FORGOT_PASSWORD_REQUEST: "FORGOT_PASSWORD_REQUEST" = "FORGOT_PASSWORD_REQUEST";
 export const FORGOT_PASSWORD_SUCCESS: "FORGOT_PASSWORD_SUCCESS" = "FORGOT_PASSWORD_SUCCESS";
@@ -27,7 +27,7 @@ function handlePassError() {
   }
 }
 
-export const forgotPass = (email: string) => {
+export const forgotPass: TAppThunk = (email: string) => {
   return function (dispatch: TAppDispatch) {
     dispatch({
       type: FORGOT_PASSWORD_REQUEST

@@ -1,6 +1,6 @@
 import { BASE_URL } from '../../utils/constants';
 import { checkResponse } from '../../utils/check-response';
-import { TAppDispatch, TExtendedItem } from '../../utils/types';
+import { TAppDispatch, TExtendedItem, TAppThunk } from '../../utils/types';
 
 export const GET_INGREDIENTS_REQUEST: "GET_INGREDIENTS_REQUEST" = "GET_INGREDIENTS_REQUEST";
 export const GET_INGREDIENTS_SUCCESS: "GET_INGREDIENTS_SUCCESS" = "GET_INGREDIENTS_SUCCESS";
@@ -10,7 +10,6 @@ export const ADD_INNER_ITEM: "ADD_INNER_ITEM" = "ADD_INNER_ITEM";
 export const REMOVE_INNER_ITEM: "REMOVE_INNER_ITEM" = "REMOVE_INNER_ITEM";
 export const UPDATE_CONSTRUCTOR_LIST: "UPDATE_CONSTRUCTOR_LIST" = "UPDATE_CONSTRUCTOR_LIST";
 export const RESET_CONSTRUSTOR: "RESET_CONSTRUSTOR" = "RESET_CONSTRUSTOR";
-
 
 export interface IGetIngredientsAction {
   readonly type: typeof GET_INGREDIENTS_REQUEST;
@@ -59,7 +58,7 @@ function handleIngredientsError() {
   }
 }
 
-export const getIngredients = () => {
+export const getIngredients: TAppThunk = () => {
   return function (dispatch: TAppDispatch) {
     dispatch({
       type: GET_INGREDIENTS_REQUEST

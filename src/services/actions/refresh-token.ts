@@ -1,7 +1,7 @@
 import { BASE_URL } from '../../utils/constants';
 import { setCookie} from '../../utils/cookie';
 import { checkResponse } from '../../utils/check-response';
-import { TAppDispatch } from '../../utils/types';
+import { TAppDispatch, TAppThunk } from '../../utils/types';
 
 export const REFRESH_TOKEN_REQUEST: "REFRESH_TOKEN_REQUEST" = "REFRESH_TOKEN_REQUEST";
 export const REFRESH_TOKEN_SUCCESS: "REFRESH_TOKEN_SUCCESS" = "REFRESH_TOKEN_SUCCESS";
@@ -29,7 +29,7 @@ function handleTokenError() {
   }
 }
 
-export const refreshToken = () => {
+export const refreshToken: TAppThunk = () => {
   return function (dispatch: TAppDispatch) {
     dispatch({
       type: REFRESH_TOKEN_REQUEST,

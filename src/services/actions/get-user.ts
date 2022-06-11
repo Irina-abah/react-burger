@@ -3,8 +3,7 @@ import { getCookie } from '../../utils/cookie';
 import { LOGIN_USER_SUCCESS } from './login';
 import { refreshToken } from './refresh-token';
 import { checkResponse } from '../../utils/check-response';
-// import { TAppDispatch } from '../../utils/types';
-import { TUser } from '../../utils/types';
+import { TAppDispatch, TUser, TAppThunk } from '../../utils/types';
 
 export const GET_USER_REQUEST: "GET_USER_REQUEST" = "GET_USER_REQUEST";
 export const GET_USER_SUCCESS: "GET_USER_SUCCESS" = "GET_USER_SUCCESS";
@@ -32,8 +31,8 @@ function handleUserError() {
   }
 }
 
-export const getUser = () => {
-  return function (dispatch: any) {
+export const getUser: TAppThunk = () => {
+  return function (dispatch: TAppDispatch) {
     dispatch({
       type: GET_USER_REQUEST
     })
@@ -62,8 +61,8 @@ export const getUser = () => {
       console.log(err)
       if (err.message === "jwt expired" || err.message === "Token is invalid") {
         dispatch(handleUserError())
-        dispatch(refreshToken())
-        dispatch(getUser())
+        // dispatch(refreshToken())
+        // dispatch(getUser())
       }
     })
   }
