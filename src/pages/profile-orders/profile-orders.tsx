@@ -33,19 +33,10 @@ const ProfileOrders: FunctionComponent = () => {
     <div className={`${profileOrdersStyles.profile_orders} pt-10`}>
     <ProfileMenu />
     <div className={`${profileOrdersStyles.orders_list}`}>
-          {orders.orders.map((item: TOrder, i: any) => (
-            <Link
-              key={item['_id']}
-              to={{
-                pathname: `/profile/orders/${item['_id']}`,
-                state: { background: location },
-              }}
-              className={profileOrdersStyles.link}
-            >
-              <Order item={item} key={i} />
-            </Link>
-          ))}
-        </div>
+      {orders.orders.map((item: TOrder, i: any) => (
+        <Order item={item} key={i} />
+      ))}
+    </div>
     </div>
   )
 }

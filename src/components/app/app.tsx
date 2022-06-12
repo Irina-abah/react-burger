@@ -109,7 +109,7 @@ const App: FunctionComponent = () => {
       )}
       {background && (
         <Route 
-          path="/profile/orders/:orderId"
+          exact path="/profile/orders/:orderId"
           children={
             <Modal
               title="" 

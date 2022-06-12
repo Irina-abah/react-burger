@@ -1,11 +1,10 @@
-import { useEffect, useState, FunctionComponent } from 'react';
+import { useEffect, FunctionComponent } from 'react';
 import { useParams, useRouteMatch } from 'react-router-dom';
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useSelector, useDispatch } from '../../utils/hooks';
 import { TOrder, TExtendedItem } from "../../utils/types";
 import { sayDate } from '../../utils/say-date';
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSE } from '../../services/actions/websocket';
-import { getOrder } from '../../services/actions/order';
 import { getCookie } from '../../utils/cookie';
 import { countIgredients } from '../../utils/filter-count';
 import orderModalStyles from '../../components/order-modal/order-modal.module.css';
@@ -17,8 +16,6 @@ const OrderPage: FunctionComponent = () => {
   const { orderId } = useParams<{orderId: string}>();
   const userPath = useRouteMatch({ path: "/profile/orders" });
   const orders = useSelector((store) => store.ws.messages.orders);
-  const dispatchOrder: any = useSelector((store) => store.order.order);
-
   const order = orders && orders.find((c: TOrder) => c._id === orderId);
   const ingredients = useSelector((store) => store.ingredients.foodData);
 

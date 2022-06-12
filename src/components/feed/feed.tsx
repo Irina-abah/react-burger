@@ -32,16 +32,7 @@ const Feed: FunctionComponent = () => {
       <div className={feedStyles.container}>
         <div className={`${feedStyles.orders_list}`}>
           {orders.orders.map((item: TOrder, i: any) => (
-            <Link
-              key={item['_id']}
-              to={{
-                pathname: `/feed/${item['_id']}`,
-                state: { background: location },
-              }}
-              className={feedStyles.link}
-            >
-              <Order item={item} key={i}/>
-            </Link> 
+            <Order item={item} key={i}/>
           ))}
         </div>
         <FeedSummary allOrders={orders}/>

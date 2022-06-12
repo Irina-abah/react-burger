@@ -41,7 +41,7 @@ const OrderModal: FunctionComponent = () => {
 
   return (
     <>
-    {order && orders.length > 0 ? (
+    {order && orders.length !== 0 ? (
       <section className={`${orderModalStyles.main}`}>
         <p className={`${orderModalStyles.number} text text_type_digits-default mr-2`}>#{order.number}</p>
         <div>

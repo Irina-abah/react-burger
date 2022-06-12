@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, useLocation, Link } from 'react-router-dom';
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch } from '../../utils/hooks';
 import { TOrder, TExtendedItem } from '../../utils/types';
@@ -15,6 +15,8 @@ interface IOrder {
 const Order: FunctionComponent<IOrder> = ({ item }) => {
 
   const dispatch = useDispatch();
+  const location = useLocation()
+  const orderId = item['_id']
   const date = sayDate(item.createdAt);
   const ingredients = useSelector((store) => store.ingredients.foodData);
 
@@ -60,6 +62,13 @@ const Order: FunctionComponent<IOrder> = ({ item }) => {
   }
 
   return (
+    <Link 
+      className={orderStyles.link}
+      to={{
+          pathname: `${location.pathname}/${orderId}`,
+          state: { background: location }
+      }}
+    >
     <div className={`${orderStyles.order} mr-2 mb-4 p-6`} onClick={handleOpenModal}>
       <div className={`${orderStyles.basic} mb-6`}>
         <p className={`text text_type_digits-default mr-2`}>#{item.number}</p>
@@ -90,6 +99,8 @@ const Order: FunctionComponent<IOrder> = ({ item }) => {
       </div>
     </div>
     </div>
+    </Link>
+    
   )
 }
 
