@@ -16,7 +16,7 @@ const Feed: FunctionComponent = () => {
   useEffect(() => {
     dispatch({
       type: WS_CONNECTION_START,
-      payload: 'all'
+      payload: '/all'
     });
 
     return () => {

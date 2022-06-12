@@ -9,15 +9,15 @@ export const socketMiddleware = (wsUrl: string, wsActions: TWsActions ): Middlew
     return next => (action) => {
       const { dispatch, getState } = store;
       const { type, payload } = action;
-      const { isAuthenticated } = getState().getUser;
+      // const { isAuthenticated } = getState().getUser;
       const { wsStart, wsClose, onOpen, onClose, onError, onMessage } = wsActions;
  
       if (type === wsStart) {
-        socket = new WebSocket(`${wsUrl}/${payload}`);
-      }
-      if (type === wsStart && isAuthenticated) {
         socket = new WebSocket(`${wsUrl}${payload}`);
       }
+      // if (type === wsStart && isAuthenticated) {
+      //   socket = new WebSocket(`${wsUrl}${payload}`);
+      // }
       if (type === wsClose) {
         socket?.close();
       }

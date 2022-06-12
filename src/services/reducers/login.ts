@@ -23,7 +23,7 @@ const initialState: TLoginUserState = {
   loginFailed: false
 }
 
-export const loginReducer = (state = initialState, action: TLoginUserActions) => {
+export const loginReducer = (state = initialState, action: TLoginUserActions): TLoginUserState=> {
   switch (action.type) {
     case LOGIN_USER_REQUEST: {
       return {

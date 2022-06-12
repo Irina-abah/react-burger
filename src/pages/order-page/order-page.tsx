@@ -1,4 +1,4 @@
-import { useEffect, FunctionComponent } from 'react';
+import { useEffect, useState, FunctionComponent } from 'react';
 import { useParams, useRouteMatch } from 'react-router-dom';
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useSelector, useDispatch } from '../../utils/hooks';
@@ -15,19 +15,17 @@ const OrderPage: FunctionComponent = () => {
 
   const dispatch = useDispatch();
   const { orderId } = useParams<{orderId: string}>();
-  const orders = useSelector((store) => store.ws.messages.orders);
-  // const order = useSelector((store: any) => store.order.order);
-  // console.log(order)
-  const order = orders.find((c: TOrder) => c._id === orderId);
-  const ingredients = useSelector((store) => store.ingredients.foodData);
   const userPath = useRouteMatch({ path: "/profile/orders" });
+  const orders = useSelector((store) => store.ws.messages.orders);
+  const dispatchOrder: any = useSelector((store) => store.order.order);
 
-  const accessToken = getCookie('accessToken') as string;
-  const wsToken = accessToken.replace('Bearer ', '');
+  const order = orders && orders.find((c: TOrder) => c._id === orderId);
+  const ingredients = useSelector((store) => store.ingredients.foodData);
 
-  const statusClassname = order?.status === "done" ? orderModalStyles.green : "";
 
-  const orderIngredients = order?.ingredients.map((i: string) => {
+  const statusClassname = order && order.status === "done" ? orderModalStyles.green : "";
+
+  const orderIngredients = order && order.ingredients.map((i: string) => {
     return ingredients.filter((item: TExtendedItem) => item._id === i);
   }).flat(1);
   const uniqueIngredients = countIgredients(orderIngredients || []);
@@ -38,18 +36,16 @@ const OrderPage: FunctionComponent = () => {
     }, 0
   )
 
-  // useEffect(() => {
-  //   dispatch(getOrder(order?.number))
-  // }, [dispatch, order?.number]);
-
   useEffect(() => {
+    const accessToken = getCookie('accessToken') as string;
+    const wsToken = accessToken.replace('Bearer ', '');
     dispatch(
       userPath ? ({
       type: WS_CONNECTION_START,
       payload: `?token=${wsToken}`
     }) : ({
       type: WS_CONNECTION_START,
-      payload: `all`
+      payload: `/all`
     }));
 
     return () => {
@@ -57,7 +53,7 @@ const OrderPage: FunctionComponent = () => {
         type: WS_CONNECTION_CLOSE
       });
     };
-  }, [dispatch, wsToken, userPath]);
+  }, [dispatch]);
 
   const statusOrder = () => {
     if (order?.status === "done") {
@@ -71,7 +67,7 @@ const OrderPage: FunctionComponent = () => {
 
   return (
     <>
-    {order ? (
+    {order && orders.length > 0 ? (
       <section className={`${orderPageStyles.main} pt-30`}>
         <p className={`${orderPageStyles.number} text text_type_digits-default mr-2`}>#{order.number}</p>
         <div>
@@ -81,7 +77,7 @@ const OrderPage: FunctionComponent = () => {
         <h2 className={`${orderModalStyles.title} text text_type_main-medium mb-6`}>Состав:</h2>
         <div className={orderModalStyles.ingredients}>
           {uniqueIngredients.map((item: TExtendedItem, i) => (
-            <div className={`${orderModalStyles.ingredient} mb-4 mr-6`}>
+            <div className={`${orderModalStyles.ingredient} mb-4 mr-6`} key={i}>
               <div className={orderModalStyles.name_info}>
                 <div className={orderModalStyles.image} key={i}>
                   <img
@@ -104,7 +100,7 @@ const OrderPage: FunctionComponent = () => {
         <div className={`${orderModalStyles.footer} mt-10`}>
           <p className={`text text_type_main-default text_color_inactive`}>{sayDate(order.createdAt)}</p>
           <div className={`${orderModalStyles.total} mt-2 mb-2`}>
-            {/* <p className={`text text_type_digits-default mr-2`}>{totalPrice}</p> */}
+            <p className={`text text_type_digits-default mr-2`}>{totalPrice}</p>
             <CurrencyIcon type="primary" />
           </div>
         </div>

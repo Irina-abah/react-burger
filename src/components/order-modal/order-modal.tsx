@@ -11,13 +11,13 @@ const OrderModal: FunctionComponent = () => {
 
   const { orderId } = useParams<{orderId: string}>();
   const { orders } = useSelector((store) => store.ws.messages);
+  console.log(orders)
   const order = orders.find((o: TOrder) => o._id === orderId);
-  console.log(order)
   const ingredients = useSelector((store) => store.ingredients.foodData);
 
-  const statusClassname = order?.status === "done" ? orderModalStyles.green : "";
+  const statusClassname = order && order.status === "done" ? orderModalStyles.green : "";
 
-  const orderIngredients = order?.ingredients.map((i: string) => {
+  const orderIngredients = order && order.ingredients.map((i: string) => {
     return ingredients.filter((item: TExtendedItem) => item._id === i);
   }).flat(1);
 
@@ -30,9 +30,9 @@ const OrderModal: FunctionComponent = () => {
   )
 
   const statusOrder = () => {
-    if (order?.status === "done") {
+    if (order && order.status === "done") {
       return "Выполнен"
-    } else if (order?.status === "pending") {
+    } else if (order && order.status === "pending") {
       return "Готовится"
     } else {
       return "Создан"

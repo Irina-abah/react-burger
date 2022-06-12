@@ -12,7 +12,7 @@ interface IOrder {
   item: TOrder
 }
 
-const Order: FunctionComponent<IOrder> = ({item}) => {
+const Order: FunctionComponent<IOrder> = ({ item }) => {
 
   const dispatch = useDispatch();
   const date = sayDate(item.createdAt);

@@ -62,7 +62,7 @@ const App: FunctionComponent = () => {
           <ProtectedRoute exact path="/profile/orders">
             <ProfileOrders/>
           </ProtectedRoute>
-          <ProtectedRoute path="/profile/orders/:orderId">
+          <ProtectedRoute exact path="/profile/orders/:orderId">
             <OrderPage/>
           </ProtectedRoute>
           <Route path="/ingredients/:ingredientId">

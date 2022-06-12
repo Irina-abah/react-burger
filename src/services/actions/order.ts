@@ -27,7 +27,7 @@ export interface IGetOrderAction {
 };
 export interface IGetOrderSuccessAction {
   readonly type: typeof GET_ORDER_SUCCESS;
-  readonly order: TOrder;
+  readonly order: TOrder | {};
 }
 export interface IGetOrderFailedAction {
   readonly type: typeof GET_ORDER_FAILED;
@@ -94,8 +94,7 @@ export const getOrder: TAppThunk = (number: number) => {
     })
     fetch(`${BASE_URL}/orders/${number}`, {
       headers: {
-        "Content-Type": "application/json",
-        Authorization: getCookie('accessToken') as string
+        "Content-Type": "application/json"
       }
     })
     .then(checkResponse)
@@ -103,7 +102,7 @@ export const getOrder: TAppThunk = (number: number) => {
       if (res && res.success) {
         dispatch({
           type: GET_ORDER_SUCCESS,
-          order: res.order
+          order: res.orders
         })
       } else {
         dispatch(handleGetOrderError())
