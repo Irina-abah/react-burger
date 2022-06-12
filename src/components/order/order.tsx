@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 import { Route, useLocation, Link } from 'react-router-dom';
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch } from '../../utils/hooks';
-import { TOrder, TExtendedItem } from '../../utils/types';
+import { TOrder, TExtendedItem, TLocationState } from '../../utils/types';
 import { OPEN_MODAL_ORDER } from '../../services/actions/modal';
 import { useSelector } from '../../utils/hooks';
 import { sayDate } from '../../utils/say-date';
@@ -15,7 +15,7 @@ interface IOrder {
 const Order: FunctionComponent<IOrder> = ({ item }) => {
 
   const dispatch = useDispatch();
-  const location = useLocation()
+  const location = useLocation<TLocationState>()
   const orderId = item['_id']
   const date = sayDate(item.createdAt);
   const ingredients = useSelector((store) => store.ingredients.foodData);

@@ -59,12 +59,12 @@ const App: FunctionComponent = () => {
           <ProtectedRoute exact path="/profile">
             <Profile/>
           </ProtectedRoute>
-          <ProtectedRoute exact path="/profile/orders">
+          <Route exact path="/profile/orders">
             <ProfileOrders/>
-          </ProtectedRoute>
-          <ProtectedRoute exact path="/profile/orders/:orderId">
+          </Route>
+          <Route path="/profile/orders/:orderId">
             <OrderPage/>
-          </ProtectedRoute>
+          </Route>
           <Route path="/ingredients/:ingredientId">
             <IngredientPage />
           </Route>
@@ -108,8 +108,8 @@ const App: FunctionComponent = () => {
         />
       )}
       {background && (
-        <Route 
-          exact path="/profile/orders/:orderId"
+        <ProtectedRoute 
+          path="/profile/orders/:orderId"
           children={
             <Modal
               title="" 

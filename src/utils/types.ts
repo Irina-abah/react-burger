@@ -84,7 +84,8 @@ export type TExtendedItem = TItem & {
 export type TLocationState = {
   state: {
     background?: Location,
-    from?: string
+    from?: string | undefined,
+    pathname?: string
   }
 };
 

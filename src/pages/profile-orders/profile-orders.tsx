@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSE } from '../../services/actions/websocket';
 import { useSelector, useDispatch } from '../../utils/hooks';
 import { getCookie } from '../../utils/cookie';
@@ -10,24 +10,38 @@ import profileOrdersStyles from './profile-orders.module.css';
 
 const ProfileOrders: FunctionComponent = () => {
 
-  const location = useLocation();
   const dispatch = useDispatch();
   const orders = useSelector((store) => store.ws.messages);
-  const accessToken = getCookie('accessToken') as string;
-  const wsToken = accessToken.replace('Bearer ', '');
+  const user = useSelector((state) => state.getUser.user);
+  const auth = useSelector((store) => store.getUser.isAuthenticated);
+  console.log(user)
 
   useEffect(() => {
-    dispatch({
-      type: WS_CONNECTION_START,
-      payload: `?token=${wsToken}`
-    });
-
-    return () => {
+    if (user.name !== '' && user.email !== '') {
+      const accessToken = getCookie('accessToken') as string;
+      const wsToken = accessToken.replace('Bearer ', '');
       dispatch({
-        type: WS_CONNECTION_CLOSE
+        type: WS_CONNECTION_START,
+        payload: `?token=${wsToken}`
       });
-    };
-  }, [dispatch, wsToken]);
+  
+      return () => {
+        dispatch({
+          type: WS_CONNECTION_CLOSE
+        });
+      };
+    }
+  }, [user, dispatch]);
+
+  // if (user && user.name === '' && user.email === '') {
+  //   return (
+  //     <Redirect
+  //       to={{
+  //         pathname: "/login",
+  //       }}
+  //     />
+  //   );
+  // }
 
   return (
     <div className={`${profileOrdersStyles.profile_orders} pt-10`}>
