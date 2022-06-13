@@ -5,7 +5,8 @@ import { getUser } from '../services/actions/get-user';
 
 export const ProtectedRoute: FunctionComponent<RouteProps> = ({children, ...rest }) => {
   const [isUserLoaded, setUserLoaded] = useState<boolean>(false);
-  const auth = useSelector((store) => store.login.isAuthenticated);
+  const auth = useSelector((store) => store.getUser.isAuthenticated);
+  const isLoggedIn = useSelector(store => store.login.isLoggedIn);
   const dispatch = useDispatch();
 
   const init = async () => {
@@ -25,7 +26,7 @@ export const ProtectedRoute: FunctionComponent<RouteProps> = ({children, ...rest
     <Route
       {...rest}
       render={({ location }) =>
-        auth ? (
+        auth || isLoggedIn ? (
           children
         ) : (
           <Redirect

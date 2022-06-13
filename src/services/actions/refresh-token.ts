@@ -1,7 +1,7 @@
 import { BASE_URL } from '../../utils/constants';
 import { setCookie} from '../../utils/cookie';
 import { checkResponse } from '../../utils/check-response';
-import { TAppDispatch, TAppThunk } from '../../utils/types';
+import { TAppDispatch, TAppThunk, TUser } from '../../utils/types';
 
 export const REFRESH_TOKEN_REQUEST: "REFRESH_TOKEN_REQUEST" = "REFRESH_TOKEN_REQUEST";
 export const REFRESH_TOKEN_SUCCESS: "REFRESH_TOKEN_SUCCESS" = "REFRESH_TOKEN_SUCCESS";
@@ -13,6 +13,7 @@ export interface IRefreshTokenAction {
 export interface IRefreshTokenSuccessAction {
   readonly type: typeof REFRESH_TOKEN_SUCCESS;
   accessToken?: string;
+  readonly user: TUser;
 }
 export interface IRefreshTokenFailedAction {
   readonly type: typeof REFRESH_TOKEN_FAILED;
@@ -48,6 +49,7 @@ export const refreshToken: TAppThunk = () => {
         if (res && res.success) {
           dispatch({
             type: REFRESH_TOKEN_SUCCESS,
+            user: res.user
           });
           localStorage.setItem('refreshToken', res.refreshToken);
           setCookie('accessToken', res.accessToken);

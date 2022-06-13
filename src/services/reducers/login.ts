@@ -8,7 +8,7 @@ import { TLoginUserActions } from '../actions/login';
 
 type TLoginUserState = {
   user: TUserGet;
-  isAuthenticated: boolean;
+  isLoggedIn: boolean;
   loginRequest: boolean;
   loginFailed: boolean;
 }
@@ -18,7 +18,7 @@ const initialState: TLoginUserState = {
     email: "",
     name: ""
   },
-  isAuthenticated: false,
+  isLoggedIn: false,
   loginRequest: false,
   loginFailed: false,
 }
@@ -34,7 +34,7 @@ export const loginReducer = (state = initialState, action: TLoginUserActions): T
     case LOGIN_USER_SUCCESS: {
       return {
         ...state,
-        isAuthenticated: true,
+        isLoggedIn: true,
         loginRequest: false,
         loginFailed: false,
         user: action.user
@@ -43,7 +43,7 @@ export const loginReducer = (state = initialState, action: TLoginUserActions): T
     case LOGIN_USER_FAILED: {
       return {
         ...state,
-        isAuthenticated: false,
+        isLoggedIn: false,
         loginRequest: false,
         loginFailed: true,
       }

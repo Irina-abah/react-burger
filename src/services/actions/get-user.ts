@@ -64,9 +64,10 @@ export const getUser: TAppThunk = () => {
     .catch((err) => {
       console.log(err)
       if (err.message === "jwt expired" || err.message === "Token is invalid") {
-        dispatch(handleUserError())
         dispatch(refreshToken())
         dispatch(getUserData())
+      } else {
+        dispatch(handleUserError())
       }
     })
   }

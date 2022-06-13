@@ -18,7 +18,7 @@ const BurgerConstructor: FunctionComponent = () => {
   const history = useHistory();
   const { innerItems } = useSelector((store) => store.ingredients.constructor);
   const { selectedBun } = useSelector((store: any) => store.ingredients.constructor);
-  const auth = useSelector((store) => store.login.isAuthenticated);
+  const auth = useSelector((store) => store.login.isLoggedIn);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const allBurgerItems = useMemo(() => {

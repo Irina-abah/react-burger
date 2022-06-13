@@ -2,7 +2,7 @@ import { useState, useCallback, ChangeEvent, FunctionComponent } from 'react';
 import { Link, Redirect, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from '../../utils/hooks';
 import { loginUser } from '../../services/actions/login';
-import { TUserLogin, TLocationState } from '../../utils/types';
+import { TUser, TLocationState } from '../../utils/types';
 import UserForm from '../user-form/user-form';
 import loginStyles from './login.module.css';
 import PasswordInput from '../../ui-elements/password-input';
@@ -13,9 +13,13 @@ const Login: FunctionComponent = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const { state } = location as TLocationState;
-  const auth = useSelector((store) => store.login.isAuthenticated);
-  const [form, setForm] = useState<TUserLogin>({} as TUserLogin);
-
+  const isLoggedIn = useSelector(store => store.login.isLoggedIn);
+  const auth = useSelector((store) => store.getUser.isAuthenticated);
+  const [form, setForm] = useState<TUser>({} as TUser);
+  // const [form, setForm] = useState({ 
+  //   email: '', 
+  //   password: '' 
+  // });
 
   let submit = useCallback(
     e => {
@@ -35,7 +39,7 @@ const Login: FunctionComponent = () => {
       })
     }
   
-    if (auth) {
+    if (isLoggedIn || auth) {
       return (
         <Redirect
           to={ state?.from || '/' }
@@ -66,7 +70,7 @@ const Login: FunctionComponent = () => {
             name={'password'}
             label='Password' 
             value={form.password} 
-            onChange={handleInputChange}
+            onChange={handleInputChange} 
           />
         </div>
       </UserForm>

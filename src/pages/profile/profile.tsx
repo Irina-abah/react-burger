@@ -49,7 +49,6 @@ const Profile: FunctionComponent = () => {
     })
   }
 
-
   return (
     <section className={`${profileStyles.profile} pt-10`}>
       <ProfileMenu />

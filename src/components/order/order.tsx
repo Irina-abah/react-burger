@@ -18,6 +18,7 @@ const Order: FunctionComponent<IOrder> = ({ item }) => {
   const location = useLocation<TLocationState>()
   const orderId = item['_id']
   const date = sayDate(item.createdAt);
+  const user = useSelector((state) => state.getUser.user);
   const ingredients = useSelector((store) => store.ingredients.foodData);
 
   const orderIngredients = item.ingredients.map((i: string) => {
