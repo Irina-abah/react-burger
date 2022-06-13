@@ -60,36 +60,38 @@ const Profile: FunctionComponent = () => {
                   name='name' 
                   value={state.name} 
                   onChange={handleInputChange}
+                  required
                 />
             </div>
           </div>
-          {/* <input 
-            className={`${profileStyles.input}`}
-            onChange={handleInputChange} 
-            value={state.name} 
-            name={'name'}
-            placeholder={'Имя'}
-            // required
-          /> */}
         </div>
         <div className={`mb-6`}>
-          <input 
-            className={`${profileStyles.input}`}
-            onChange={handleInputChange} 
-            value={state.email} 
-            name={'email'}
-            placeholder={'Email'}
-            // required
-          />
+          <div className={profileStyles.input_container}>
+            <div className={`${profileStyles.input} pr-6 pl-6 ${profileStyles.input_size_default}`}>
+              <label className={`${profileStyles.input_placeholder} noselect text text_type_main-default`}>Email</label>
+                <input 
+                  className={`${profileStyles.input_textfield} text text_type_main-default`} 
+                  name='email' 
+                  value={state.email} 
+                  onChange={handleInputChange}
+                  required
+                />
+            </div>
+          </div>
         </div> 
         <div className={`mb-6`}>
-          <input 
-            className={`${profileStyles.input}`}
-            onChange={handleInputChange} 
-            value={state.password || ""} 
-            name={'password'}
-          />
-        </div>
+          <div className={profileStyles.input_container}>
+            <div className={`${profileStyles.input} pr-6 pl-6 ${profileStyles.input_size_default}`}>
+              <label className={`${profileStyles.input_placeholder} noselect text text_type_main-default`}>Password</label>
+                <input 
+                  className={`${profileStyles.input_textfield} text text_type_main-default`} 
+                  name='password' 
+                  value={state.password || ""} 
+                  onChange={handleInputChange} 
+                />
+            </div>
+          </div>
+        </div> 
         {isSuccess && <p>Данные успешно обновлены</p>}
         <div className={isEdit ? profileStyles.buttons : profileStyles.invisible}>
           <Button type="secondary" size="medium" onClick={onReset}>
