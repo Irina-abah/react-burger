@@ -1,5 +1,4 @@
 import { FunctionComponent, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from '../../utils/hooks';
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSE } from '../../services/actions/websocket';
 import { TOrder } from '../../utils/types';
@@ -10,7 +9,6 @@ import feedStyles from './feed.module.css';
 const Feed: FunctionComponent = () => {
 
   const dispatch = useDispatch();
-  const location = useLocation();
   const orders = useSelector((store) => store.ws.messages);
 
   useEffect(() => {

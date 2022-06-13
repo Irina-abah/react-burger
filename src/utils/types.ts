@@ -40,8 +40,8 @@ export type TApplicationActions =
 
 export type TRootState = ReturnType<typeof rootReducer>; 
 
-export type TAppThunk<TReturn = void> = ActionCreator<
-  ThunkAction<TReturn, Action, TRootState, TApplicationActions>
+export type TAppThunk<ReturnType = void> = ActionCreator<
+  ThunkAction<ReturnType, Action, TRootState, TApplicationActions>
 >;
 
 export type TAppDispatch = typeof store.dispatch;

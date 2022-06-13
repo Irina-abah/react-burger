@@ -1,6 +1,5 @@
 import { BASE_URL } from '../../utils/constants';
 import { setCookie } from '../../utils/cookie';
-import { getUser } from './get-user';
 import { checkResponse } from '../../utils/check-response';
 import { TAppDispatch } from '../../utils/types';
 import { TUserLogin, TAppThunk } from '../../utils/types';
@@ -8,6 +7,7 @@ import { TUserLogin, TAppThunk } from '../../utils/types';
 export const LOGIN_USER_REQUEST: "LOGIN_USER_REQUEST" = "LOGIN_USER_REQUEST";
 export const LOGIN_USER_SUCCESS: "LOGIN_USER_SUCCESS" = "LOGIN_USER_SUCCESS";
 export const LOGIN_USER_FAILED: "LOGIN_USER_FAILED" = "LOGIN_USER_FAILED";
+
 export interface ILoginUserAction {
   readonly type: typeof LOGIN_USER_REQUEST;
 };
@@ -31,7 +31,7 @@ function handleLoginError() {
 }
 
 export const loginUser: TAppThunk = (data: TUserLogin) => {
-  return function (dispatch) {
+  return function (dispatch: TAppDispatch) {
     dispatch({
       type: LOGIN_USER_REQUEST
     })
@@ -54,7 +54,6 @@ export const loginUser: TAppThunk = (data: TUserLogin) => {
         })
         setCookie('accessToken', res.accessToken)
         localStorage.setItem('refreshToken', res.refreshToken)
-        dispatch(getUser())
       } else {
         dispatch(handleLoginError())
       }

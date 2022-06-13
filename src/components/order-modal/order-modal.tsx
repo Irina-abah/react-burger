@@ -11,7 +11,6 @@ const OrderModal: FunctionComponent = () => {
 
   const { orderId } = useParams<{orderId: string}>();
   const { orders } = useSelector((store) => store.ws.messages);
-  console.log(orders)
   const order = orders.find((o: TOrder) => o._id === orderId);
   const ingredients = useSelector((store) => store.ingredients.foodData);
 

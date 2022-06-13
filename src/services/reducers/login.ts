@@ -20,7 +20,7 @@ const initialState: TLoginUserState = {
   },
   isAuthenticated: false,
   loginRequest: false,
-  loginFailed: false
+  loginFailed: false,
 }
 
 export const loginReducer = (state = initialState, action: TLoginUserActions): TLoginUserState=> {

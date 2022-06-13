@@ -17,7 +17,7 @@ const initialState: TRefreshTokenState = {
   tokenFailed: false
 }
 
-export const tokenReducer = (state = initialState, action: TRefreshTokenActions): TRefreshTokenState => {
+export const tokenReducer = (state = initialState, action: TRefreshTokenActions) => {
   switch (action.type) {
     case REFRESH_TOKEN_REQUEST: {
       return {

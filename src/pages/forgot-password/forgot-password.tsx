@@ -1,10 +1,10 @@
 import { useState, useCallback, ChangeEvent, FunctionComponent } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { forgotPass } from '../../services/actions/forgot-pass';
 import { useSelector, useDispatch } from '../../utils/hooks';
 import UserForm from '../user-form/user-form';
 import forgotStyles from './forgot-password.module.css';
+import EmailInput from '../../ui-elements/email-input';
 
 const ForgotPassword: FunctionComponent = () => {
 
@@ -45,15 +45,11 @@ const ForgotPassword: FunctionComponent = () => {
         linkName="Войти"
       >
         <div className={`mb-6`}>
-          <Input
-            type={'email'}
-            placeholder={'Укажите e-mail'}
-            onChange={handleInputChange}
-            value={email}
+          <EmailInput
             name={'email'}
-            error={false}
-            size={'default'}
-            // required={true}
+            label={'Укажите e-mail'}
+            value={email}
+            onChange={handleInputChange}
           />
         </div> 
       </UserForm>

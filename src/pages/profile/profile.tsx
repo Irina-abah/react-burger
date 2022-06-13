@@ -1,11 +1,13 @@
 import { useEffect, useState, FormEvent, ChangeEvent, FunctionComponent } from 'react';
-import { Input, PasswordInput, EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector, useDispatch } from '../../utils/hooks';
 import { patchUser } from '../../services/actions/patch-user';
 import { TUserMain } from '../../utils/types';
 import profileStyles from './profile.module.css';
 import ProfileMenu from '../profile-menu/profile-menu';
-
+import Input from '../../ui-elements/input';
+import PasswordInput from '../../ui-elements/password-input';
+import EmailInput from '../../ui-elements/email-input';
 
 const Profile: FunctionComponent = () => {
 
@@ -47,51 +49,35 @@ const Profile: FunctionComponent = () => {
     })
   }
 
+
   return (
     <section className={`${profileStyles.profile} pt-10`}>
       <ProfileMenu />
       <form className={`${profileStyles.inputs} mt-20`} onSubmit={onSubmit}>
         <div className={`mb-6`}>
-          <div className={profileStyles.input_container}>
-            <div className={`${profileStyles.input} pr-6 pl-6 ${profileStyles.input_size_default}`}>
-              <label className={`${profileStyles.input_placeholder} noselect text text_type_main-default`}>Имя</label>
-                <input 
-                  className={`${profileStyles.input_textfield} text text_type_main-default`} 
-                  name='name' 
-                  value={state.name} 
-                  onChange={handleInputChange}
-                  required
-                />
-            </div>
-          </div>
+          <Input
+            name='name'
+            label='Имя'
+            value={state.name}
+            onChange={handleInputChange}
+          />
         </div>
         <div className={`mb-6`}>
-          <div className={profileStyles.input_container}>
-            <div className={`${profileStyles.input} pr-6 pl-6 ${profileStyles.input_size_default}`}>
-              <label className={`${profileStyles.input_placeholder} noselect text text_type_main-default`}>Email</label>
-                <input 
-                  className={`${profileStyles.input_textfield} text text_type_main-default`} 
-                  name='email' 
-                  value={state.email} 
-                  onChange={handleInputChange}
-                  required
-                />
-            </div>
-          </div>
-        </div> 
+          <EmailInput 
+            name='email'
+            label='Email'
+            value={state.email}
+            onChange={handleInputChange}
+          />
+        </div>
         <div className={`mb-6`}>
-          <div className={profileStyles.input_container}>
-            <div className={`${profileStyles.input} pr-6 pl-6 ${profileStyles.input_size_default}`}>
-              <label className={`${profileStyles.input_placeholder} noselect text text_type_main-default`}>Password</label>
-                <input 
-                  className={`${profileStyles.input_textfield} text text_type_main-default`} 
-                  name='password' 
-                  value={state.password || ""} 
-                  onChange={handleInputChange} 
-                />
-            </div>
-          </div>
-        </div> 
+          <PasswordInput
+            name='password'
+            label='Password'
+            value={state.password}
+            onChange={handleInputChange}
+          />
+        </div>
         {isSuccess && <p>Данные успешно обновлены</p>}
         <div className={isEdit ? profileStyles.buttons : profileStyles.invisible}>
           <Button type="secondary" size="medium" onClick={onReset}>

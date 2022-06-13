@@ -1,18 +1,19 @@
 import { useState, useCallback, ChangeEvent, FunctionComponent } from 'react';
 import { Link, Redirect, useLocation } from 'react-router-dom';
-import { PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector, useDispatch } from '../../utils/hooks';
 import { loginUser } from '../../services/actions/login';
 import { TUserLogin, TLocationState } from '../../utils/types';
 import UserForm from '../user-form/user-form';
 import loginStyles from './login.module.css';
+import PasswordInput from '../../ui-elements/password-input';
+import EmailInput from '../../ui-elements/email-input';
 
 const Login: FunctionComponent = () => {
 
   const dispatch = useDispatch();
   const location = useLocation();
   const { state } = location as TLocationState;
-  const auth = useSelector((store) => store.getUser.isAuthenticated);
+  const auth = useSelector((store) => store.login.isAuthenticated);
   const [form, setForm] = useState<TUserLogin>({} as TUserLogin);
 
 
@@ -54,17 +55,18 @@ const Login: FunctionComponent = () => {
       >
         <div className={`mb-6`}>
           <EmailInput 
+            name='email'
+            label='Email'
             onChange={handleInputChange} 
             value={form.email} 
-            name={'email'}
-            // required
           />
         </div> 
         <div className={`mb-6`}>
           <PasswordInput 
-            onChange={handleInputChange} 
-            value={form.password} 
             name={'password'}
+            label='Password' 
+            value={form.password} 
+            onChange={handleInputChange}
           />
         </div>
       </UserForm>

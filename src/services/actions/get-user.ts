@@ -1,8 +1,9 @@
 import { BASE_URL } from '../../utils/constants';
 import { getCookie } from '../../utils/cookie';
-import { refreshToken } from './refresh-token';
+// import { refreshToken } from './refresh-token';
 import { checkResponse } from '../../utils/check-response';
 import { TAppDispatch, TUser, TAppThunk } from '../../utils/types';
+import { REFRESH_TOKEN_REQUEST, IRefreshTokenAction } from './refresh-token';
 
 export const GET_USER_REQUEST: "GET_USER_REQUEST" = "GET_USER_REQUEST";
 export const GET_USER_SUCCESS: "GET_USER_SUCCESS" = "GET_USER_SUCCESS";
@@ -30,8 +31,16 @@ function handleUserError() {
   }
 }
 
+export const refreshToken = (): IRefreshTokenAction => ({
+    type: REFRESH_TOKEN_REQUEST
+})
+
+export const getUserData = (): IGetUserAction => ({
+  type: GET_USER_REQUEST
+})
+
 export const getUser: TAppThunk = () => {
-  return function (dispatch) {
+  return function (dispatch: TAppDispatch) {
     dispatch({
       type: GET_USER_REQUEST
     })
@@ -57,7 +66,7 @@ export const getUser: TAppThunk = () => {
       if (err.message === "jwt expired" || err.message === "Token is invalid") {
         dispatch(handleUserError())
         dispatch(refreshToken())
-        dispatch(getUser())
+        dispatch(getUserData())
       }
     })
   }
