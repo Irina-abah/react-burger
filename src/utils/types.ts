@@ -78,7 +78,8 @@ export type TItem = Readonly<{
 export type TExtendedItem = TItem & {
   count: number,
   index?: number,
-  dragId?: number
+  dragId?: number,
+  num?: number
 };
 
 export type TLocationState = {

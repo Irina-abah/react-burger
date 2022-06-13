@@ -2,6 +2,7 @@ import { useEffect, useState, FormEvent, ChangeEvent, FunctionComponent } from '
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector, useDispatch } from '../../utils/hooks';
 import { patchUser } from '../../services/actions/patch-user';
+import { getUser } from '../../services/actions/get-user';
 import { TUserMain } from '../../utils/types';
 import profileStyles from './profile.module.css';
 import ProfileMenu from '../profile-menu/profile-menu';
@@ -13,11 +14,13 @@ const Profile: FunctionComponent = () => {
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.getUser.user);
+  // const loginUser = 
   const isSuccess = useSelector((state) => state.patchUser.isSuccess);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [state, setState] = useState<TUserMain>({} as TUserMain);
 
   useEffect(() => {
+    dispatch(getUser())
     setState(user)
   }, [])
 
@@ -57,7 +60,7 @@ const Profile: FunctionComponent = () => {
           <Input
             name='name'
             label='Имя'
-            value={state.name}
+            value={user.name || state.name}
             onChange={handleInputChange}
           />
         </div>
@@ -65,7 +68,7 @@ const Profile: FunctionComponent = () => {
           <EmailInput 
             name='email'
             label='Email'
-            value={state.email}
+            value={user.email || state.email}
             onChange={handleInputChange}
           />
         </div>

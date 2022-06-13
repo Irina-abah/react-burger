@@ -63,7 +63,7 @@ const OrderModal: FunctionComponent = () => {
               </div>
               <div className={orderModalStyles.prices}>
                 <p className={orderModalStyles.quantity + " text text_type_digits-default mr-2"}>
-                  {orderIngredients && `${item.count} x ${item.price}`}
+                  {orderIngredients && `${item.num} x ${item.price}`}
                 </p>
                 <CurrencyIcon type="primary" />
               </div>
