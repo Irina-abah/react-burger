@@ -46,32 +46,45 @@ const Profile: FunctionComponent = () => {
       password: ""
     })
   }
-  
-
 
   return (
     <section className={`${profileStyles.profile} pt-10`}>
       <ProfileMenu />
       <form className={`${profileStyles.inputs} mt-20`} onSubmit={onSubmit}>
         <div className={`mb-6`}>
-          <Input 
+          <div className={profileStyles.input_container}>
+            <div className={`${profileStyles.input} pr-6 pl-6 ${profileStyles.input_size_default}`}>
+              <label className={`${profileStyles.input_placeholder} noselect text text_type_main-default`}>Имя</label>
+                <input 
+                  className={`${profileStyles.input_textfield} text text_type_main-default`} 
+                  name='name' 
+                  value={state.name} 
+                  onChange={handleInputChange}
+                />
+            </div>
+          </div>
+          {/* <input 
+            className={`${profileStyles.input}`}
             onChange={handleInputChange} 
             value={state.name} 
             name={'name'}
             placeholder={'Имя'}
             // required
-          />
+          /> */}
         </div>
         <div className={`mb-6`}>
-          <EmailInput 
+          <input 
+            className={`${profileStyles.input}`}
             onChange={handleInputChange} 
             value={state.email} 
             name={'email'}
+            placeholder={'Email'}
             // required
           />
         </div> 
         <div className={`mb-6`}>
-          <PasswordInput 
+          <input 
+            className={`${profileStyles.input}`}
             onChange={handleInputChange} 
             value={state.password || ""} 
             name={'password'}
