@@ -19,7 +19,6 @@ const OrderPage: FunctionComponent = () => {
   const order = orders && orders.find((c: TOrder) => c._id === orderId);
   const ingredients = useSelector((store) => store.ingredients.foodData);
 
-
   const statusClassname = order && order.status === "done" ? orderModalStyles.green : "";
 
   const orderIngredients = order && order.ingredients.map((i: string) => {
@@ -34,12 +33,10 @@ const OrderPage: FunctionComponent = () => {
   )
 
   useEffect(() => {
-    const accessToken = getCookie('accessToken') as string;
-    const wsToken = accessToken.replace('Bearer ', '');
-    dispatch(
+    dispatch( 
       userPath ? ({
       type: WS_CONNECTION_START,
-      payload: `?token=${wsToken}`
+      payload: `?token=${getCookie('accessToken').replace('Bearer ', '')}`
     }) : ({
       type: WS_CONNECTION_START,
       payload: `/all`
