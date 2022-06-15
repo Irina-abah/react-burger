@@ -1,13 +1,15 @@
 import { FunctionComponent, useState } from 'react';
 import { TInputProps } from './input';
-import { ShowIcon, HideIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import styles from './input.module.css';
+import eye from '../images/eye.svg';
+import eyeOff from '../images/eye-off.svg'
 import Input from './input';
 
-const EyeOff: FunctionComponent<{ onIconClick: () => void }> = props => (
-  <HideIcon type="primary" onClick={props.onIconClick} />
+const EyeOff: FunctionComponent<{ onClick: () => void }> = props => (
+  <img src={eyeOff} className={styles.icon} onClick={props.onClick} alt="Eye" />
 );
-const Eye: FunctionComponent<{ onIconClick: () => void }> = props => (
-  <ShowIcon type="primary" onClick={props.onIconClick} />
+const Eye: FunctionComponent<{ onClick: () => void }> = props => (
+  <img src={eye} className={styles.icon} onClick={props.onClick} alt="Eye off" />
 );
 
 const PasswordInput: FunctionComponent<TInputProps> = ({type, ...props}) => {

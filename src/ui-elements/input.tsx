@@ -17,7 +17,7 @@ const Input: FunctionComponent<TInputProps> = ({
   type,
   ...props
 }) => {
-  const icon = Icon ? <div className={styles.icon} onClick={onIconClick}><Icon  /></div> : null;
+  const icon = Icon ? <Icon onClick={onIconClick} /> : null;
   return (
     <div className={styles.input_container}>
       <label className={`${styles.input_placeholder} noselect text text_type_main-default`}>{label}</label>
