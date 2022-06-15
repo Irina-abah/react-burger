@@ -1,9 +1,9 @@
-import { FunctionComponent } from "react";
-import mainStyles from "./main.module.css";
-import BurgerConstructor from "../burder-constructor/burder-constructor";
-import BurgerIngredients from "../burger-ingredients/burger-ingredients";
+import { FunctionComponent } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import mainStyles from './main.module.css';
+import BurgerConstructor from '../burder-constructor/burder-constructor';
+import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 
 const Main: FunctionComponent = () => {
   

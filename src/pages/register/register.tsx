@@ -1,16 +1,18 @@
-import { useState, useCallback, ChangeEvent } from 'react';
-import UserForm from '../user-form/user-form';
-import registerStyles from "./register.module.css";
-import { Input, PasswordInput, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useSelector, useDispatch } from 'react-redux';
-import { registerUser } from "../../services/actions/register";
+import { useState, useCallback, ChangeEvent, FunctionComponent } from 'react';
+import { useSelector, useDispatch } from '../../utils/hooks';
+import { registerUser } from '../../services/actions/register';
 import { Redirect } from 'react-router-dom';
 import { TUserMain } from '../../utils/types';
+import UserForm from '../user-form/user-form';
+import registerStyles from './register.module.css';
+import Input from '../../ui-elements/input';
+import PasswordInput from '../../ui-elements/password-input';
+import EmailInput from '../../ui-elements/email-input';
 
-function Register() {
+const Register: FunctionComponent = () => {
 
   const dispatch = useDispatch();
-  const auth = useSelector((store: any) => store.register.isAuthenticated)
+  const auth = useSelector((store) => store.register.isAuthenticated)
   const [state, setState] = useState<TUserMain>({} as TUserMain);
 
   let submit = useCallback(
@@ -52,25 +54,27 @@ function Register() {
         linkName="Войти"
       >
         <div className={`mb-6`}>
-          <Input 
-            onChange={handleInputChange} 
-            value={state.name} 
-            name={'name'}
-            placeholder={'Имя'}
+          <Input
+            name='name'
+            label='Имя'
+            value={state.name}
+            onChange={handleInputChange}
           />
         </div>
         <div className={`mb-6`}>
           <EmailInput 
-            onChange={handleInputChange} 
-            value={state.email} 
-            name={'email'}
+            name='email'
+            label='Email'
+            value={state.email}
+            onChange={handleInputChange}
           />
-        </div> 
+        </div>
         <div className={`mb-6`}>
-          <PasswordInput 
-            onChange={handleInputChange} 
-            value={state.password} 
-            name={'password'}
+          <PasswordInput
+            name='password'
+            label='Password'
+            value={state.password}
+            onChange={handleInputChange}
           />
         </div>
       </UserForm>

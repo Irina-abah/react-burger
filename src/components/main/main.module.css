@@ -3,4 +3,6 @@
   flex-direction: row;
   margin: 0 auto;
   justify-content: center;
+  max-width: 1240px;
+  width: 100%;
 }

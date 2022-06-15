@@ -1,15 +1,15 @@
-import { FunctionComponent } from "react";
-import ingredientStyles from "./ingredient-details.module.css";
-import { useSelector } from 'react-redux';
+import { FunctionComponent } from 'react';
 import { useParams } from 'react-router-dom';
-import { TItem } from '../../utils/types';
+import { useSelector } from '../../utils/hooks';
+import { TExtendedItem } from '../../utils/types';
+import ingredientStyles from './ingredient-details.module.css';
 
 const IngredientsDetails: FunctionComponent = () => {
 
-  const { ingredientId } = useParams();
-  const allItems = useSelector((store: any) => store.ingredients.foodData);
+  const { ingredientId } = useParams<{ingredientId: string}>();
+  const allItems = useSelector((store) => store.ingredients.foodData);
   const selectedItem = useSelector((store: any) => store.modal.selectedItem);
-  const ingredient = allItems.find((c: TItem) => c._id === ingredientId);
+  const ingredient = allItems.find((c: TExtendedItem) => c._id === ingredientId);
 
   const item = ingredient || selectedItem;
 

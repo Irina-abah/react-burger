@@ -1,12 +1,15 @@
-export function getCookie(name: string) {
+export function getCookie(name: string): string {
   const matches = document.cookie.match(
     new RegExp('(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)')
   );
-  return matches ? decodeURIComponent(matches[1]) : undefined;
+  return matches ? decodeURIComponent(matches[1]) : '';
 }
 
-export function setCookie(name: string, value: string | number | boolean | null, props: any) {
-  props = props || {};
+export function setCookie(name: string, value: string | number | boolean | null, props?: any) {
+  props = {
+    path: "/",
+    ...props,
+  };
   let exp = props.expires;
   if (typeof exp == 'number' && exp) {
     const d = new Date();

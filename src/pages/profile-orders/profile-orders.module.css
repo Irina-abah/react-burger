@@ -1,0 +1,15 @@
+.orders_list {
+  composes: orders_list from '../../components/feed/feed.module.css';
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.profile_orders {
+  composes: profile from '../profile/profile.module.css';
+  grid-template-columns: 320px 844px;
+}
+
+.link {
+  text-decoration: none;
+  color: #fff;
+}

@@ -1,21 +1,26 @@
-import { useEffect, useState, FormEvent, ChangeEvent } from 'react';
-import profileStyles from "./profile.module.css";
-import { Link, NavLink } from "react-router-dom";
-import { Input, PasswordInput, EmailInput, Button } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useSelector, useDispatch } from 'react-redux';
-import { logoutUser } from '../../services/actions/logout';
+import { useEffect, useState, FormEvent, ChangeEvent, FunctionComponent } from 'react';
+import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useSelector, useDispatch } from '../../utils/hooks';
 import { patchUser } from '../../services/actions/patch-user';
+import { getUser } from '../../services/actions/get-user';
 import { TUserMain } from '../../utils/types';
+import profileStyles from './profile.module.css';
+import ProfileMenu from '../profile-menu/profile-menu';
+import Input from '../../ui-elements/input';
+import PasswordInput from '../../ui-elements/password-input';
+import EmailInput from '../../ui-elements/email-input';
 
-function Profile() {
+const Profile: FunctionComponent = () => {
 
   const dispatch = useDispatch();
-  const user = useSelector((store: any) => store.getUser.user);
-  const isSuccess = useSelector((store: any) => store.getUser.isSuccess);
+  const user = useSelector((state) => state.getUser.user);
+  // const loginUser = 
+  const isSuccess = useSelector((state) => state.patchUser.isSuccess);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [state, setState] = useState<TUserMain>({} as TUserMain);
 
   useEffect(() => {
+    dispatch(getUser())
     setState(user)
   }, [])
 
@@ -46,62 +51,33 @@ function Profile() {
       password: ""
     })
   }
-  
-  const onSignOut = () => {
-    dispatch(logoutUser())
-  }
 
   return (
-    <section className={profileStyles.profile}>
-      <nav>
-        <ul className={profileStyles.nav}>
-          <li>
-            <NavLink 
-              to={{pathname: "/profile" }}
-              exact
-              className={`${profileStyles.nav_item} text_type_main-medium text_color_inactive pl-5 pr-5 mr-2`} 
-              activeClassName={profileStyles.active}>Профиль
-            </NavLink>
-          </li>
-          <li>
-            <NavLink 
-              to={{pathname: "/profile/orders" }}
-              exact 
-              className={`${profileStyles.nav_item} text_type_main-medium text_color_inactive pl-5 pr-5 mr-2`} 
-              activeClassName={profileStyles.active}>История заказов
-            </NavLink>
-          </li>
-          <li>
-            <Link 
-              to={{pathname: "/login" }}
-              className={`${profileStyles.nav_item} text_type_main-medium text_color_inactive pl-5 pr-5 mr-2`} 
-              onClick={onSignOut}>Выход
-            </Link>
-          </li>
-        </ul>
-      </nav>
-      
-      <form className={profileStyles.inputs} onSubmit={onSubmit}>
+    <section className={`${profileStyles.profile} pt-10`}>
+      <ProfileMenu />
+      <form className={`${profileStyles.inputs} mt-20`} onSubmit={onSubmit}>
         <div className={`mb-6`}>
-          <Input 
-            onChange={handleInputChange} 
-            value={state.name} 
-            name={'name'}
-            placeholder={'Имя'}
+          <Input
+            name='name'
+            label='Имя'
+            value={user.name || state.name}
+            onChange={handleInputChange}
           />
         </div>
         <div className={`mb-6`}>
           <EmailInput 
-            onChange={handleInputChange} 
-            value={state.email} 
-            name={'email'}
+            name='email'
+            label='Email'
+            value={user.email || state.email}
+            onChange={handleInputChange}
           />
-        </div> 
+        </div>
         <div className={`mb-6`}>
-          <PasswordInput 
-            onChange={handleInputChange} 
-            value={state.password || ""} 
-            name={'password'}
+          <PasswordInput
+            name='password'
+            label='Password'
+            value={state.password}
+            onChange={handleInputChange}
           />
         </div>
         {isSuccess && <p>Данные успешно обновлены</p>}

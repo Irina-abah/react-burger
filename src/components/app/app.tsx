@@ -1,7 +1,12 @@
-import React from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import { Switch, Route, useLocation, useHistory } from 'react-router-dom';
-import Header from "../app-header/app-header";
-import Main from "../main/main";
+import { CLOSE_MODAL } from '../../services/actions/modal';
+import { ProtectedRoute } from '../../pages/protected-route';
+import { useDispatch } from '../../utils/hooks';
+import { getIngredients } from '../../services/actions/ingredients';
+import { TLocationState } from '../../utils/types';
+import Header from '../app-header/app-header';
+import Main from '../main/main';
 import Login from '../../pages/login/login';
 import Register from '../../pages/register/register';
 import ForgotPassword from '../../pages/forgot-password/forgot-password';
@@ -10,15 +15,13 @@ import Profile from '../../pages/profile/profile';
 import Modal from '../modal/modal';
 import IngredientsDetails from '../ingredient-details/ingredient-details';
 import IngredientPage from '../../pages/ingredient-page/ingredient-page';
+import OrderPage from '../../pages/order-page/order-page';
+import ProfileOrders from '../../pages/profile-orders/profile-orders';
 import PageNotFound from '../../pages/not-found/not-found';
-import { CLOSE_MODAL } from "../../services/actions/ingredient-modal";
-import { ProtectedRoute } from '../../pages/protected-route';
-import { useDispatch } from 'react-redux';
-import { getIngredients } from '../../services/actions/ingredients';
-import { TLocationState } from '../../utils/types';
+import Feed from '../feed/feed';
+import OrderModal from '../order-modal/order-modal';
 
-
-function App() {
+const App: FunctionComponent = () => {
 
   const dispatch = useDispatch();
   const location = useLocation(); 
@@ -33,7 +36,7 @@ function App() {
     history.goBack(); 
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(getIngredients())
   }, [dispatch])
 
@@ -53,14 +56,26 @@ function App() {
           <Route path="/reset-password">
             <ResetPassword/>
           </Route>
-          <ProtectedRoute path="/profile">
+          <ProtectedRoute exact path="/profile">
             <Profile/>
           </ProtectedRoute>
+          <Route exact path="/profile/orders">
+            <ProfileOrders/>
+          </Route>
+          <Route path="/profile/orders/:orderId">
+            <OrderPage/>
+          </Route>
           <Route path="/ingredients/:ingredientId">
             <IngredientPage />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Main />
+          </Route>
+          <Route exact path="/feed">
+            <Feed />
+          </Route>
+          <Route path="/feed/:orderId">
+            <OrderPage />
           </Route>
           <Route path="*">
             <PageNotFound />
@@ -75,6 +90,32 @@ function App() {
               onClose={handleModalClose}
             >
             <IngredientsDetails/>
+          </Modal>
+          }
+        />
+      )}
+      {background && (
+        <Route 
+          path="/feed/:orderId"
+          children={
+            <Modal
+              title="" 
+              onClose={handleModalClose}
+            >
+            <OrderModal />
+          </Modal>
+          }
+        />
+      )}
+      {background && (
+        <ProtectedRoute 
+          path="/profile/orders/:orderId"
+          children={
+            <Modal
+              title="" 
+              onClose={handleModalClose}
+            >
+            <OrderModal />
           </Modal>
           }
         />

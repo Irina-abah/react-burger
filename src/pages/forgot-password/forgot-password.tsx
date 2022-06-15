@@ -1,16 +1,16 @@
-import { useState, useCallback, ChangeEvent } from 'react';
-import UserForm from '../user-form/user-form';
-import forgotStyles from "./forgot-password.module.css";
-import { Input } from '@ya.praktikum/react-developer-burger-ui-components';
-import { forgotPass } from '../../services/actions/forgot-pass';
-import { useSelector, useDispatch } from 'react-redux';
+import { useState, useCallback, ChangeEvent, FunctionComponent } from 'react';
 import { Redirect } from 'react-router-dom';
+import { forgotPass } from '../../services/actions/forgot-pass';
+import { useSelector, useDispatch } from '../../utils/hooks';
+import UserForm from '../user-form/user-form';
+import forgotStyles from './forgot-password.module.css';
+import EmailInput from '../../ui-elements/email-input';
 
-function ForgotPassword() {
+const ForgotPassword: FunctionComponent = () => {
 
   const [email, setEmail] = useState<string>("")
   const dispatch = useDispatch();
-  const emailSent = useSelector((store: any) => store.forgot.isEmailSent)
+  const emailSent = useSelector((state) => state.forgot.isEmailSent)
 
   let submit = useCallback(
     e => {
@@ -45,15 +45,11 @@ function ForgotPassword() {
         linkName="Войти"
       >
         <div className={`mb-6`}>
-          <Input
-            type={'email'}
-            placeholder={'Укажите e-mail'}
-            onChange={handleInputChange}
-            value={email}
+          <EmailInput
             name={'email'}
-            error={false}
-            size={'default'}
-            // required={true}
+            label={'Укажите e-mail'}
+            value={email}
+            onChange={handleInputChange}
           />
         </div> 
       </UserForm>

@@ -1,0 +1,23 @@
+.nav_item {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.active, .active path{
+  color: #fff;
+  fill: #fff;
+}
+
+.nav_item:hover path, .nav_item:hover{
+  transition: all 0.8s ease;
+  fill: #fff;
+  color: #fff;
+}
+
+.nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

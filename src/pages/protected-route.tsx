@@ -1,17 +1,18 @@
-import { Route, Redirect, RouteComponentProps } from 'react-router-dom';
 import { useEffect, useState, FunctionComponent } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { Route, Redirect, RouteProps } from 'react-router-dom';
+import { useSelector, useDispatch } from '../utils/hooks';
 import { getUser } from '../services/actions/get-user';
 
-export const ProtectedRoute: FunctionComponent<RouteComponentProps> = ({children, ...rest }) => {
-    const [isUserLoaded, setUserLoaded] = useState<boolean>(false);
-    const auth = useSelector((store: any) => store.getUser.isAuthenticated)
-    const dispatch = useDispatch();
+export const ProtectedRoute: FunctionComponent<RouteProps> = ({children, ...rest }) => {
+  const [isUserLoaded, setUserLoaded] = useState<boolean>(false);
+  const auth = useSelector((store) => store.getUser.isAuthenticated);
+  const isLoggedIn = useSelector(store => store.login.isLoggedIn);
+  const dispatch = useDispatch();
 
-    const init = async () => {
-      await dispatch(getUser());
-      setUserLoaded(true);
-    };
+  const init = async () => {
+    await dispatch(getUser());
+    setUserLoaded(true);
+  };
 
   useEffect(() => {
     init();
@@ -24,8 +25,8 @@ export const ProtectedRoute: FunctionComponent<RouteComponentProps> = ({children
     return (
     <Route
       {...rest}
-      render={({ location }: any) =>
-        auth ? (
+      render={({ location }) =>
+        auth || isLoggedIn ? (
           children
         ) : (
           <Redirect

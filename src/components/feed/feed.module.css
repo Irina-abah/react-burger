@@ -1,0 +1,34 @@
+.orders {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 60px;
+}
+
+.orders_list {
+  composes: container from '../burder-constructor/burder-constructor.module.css';
+  max-height: calc(100vh - 196px);
+  height: 100%;
+  overflow-y: auto;
+  max-width: 100%;
+}
+
+.orders_list::-webkit-scrollbar {
+  width: 8px;
+  background-color: #2F2F37;
+}
+
+.orders_list::-webkit-scrollbar-thumb {
+  background-color: #8585AD;
+}
+
+.link {
+  text-decoration: none;
+  color: #fff;
+}
+

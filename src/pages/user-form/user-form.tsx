@@ -1,7 +1,7 @@
-import { FunctionComponent, ReactNode, FormEvent } from "react";
-import { Link } from "react-router-dom";
-import userStyles from "./user-form.module.css";
+import { FunctionComponent, ReactNode, FormEvent } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@ya.praktikum/react-developer-burger-ui-components';
+import userStyles from './user-form.module.css';
 
 interface IUserFormProps {
   title: string,
