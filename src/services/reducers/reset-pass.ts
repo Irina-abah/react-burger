@@ -11,7 +11,7 @@ import {
   resetFailed: boolean;
 }
 
- const initialState: TResetPassState = {
+ export const initialState: TResetPassState = {
   resetRequest: false,
   isPasswordReset: false,
   resetFailed: false
