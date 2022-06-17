@@ -61,20 +61,6 @@ export type TUserReset = Pick<TUser, "password" | "token">;
 
 export type TUserGet = Pick<TUser, "name" | "email">;
 
-// export type TItem = Readonly<{
-//   _id: string,
-//   name: string,
-//   price: number,
-//   image: string,
-//   type: string,
-//   proteins: number,
-//   fat: number,
-//   carbohydrates: number,
-//   calories: number,
-//   image_mobile: string,
-//   image_large: string,
-// }>;
-
 export type TItem = {
   _id: string,
   name: string,
@@ -103,7 +89,7 @@ export type TLocationState = {
 
 export type TOrder = {
   _id: string,
-  status: "created" | "done" | "pending" | undefined,
+  status: string,
   number: number,
   ingredients: Array<string>,
   createdAt: string,

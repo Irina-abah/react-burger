@@ -12,6 +12,7 @@ const OrderModal: FunctionComponent = () => {
   const { orderId } = useParams<{orderId: string}>();
   const { orders } = useSelector((store) => store.ws.messages);
   const order = orders.find((o: TOrder) => o._id === orderId);
+  console.log(order)
   const ingredients = useSelector((store) => store.ingredients.foodData);
 
   const statusClassname = order && order.status === "done" ? orderModalStyles.green : "";

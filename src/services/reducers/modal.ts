@@ -13,7 +13,7 @@ type TIngredientState = {
   modalClosed: boolean;
 }
 
-const initialState: TIngredientState = {
+export const initialState: TIngredientState = {
   selectedItem: {},
   selectedOrder: {},
   modalOpened: false,
