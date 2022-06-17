@@ -60,7 +60,7 @@ const Profile: FunctionComponent = () => {
           <Input
             name='name'
             label='Имя'
-            value={user.name || state.name}
+            value={state.name || user.name}
             onChange={handleInputChange}
           />
         </div>
@@ -68,7 +68,7 @@ const Profile: FunctionComponent = () => {
           <EmailInput 
             name='email'
             label='Email'
-            value={user.email || state.email}
+            value={state.email || user.email}
             onChange={handleInputChange}
           />
         </div>

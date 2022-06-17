@@ -75,7 +75,7 @@ describe('modal reducer', () => {
     ).toEqual(expectedState)
   })
 
-  it('should handle Logout error', () => {
+  it('should handle Close Modal', () => {
     const action = {
       type: types.CLOSE_MODAL,
       item: ingredient

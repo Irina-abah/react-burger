@@ -13,7 +13,7 @@ type TRegisterUserState = {
   isAuthenticated: boolean;
 }
 
-const initialState: TRegisterUserState = {
+export const initialState: TRegisterUserState = {
   user: { 
     email: "",
     name: ""

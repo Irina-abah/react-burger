@@ -29,8 +29,6 @@ export interface IWsConnectionCloseAction {
 
 export interface IWsConnectionSuccessAction {
   readonly type: typeof WS_CONNECTION_SUCCESS;
-  readonly payload: any;
-
 }
 
 export interface IWsConnectionErrorAction {
@@ -45,12 +43,10 @@ export interface IWsGetMessageAction {
 
 export interface IWsConnectionClosedAction {
   readonly type: typeof WS_CONNECTION_CLOSED;
-  readonly payload: any;
 }
 
 export interface IWsSendMessageAction {
   readonly type: typeof WS_SEND_MESSAGE;
-  readonly payload: any;
 }
 
 export type TWebSocketActions =
