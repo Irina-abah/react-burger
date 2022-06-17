@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 import { Route, useLocation, Link } from 'react-router-dom';
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch } from '../../utils/hooks';
-import { TOrder, TExtendedItem, TLocationState } from '../../utils/types';
+import { TOrder, TItem, TLocationState } from '../../utils/types';
 import { OPEN_MODAL_ORDER } from '../../services/actions/modal';
 import { useSelector } from '../../utils/hooks';
 import { sayDate } from '../../utils/say-date';
@@ -21,7 +21,7 @@ const Order: FunctionComponent<IOrder> = ({ item }) => {
   const ingredients = useSelector((store) => store.ingredients.foodData);
 
   const orderIngredients = item.ingredients.map((i: string) => {
-    return ingredients.filter((item: TExtendedItem) => item._id === i);
+    return ingredients.filter((item: TItem) => item._id === i);
   }).flat(1);
 
   const images = () => {
@@ -37,7 +37,7 @@ const Order: FunctionComponent<IOrder> = ({ item }) => {
     : null;
 
   const totalPrice = orderIngredients.reduce(
-    function (sum: number, item: TExtendedItem) {
+    function (sum: number, item: TItem) {
         return sum + item.price
     }, 0
   )

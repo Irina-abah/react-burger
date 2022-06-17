@@ -1,6 +1,6 @@
 import { BASE_URL } from '../../utils/constants';
 import { checkResponse } from '../../utils/check-response';
-import { TAppDispatch, TExtendedItem, TAppThunk } from '../../utils/types';
+import { TAppDispatch, TItem, TAppThunk } from '../../utils/types';
 
 export const GET_INGREDIENTS_REQUEST: "GET_INGREDIENTS_REQUEST" = "GET_INGREDIENTS_REQUEST";
 export const GET_INGREDIENTS_SUCCESS: "GET_INGREDIENTS_SUCCESS" = "GET_INGREDIENTS_SUCCESS";
@@ -16,30 +16,30 @@ export interface IGetIngredientsAction {
 };
 export interface IGetIngredientsSuccessAction {
   readonly type: typeof GET_INGREDIENTS_SUCCESS;
-  foodData: Array<TExtendedItem>;
+  foodData: Array<TItem>;
 }
 export interface IGetIngredientsFailedAction {
   readonly type: typeof GET_INGREDIENTS_FAILED;
 }
 export interface IAddBunAction {
   readonly type: typeof ADD_BUN;
-  bun: TExtendedItem;
+  bun: TItem;
 }
 export interface IAddInnerItemAction {
   readonly type: typeof ADD_INNER_ITEM;
-  item: TExtendedItem;
+  item: TItem;
 }
 export interface IRemoveInnerItemAction {
   readonly type: typeof REMOVE_INNER_ITEM;
-  item: TExtendedItem;
+  item: TItem;
 }
 export interface IUpdateListAction {
   readonly type: typeof UPDATE_CONSTRUCTOR_LIST;
-  updatedItems: Array<TExtendedItem>;
+  updatedItems: Array<TItem>;
 }
 export interface IResetListAction {
   readonly type: typeof RESET_CONSTRUSTOR;
-  innerItems: Array<TExtendedItem>[];
+  innerItems: Array<TItem>[];
 }
 
 export type TGetIngredientsActions = 

@@ -1,7 +1,7 @@
 import { FunctionComponent } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from '../../utils/hooks';
-import { TExtendedItem } from '../../utils/types';
+import { TItem } from '../../utils/types';
 import ingredientPageStyles from './ingredient-page.module.css';
 import ingredientStyles from '../../components/ingredient-details/ingredient-details.module.css';
 
@@ -9,7 +9,7 @@ const IngredientPage: FunctionComponent = () => {
 
   const { ingredientId } = useParams<{ingredientId: string}>();
   const allItems = useSelector((store) => store.ingredients.foodData);
-  const ingredient = allItems.find((c: TExtendedItem) => c._id === ingredientId);
+  const ingredient = allItems.find((c: TItem) => c._id === ingredientId);
 
   return (
     <>

@@ -3,12 +3,12 @@ import { useDispatch } from 'react-redux';
 import { useDrag } from 'react-dnd';
 import { Link, useLocation } from 'react-router-dom';
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
-import { TExtendedItem } from '../../utils/types';
+import { TItem } from '../../utils/types';
 import { OPEN_MODAL } from '../../services/actions/modal';
 import ingredientStyles from './ingredient.module.css';
 
 interface IIngredient {
-  item: TExtendedItem
+  item: TItem
 }
 
 const Ingredient: FunctionComponent<IIngredient> = ({item }) => {

@@ -9,17 +9,17 @@ import {
   RESET_CONSTRUSTOR
 } from '../actions/ingredients';
 import { TGetIngredientsActions } from '../actions/ingredients';
-import { TExtendedItem } from '../../utils/types';
+import { TItem } from '../../utils/types';
 
 type TGetIngredientsState = {
-  foodData: Array<TExtendedItem>;
+  foodData: Array<TItem>;
   foodDataRequest: boolean;
   foodDataFailed: boolean;
   constructor: {
-    selectedBun: TExtendedItem | {};
-    innerItems: Array<TExtendedItem>;
+    selectedBun: TItem | {};
+    innerItems: Array<TItem>;
   };
-  selectedIngredient: TExtendedItem | {};
+  selectedIngredient: TItem | {};
 }
 
 

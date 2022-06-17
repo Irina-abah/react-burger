@@ -61,7 +61,21 @@ export type TUserReset = Pick<TUser, "password" | "token">;
 
 export type TUserGet = Pick<TUser, "name" | "email">;
 
-export type TItem = Readonly<{
+// export type TItem = Readonly<{
+//   _id: string,
+//   name: string,
+//   price: number,
+//   image: string,
+//   type: string,
+//   proteins: number,
+//   fat: number,
+//   carbohydrates: number,
+//   calories: number,
+//   image_mobile: string,
+//   image_large: string,
+// }>;
+
+export type TItem = {
   _id: string,
   name: string,
   price: number,
@@ -73,9 +87,6 @@ export type TItem = Readonly<{
   calories: number,
   image_mobile: string,
   image_large: string,
-}>;
-
-export type TExtendedItem = TItem & {
   count: number,
   index?: number,
   dragId?: number,

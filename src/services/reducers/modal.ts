@@ -4,10 +4,10 @@ import {
   OPEN_MODAL_ORDER
 } from '../actions/modal';
 import { TModalActions} from '../actions/modal';
-import { TExtendedItem, TOrder } from '../../utils/types';
+import { TItem, TOrder } from '../../utils/types';
 
 type TIngredientState = {
-  selectedItem: TExtendedItem | {};
+  selectedItem: TItem | {};
   selectedOrder: TOrder | {};
   modalOpened: boolean;
   modalClosed: boolean;

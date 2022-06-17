@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 import { useParams } from 'react-router-dom';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector } from '../../utils/hooks';
-import { TOrder, TExtendedItem } from '../../utils/types';
+import { TOrder, TItem } from '../../utils/types';
 import { sayDate } from '../../utils/say-date';
 import { countIgredients } from '../../utils/filter-count';
 import orderModalStyles from './order-modal.module.css';
@@ -17,13 +17,13 @@ const OrderModal: FunctionComponent = () => {
   const statusClassname = order && order.status === "done" ? orderModalStyles.green : "";
 
   const orderIngredients = order && order.ingredients.map((i: string) => {
-    return ingredients.filter((item: TExtendedItem) => item._id === i);
+    return ingredients.filter((item: TItem) => item._id === i);
   }).flat(1);
 
   const uniqueIngredients = countIgredients(orderIngredients || []);
   
   const totalPrice = orderIngredients?.reduce(
-    function (sum: number, item: TExtendedItem) {
+    function (sum: number, item: TItem) {
         return sum + item.price
     }, 0
   )
@@ -49,7 +49,7 @@ const OrderModal: FunctionComponent = () => {
         </div>
         <h2 className={`${orderModalStyles.title} text text_type_main-medium mb-6`}>Состав:</h2>
         <div className={orderModalStyles.ingredients}>
-          {uniqueIngredients.map((item: TExtendedItem, i: any) => (
+          {uniqueIngredients.map((item: TItem, i: any) => (
             <div className={`${orderModalStyles.ingredient} mb-4 mr-6`} key={i}>
               <div className={orderModalStyles.name_info}>
                 <div className={orderModalStyles.image} key={i}>

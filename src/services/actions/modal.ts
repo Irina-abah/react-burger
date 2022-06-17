@@ -1,4 +1,4 @@
-import { TExtendedItem, TOrder } from '../../utils/types';
+import { TItem, TOrder } from '../../utils/types';
 
 export const OPEN_MODAL: "OPEN_MODAL" = "OPEN_MODAL";
 export const CLOSE_MODAL: "CLOSE_MODAL" = "CLOSE_MODAL";
@@ -6,7 +6,7 @@ export const OPEN_MODAL_ORDER: "OPEN_MODAL_ORDER" = "OPEN_MODAL_ORDER";
 
 export interface IOpenModalAction {
   readonly type: typeof OPEN_MODAL;
-  item: TExtendedItem
+  item: TItem
 };
 export interface ICloseModalAction {
   readonly type: typeof CLOSE_MODAL;

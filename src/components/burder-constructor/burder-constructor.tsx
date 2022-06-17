@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useDrop, DropTargetMonitor } from 'react-dnd';
 import { makeOrder } from '../../services/actions/order';
 import { ADD_BUN, RESET_CONSTRUSTOR, ADD_INNER_ITEM, UPDATE_CONSTRUCTOR_LIST } from '../../services/actions/ingredients';
-import { TExtendedItem } from '../../utils/types';
+import { TItem } from '../../utils/types';
 import { useSelector, useDispatch } from '../../utils/hooks';
 import { ConstructorElement, CurrencyIcon, Button } from '@ya.praktikum/react-developer-burger-ui-components';
 import constructorStyles from './burder-constructor.module.css';
@@ -30,7 +30,7 @@ const BurgerConstructor: FunctionComponent = () => {
     collect: (monitor: DropTargetMonitor) => ({
       isHover: monitor.isOver()
     }),
-    drop(item: TExtendedItem) {
+    drop(item: TItem) {
       if (item.type === "bun") {
         dispatch({
           type: ADD_BUN,
@@ -60,7 +60,7 @@ const BurgerConstructor: FunctionComponent = () => {
   }, [innerItems, dispatch]);
 
   const totalPrice = allBurgerItems.reduce(
-    function (sum: number, item: TExtendedItem) {
+    function (sum: number, item: TItem) {
         return sum + item.price
     }, 0
   )
@@ -81,7 +81,7 @@ const BurgerConstructor: FunctionComponent = () => {
   }
 
   function handleSubmit() {
-    const items = allBurgerItems.map((item: TExtendedItem) => item._id);
+    const items = allBurgerItems.map((item: TItem) => item._id);
     if (auth) {
       dispatch(makeOrder(items))
       setIsOpen(!isOpen)
@@ -105,7 +105,7 @@ const BurgerConstructor: FunctionComponent = () => {
           />)}
         </div>
         <div className={`${constructorStyles.food_list} pr-2`}>
-          {innerItems.map((item: TExtendedItem, i: any) => (
+          {innerItems.map((item: TItem, i: any) => (
             <ConstructorItem key={item.dragId} index={i} item={item} moveCard={moveCard}/>
           ))}
         </div>
