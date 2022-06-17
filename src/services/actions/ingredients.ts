@@ -39,7 +39,7 @@ export interface IUpdateListAction {
 }
 export interface IResetListAction {
   readonly type: typeof RESET_CONSTRUSTOR;
-  innerItems: Array<TItem>[];
+  innerItems: Array<TItem>;
 }
 
 export type TGetIngredientsActions = 
