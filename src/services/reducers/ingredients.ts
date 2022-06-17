@@ -23,7 +23,7 @@ type TGetIngredientsState = {
 }
 
 
-const initialState: TGetIngredientsState = {
+export const initialState: TGetIngredientsState = {
   foodData: [],
   foodDataRequest: false,
   foodDataFailed: false,

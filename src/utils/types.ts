@@ -66,7 +66,7 @@ export type TItem = Readonly<{
   name: string,
   price: number,
   image: string,
-  type: "bun" | "main" | "sauce",
+  type: string,
   proteins: number,
   fat: number,
   carbohydrates: number,
