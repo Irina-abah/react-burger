@@ -68,7 +68,7 @@ describe('drag and drop is working', function() {
     cy.get('@order-modal').contains('Ваш заказ начали готовить');
   });
 
-  it('close modal', () => {
+  it('close order modal', () => {
     cy.get('*[class^="modal_icon"]').click();
     cy.get('*[class^="modal_container"]').should('not.exist');
   });
