@@ -33,7 +33,7 @@ const Ingredient: FunctionComponent<IIngredient> = ({item }) => {
   }
 
   return (
-    <>
+    <div id="ingredient">
     <Link
       key={ingredientId}
       to={{
@@ -54,7 +54,7 @@ const Ingredient: FunctionComponent<IIngredient> = ({item }) => {
         {item.count > 0 && <Counter count={item.count} size="default" />}
       </div>
     </Link>
-  </>
+  </div>
   )
 }
 
