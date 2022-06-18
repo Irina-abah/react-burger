@@ -49,7 +49,7 @@ describe('drag and drop is working', function() {
 
   it('auth before placing order', () => {
     cy.get('button').contains('Оформить заказ').click();
-    cy.location('pathname').should('eq', '/login');
+    cy.location('pathname').should('eq', '/react-burger/login');
   });
 
   it('enter user data', () => {
@@ -62,7 +62,7 @@ describe('drag and drop is working', function() {
 
   it('authorisation and placing order', () => {
     cy.get('button').contains('Войти').click();
-    cy.location('pathname').should('eq', '/');
+    cy.url().should('not.include', '/react-burger/login')
     cy.get('button').contains('Оформить заказ').click();
     cy.get('*[class^="modal_container"]').should('exist').as('order-modal');
     cy.get('@order-modal').contains('Ваш заказ начали готовить');
