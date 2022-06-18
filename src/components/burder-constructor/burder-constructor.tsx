@@ -119,7 +119,7 @@ const BurgerConstructor: FunctionComponent = () => {
           />)}
         </div> 
       </div>
-      <div className={`${constructorStyles.order} pr-4`}>
+      <div data-cy="submit" className={`${constructorStyles.order} pr-4`}>
         <span className={`${constructorStyles.price} text text_type_digits-medium mr-10`}>{checkPrice(totalPrice)} 
           <CurrencyIcon type="primary" />
         </span>

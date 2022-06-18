@@ -20,3 +20,7 @@
   text-decoration: none;
   color: #fff;
 }
+
+.count {
+  display: block;
+}

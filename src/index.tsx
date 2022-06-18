@@ -25,7 +25,7 @@ export const store = createStore(rootReducer, enhancer);
 
 ReactDOM.render(
   <React.StrictMode>
-     <BrowserRouter basename='/react-burger'>
+     <BrowserRouter basename='/'>
       <Provider store={store}>
         <App />
       </Provider>

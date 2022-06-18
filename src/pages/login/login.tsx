@@ -67,7 +67,7 @@ const Login: FunctionComponent = () => {
         </div> 
         <div className={`mb-6`}>
           <PasswordInput 
-            name={'password'}
+            name='password'
             label='Password' 
             value={form.password} 
             onChange={handleInputChange} 

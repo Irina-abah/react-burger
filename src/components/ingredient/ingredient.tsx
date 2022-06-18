@@ -51,7 +51,8 @@ const Ingredient: FunctionComponent<IIngredient> = ({item }) => {
           <CurrencyIcon type="primary" />
         </div>
         <h2 className={`${ingredientStyles.title} text text_type_main-default`}>{item.name}</h2>
-        {item.count > 0 && <Counter count={item.count} size="default" />}
+        <div className={ingredientStyles.count}> {item.count > 0 && <Counter  count={item.count} size="default" />}</div>
+       
       </div>
     </Link>
   </div>
