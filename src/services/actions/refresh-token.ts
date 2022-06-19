@@ -30,11 +30,15 @@ function handleTokenError() {
   }
 }
 
+export function refreshTokenRequest() {
+  return {
+    type: REFRESH_TOKEN_REQUEST
+  }
+}
+
 export const refreshToken: TAppThunk = () => {
   return function (dispatch: TAppDispatch) {
-    dispatch({
-      type: REFRESH_TOKEN_REQUEST,
-    });
+    dispatch(refreshTokenRequest());
     fetch(`${BASE_URL}/auth/token`, {
       method: "POST",
       headers: {

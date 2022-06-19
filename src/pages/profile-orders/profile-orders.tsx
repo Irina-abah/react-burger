@@ -1,5 +1,5 @@
 import { FunctionComponent, useEffect } from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
+// import { Redirect, useHistory } from 'react-router-dom';
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSE } from '../../services/actions/websocket';
 import { useSelector, useDispatch } from '../../utils/hooks';
 import { getCookie } from '../../utils/cookie';
@@ -12,7 +12,7 @@ const ProfileOrders: FunctionComponent = () => {
   const dispatch = useDispatch();
   const orders = useSelector((store) => store.ws.messages);
   const user = useSelector((state) => state.getUser.user);
-  const auth = useSelector((state) => state.getUser.isAuthenticated);
+  // const auth = useSelector((state) => state.getUser.isAuthenticated);
 
   useEffect(() => {
     if (user.name !== '' && user.email !== '') {

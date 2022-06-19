@@ -16,10 +16,6 @@ const Login: FunctionComponent = () => {
   const isLoggedIn = useSelector(store => store.login.isLoggedIn);
   const auth = useSelector((store) => store.getUser.isAuthenticated);
   const [form, setForm] = useState<TUser>({} as TUser);
-  // const [form, setForm] = useState({ 
-  //   email: '', 
-  //   password: '' 
-  // });
 
   let submit = useCallback(
     e => {

@@ -5,7 +5,7 @@ import ingredientStyles from './ingredient-details.module.css';
 
 const IngredientsDetails: FunctionComponent = () => {
 
-  const { ingredientId } = useParams<{ingredientId?: string}>();
+  const { ingredientId } = useParams<{ingredientId: string}>();
   const allItems = useSelector((store) => store.ingredients.foodData);
   const item = allItems.find((c) => c._id === ingredientId);
 

@@ -14,7 +14,6 @@ const Profile: FunctionComponent = () => {
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.getUser.user);
-  // const loginUser = 
   const isSuccess = useSelector((state) => state.patchUser.isSuccess);
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [state, setState] = useState<TUserMain>({} as TUserMain);

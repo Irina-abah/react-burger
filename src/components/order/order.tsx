@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 import { Route, useLocation, Link } from 'react-router-dom';
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch } from '../../utils/hooks';
-import { TOrder, TItem, TLocationState } from '../../utils/types';
+import { TOrder, TLocationState } from '../../utils/types';
 import { OPEN_MODAL_ORDER } from '../../services/actions/modal';
 import { useSelector } from '../../utils/hooks';
 import { sayDate } from '../../utils/say-date';

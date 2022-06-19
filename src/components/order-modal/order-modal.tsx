@@ -2,7 +2,6 @@ import { FunctionComponent } from 'react';
 import { useParams } from 'react-router-dom';
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useSelector } from '../../utils/hooks';
-import { TOrder, TItem } from '../../utils/types';
 import { sayDate } from '../../utils/say-date';
 import { countIgredients } from '../../utils/filter-count';
 import orderModalStyles from './order-modal.module.css';
@@ -11,20 +10,20 @@ const OrderModal: FunctionComponent = () => {
 
   const { orderId } = useParams<{orderId: string}>();
   const { orders } = useSelector((store) => store.ws.messages);
-  const order = orders.find((o: TOrder) => o._id === orderId);
+  const order = orders.find((o) => o._id === orderId);
   console.log(order)
   const ingredients = useSelector((store) => store.ingredients.foodData);
 
   const statusClassname = order && order.status === "done" ? orderModalStyles.green : "";
 
   const orderIngredients = order && order.ingredients.map((i: string) => {
-    return ingredients.filter((item: TItem) => item._id === i);
+    return ingredients.filter((item) => item._id === i);
   }).flat(1);
 
   const uniqueIngredients = countIgredients(orderIngredients || []);
   
   const totalPrice = orderIngredients?.reduce(
-    function (sum: number, item: TItem) {
+    function (sum: number, item) {
         return sum + item.price
     }, 0
   )

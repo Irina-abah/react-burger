@@ -2,7 +2,6 @@ import { useEffect, FunctionComponent } from 'react';
 import { useParams, useRouteMatch } from 'react-router-dom';
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useSelector, useDispatch } from '../../utils/hooks';
-import { TOrder, TItem } from "../../utils/types";
 import { sayDate } from '../../utils/say-date';
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSE } from '../../services/actions/websocket';
 import { getCookie } from '../../utils/cookie';
@@ -16,18 +15,18 @@ const OrderPage: FunctionComponent = () => {
   const { orderId } = useParams<{orderId: string}>();
   const userPath = useRouteMatch({ path: "/profile/orders" });
   const orders = useSelector((store) => store.ws.messages.orders);
-  const order = orders && orders.find((c: TOrder) => c._id === orderId);
+  const order = orders && orders.find((c) => c._id === orderId);
   const ingredients = useSelector((store) => store.ingredients.foodData);
 
   const statusClassname = order && order.status === "done" ? orderModalStyles.green : "";
 
-  const orderIngredients = order && order.ingredients.map((i: string) => {
-    return ingredients.filter((item: TItem) => item._id === i);
+  const orderIngredients = order && order.ingredients.map((i) => {
+    return ingredients.filter((item) => item._id === i);
   }).flat(1);
   const uniqueIngredients = countIgredients(orderIngredients || []);
 
   const totalPrice = orderIngredients?.reduce(
-    function (sum: number, item: TItem) {
+    function (sum: number, item) {
         return sum + item.price
     }, 0
   )
@@ -70,7 +69,7 @@ const OrderPage: FunctionComponent = () => {
         </div>
         <h2 className={`${orderModalStyles.title} text text_type_main-medium mb-6`}>Состав:</h2>
         <div className={orderModalStyles.ingredients}>
-          {uniqueIngredients.map((item: TItem, i) => (
+          {uniqueIngredients.map((item, i) => (
             <div className={`${orderModalStyles.ingredient} mb-4 mr-6`} key={i}>
               <div className={orderModalStyles.name_info}>
                 <div className={orderModalStyles.image} key={i}>
