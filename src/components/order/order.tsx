@@ -20,8 +20,8 @@ const Order: FunctionComponent<IOrder> = ({ item }) => {
   const date = sayDate(item.createdAt);
   const ingredients = useSelector((store) => store.ingredients.foodData);
 
-  const orderIngredients = item.ingredients.map((i: string) => {
-    return ingredients.filter((item: TItem) => item._id === i);
+  const orderIngredients = item.ingredients.map((i) => {
+    return ingredients.filter((item) => item._id === i);
   }).flat(1);
 
   const images = () => {
@@ -37,7 +37,7 @@ const Order: FunctionComponent<IOrder> = ({ item }) => {
     : null;
 
   const totalPrice = orderIngredients.reduce(
-    function (sum: number, item: TItem) {
+    function (sum: number, item) {
         return sum + item.price
     }, 0
   )

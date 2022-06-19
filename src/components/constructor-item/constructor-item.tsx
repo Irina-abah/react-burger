@@ -75,7 +75,6 @@ const ConstructorItem: FunctionComponent<IConstructorItem> = ({ item, index, mov
   const preventDefault = (e: SyntheticEvent) => e.preventDefault();
 
   return (
-  // <div ref={ref} style={{ opacity }} onDrop={preventDefault} data-handler-id={handlerId} className={itemStyles.food_item}>
     <div ref={ref} style={{ opacity }} onDrop={preventDefault} data-handler-id={handlerId} className={itemStyles.food_item}> 
       <DragIcon type="primary" />
       <ConstructorElement

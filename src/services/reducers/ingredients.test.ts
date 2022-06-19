@@ -205,7 +205,7 @@ describe('ingredients reducer', () => {
       ...initialState,
       constructor: {
         ...initialState.constructor,
-        selectedBun: {},
+        selectedBun: null,
         innerItems: []
       }
     };

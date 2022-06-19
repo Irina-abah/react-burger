@@ -16,7 +16,7 @@ type TGetIngredientsState = {
   foodDataRequest: boolean;
   foodDataFailed: boolean;
   constructor: {
-    selectedBun: TItem | {};
+    selectedBun: TItem | null;
     innerItems: Array<TItem>;
   };
   selectedIngredient: TItem | {};
@@ -28,7 +28,7 @@ export const initialState: TGetIngredientsState = {
   foodDataRequest: false,
   foodDataFailed: false,
   constructor: {
-    selectedBun: {},
+    selectedBun: null,
     innerItems: [],
   },
   selectedIngredient: {}
@@ -118,7 +118,7 @@ export const ingredientsReducer = (state = initialState, action: TGetIngredients
         ...state,
         constructor: {
           ...state.constructor,
-          selectedBun: {},
+          selectedBun: null,
           innerItems: []
         },
         foodData: [...state.foodData].map((item) => {

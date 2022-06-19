@@ -1,5 +1,5 @@
 import { FunctionComponent } from 'react';
-import { TOrders, TOrder } from '../../utils/types';
+import { TOrders } from '../../utils/types';
 import summaryStyles from './feed-summary.module.css';
 
 interface IOrdersSummary {
@@ -19,7 +19,7 @@ const FeedSummary: FunctionComponent<IOrdersSummary> = ({ allOrders }) => {
             Готовы:
           </p>
           <ul className={summaryStyles.list}>
-            {completedOrders.map((item: TOrder) => (
+            {completedOrders.map((item) => (
               <li key={item._id}>
                 <p className={`${summaryStyles.number} text text_type_digits-default`}>
                   {item.number}
@@ -33,7 +33,7 @@ const FeedSummary: FunctionComponent<IOrdersSummary> = ({ allOrders }) => {
             В работе:
           </p>
           <ul className={summaryStyles.list}>
-            {progressOrders.map((item: TOrder) => (
+            {progressOrders.map((item) => (
               <li key={item._id}>
                 <p className="text text_type_digits-default">
                   {item.number}

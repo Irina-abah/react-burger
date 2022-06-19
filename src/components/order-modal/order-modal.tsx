@@ -50,7 +50,7 @@ const OrderModal: FunctionComponent = () => {
         </div>
         <h2 className={`${orderModalStyles.title} text text_type_main-medium mb-6`}>Состав:</h2>
         <div className={orderModalStyles.ingredients}>
-          {uniqueIngredients.map((item: TItem, i: any) => (
+          {uniqueIngredients.map((item, i) => (
             <div className={`${orderModalStyles.ingredient} mb-4 mr-6`} key={i}>
               <div className={orderModalStyles.name_info}>
                 <div className={orderModalStyles.image} key={i}>

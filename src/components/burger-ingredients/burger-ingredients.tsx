@@ -33,7 +33,7 @@ const BurgerIngredients: FunctionComponent = () => {
     }
   };
 
-  const onTab = (selectedTab: any) => {
+  const onTab = (selectedTab: string): void => {
     setCurrent(selectedTab);
 
     if (selectedTab === "buns") {

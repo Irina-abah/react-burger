@@ -17,7 +17,7 @@ const BurgerConstructor: FunctionComponent = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { innerItems } = useSelector((store) => store.ingredients.constructor);
-  const { selectedBun } = useSelector((store: any) => store.ingredients.constructor);
+  const { selectedBun } = useSelector((store) => store.ingredients.constructor);
   const auth = useSelector((store) => store.login.isLoggedIn);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -60,7 +60,7 @@ const BurgerConstructor: FunctionComponent = () => {
   }, [innerItems, dispatch]);
 
   const totalPrice = allBurgerItems.reduce(
-    function (sum: number, item: TItem) {
+    function (sum: number, item) {
         return sum + item.price
     }, 0
   )
@@ -81,7 +81,7 @@ const BurgerConstructor: FunctionComponent = () => {
   }
 
   function handleSubmit() {
-    const items = allBurgerItems.map((item: TItem) => item._id);
+    const items = allBurgerItems.map((item) => item._id);
     if (auth) {
       dispatch(makeOrder(items))
       setIsOpen(!isOpen)
@@ -96,7 +96,7 @@ const BurgerConstructor: FunctionComponent = () => {
     <div ref={dropTargerRef} className={`${constructorStyles.container} mt-15 pl-4 ${isHover ? constructorStyles.hover : ''}`}>
       <div className={`${constructorStyles.wrapper} mb-10`}>
         <div className={`pr-4`}>
-          {selectedBun.type &&(<ConstructorElement
+          {selectedBun && (<ConstructorElement
             type="top"
             isLocked={true}
             text={`${selectedBun.name} (верх)`}
@@ -105,12 +105,12 @@ const BurgerConstructor: FunctionComponent = () => {
           />)}
         </div>
         <div className={`${constructorStyles.food_list} pr-2`}>
-          {innerItems.map((item: TItem, i: any) => (
+          {innerItems.map((item, i) => (
             <ConstructorItem key={item.dragId} index={i} item={item} moveCard={moveCard}/>
           ))}
         </div>
         <div className={`pr-4`}>
-          {selectedBun.type && (<ConstructorElement
+          {selectedBun && (<ConstructorElement
             type="bottom"
             isLocked={true}
             text={`${selectedBun.name} (низ)`}
@@ -123,7 +123,7 @@ const BurgerConstructor: FunctionComponent = () => {
         <span className={`${constructorStyles.price} text text_type_digits-medium mr-10`}>{checkPrice(totalPrice)} 
           <CurrencyIcon type="primary" />
         </span>
-        {selectedBun.type && <Button type="primary" size="large" onClick={handleSubmit}>
+        {selectedBun && <Button type="primary" size="large" onClick={handleSubmit}>
           Оформить заказ 
         </Button>} 
       </div>
