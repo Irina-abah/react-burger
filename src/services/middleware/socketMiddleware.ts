@@ -14,9 +14,6 @@ export const socketMiddleware = (wsUrl: string, wsActions: TWsActions ): Middlew
       if (type === wsStart) {
         socket = new WebSocket(`${wsUrl}${payload}`);
       }
-      // if (type === wsStart && isAuthenticated) {
-      //   socket = new WebSocket(`${wsUrl}${payload}`);
-      // }
       if (type === wsClose) {
         socket?.close();
       }

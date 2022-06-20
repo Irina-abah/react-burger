@@ -11,7 +11,7 @@ import {
   forgotFailed: boolean;
 } 
 
- const initialState: TForgotPassState = {
+ export const initialState: TForgotPassState = {
   forgotRequest: false,
   isEmailSent: false,
   forgotFailed: false

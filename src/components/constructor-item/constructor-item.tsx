@@ -4,11 +4,11 @@ import { useDrop, useDrag, DropTargetMonitor } from 'react-dnd';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useDispatch } from '../../utils/hooks';
 import { REMOVE_INNER_ITEM } from '../../services/actions/ingredients';
-import { TExtendedItem } from '../../utils/types';
+import { TItem } from '../../utils/types';
 import itemStyles from './constructor-item.module.css';
 
 interface IConstructorItem {
-  item: TExtendedItem,
+  item: TItem,
   index: number,
   moveCard: (dragIndex: number, hoverIndex: number) => void
 }
@@ -23,7 +23,7 @@ const ConstructorItem: FunctionComponent<IConstructorItem> = ({ item, index, mov
   const ref = useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
 
-  function deleteIngredient(item: TExtendedItem) {
+  function deleteIngredient(item: TItem) {
     dispatch({
       type: REMOVE_INNER_ITEM,
       item: item,
@@ -75,7 +75,6 @@ const ConstructorItem: FunctionComponent<IConstructorItem> = ({ item, index, mov
   const preventDefault = (e: SyntheticEvent) => e.preventDefault();
 
   return (
-  // <div ref={ref} style={{ opacity }} onDrop={preventDefault} data-handler-id={handlerId} className={itemStyles.food_item}>
     <div ref={ref} style={{ opacity }} onDrop={preventDefault} data-handler-id={handlerId} className={itemStyles.food_item}> 
       <DragIcon type="primary" />
       <ConstructorElement

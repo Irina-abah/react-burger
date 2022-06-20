@@ -18,7 +18,7 @@ type TMakeOrderState = {
   orderGetFailed: boolean
 }
 
-const initialState: TMakeOrderState = {
+export const initialState: TMakeOrderState = {
   number: null,
   orderMakeRequest: false,
   orderMakeFailed: false,

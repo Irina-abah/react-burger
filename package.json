@@ -2,6 +2,7 @@
   "name": "react-burger",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://irina-abah.github.io/react-burger/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.15.0",
@@ -12,6 +13,7 @@
     "@types/react": "^17.0.34",
     "@types/react-dom": "^17.0.11",
     "@ya.praktikum/react-developer-burger-ui-components": "^1.12.0",
+    "gh-pages": "^4.0.0",
     "react": "^16.8.6",
     "react-dnd": "^16.0.0",
     "react-dnd-html5-backend": "^16.0.0",
@@ -31,7 +33,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress:open": "./node_modules/.bin/cypress open",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build"
   },
   "eslintConfig": {
     "extends": [
@@ -52,8 +57,16 @@
     ]
   },
   "devDependencies": {
+    "@types/enzyme": "^3.10.12",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/react-router-dom": "^5.3.3",
     "@types/react-router-hash-link": "^2.4.5",
-    "@types/uuid": "^8.3.4"
+    "@types/uuid": "^8.3.4",
+    "cypress": "^10.1.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "eslint-plugin-cypress": "^2.12.1",
+    "fetch-mock": "^9.11.0",
+    "redux-mock-store": "^1.5.4"
   }
 }

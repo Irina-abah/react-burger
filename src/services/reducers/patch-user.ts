@@ -13,7 +13,7 @@ type TPatchUserState = {
   patchUserFailed: boolean;
 } 
 
-const initialState: TPatchUserState = {
+export const initialState: TPatchUserState = {
   user: { 
     email: "",
     name: ""

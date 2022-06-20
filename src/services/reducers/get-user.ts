@@ -13,7 +13,7 @@ type TGetUserState = {
   getUserFailed: boolean;
 } 
 
-const initialState: TGetUserState = {
+export const initialState: TGetUserState = {
   user: { 
     email: "",
     name: ""
@@ -45,7 +45,7 @@ export const getUserReducer = (state = initialState, action: TGetUserActions) =>
         ...state,
         isAuthenticated: false,
         getUserRequest: false,
-        getUserFailed: true,
+        getUserFailed: true
       }
     }
     default: {

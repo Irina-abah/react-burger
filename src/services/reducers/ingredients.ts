@@ -9,26 +9,26 @@ import {
   RESET_CONSTRUSTOR
 } from '../actions/ingredients';
 import { TGetIngredientsActions } from '../actions/ingredients';
-import { TExtendedItem } from '../../utils/types';
+import { TItem } from '../../utils/types';
 
 type TGetIngredientsState = {
-  foodData: Array<TExtendedItem>;
+  foodData: Array<TItem>;
   foodDataRequest: boolean;
   foodDataFailed: boolean;
   constructor: {
-    selectedBun: TExtendedItem | {};
-    innerItems: Array<TExtendedItem>;
+    selectedBun: TItem | null;
+    innerItems: Array<TItem>;
   };
-  selectedIngredient: TExtendedItem | {};
+  selectedIngredient: TItem | {};
 }
 
 
-const initialState: TGetIngredientsState = {
+export const initialState: TGetIngredientsState = {
   foodData: [],
   foodDataRequest: false,
   foodDataFailed: false,
   constructor: {
-    selectedBun: {},
+    selectedBun: null,
     innerItems: [],
   },
   selectedIngredient: {}
@@ -118,7 +118,7 @@ export const ingredientsReducer = (state = initialState, action: TGetIngredients
         ...state,
         constructor: {
           ...state.constructor,
-          selectedBun: {},
+          selectedBun: null,
           innerItems: []
         },
         foodData: [...state.foodData].map((item) => {

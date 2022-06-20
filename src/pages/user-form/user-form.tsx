@@ -13,7 +13,7 @@ interface IUserFormProps {
   linkName: string
 }
 
-const UserForm: FunctionComponent<IUserFormProps> = ({title, onSubmit, children, buttonName, message, link, linkName}) => {
+const UserForm: FunctionComponent<IUserFormProps> = ({ title, onSubmit, children, buttonName, message, link, linkName }) => {
 
   return (
     <form 

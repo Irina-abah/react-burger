@@ -1,7 +1,6 @@
 import { FunctionComponent, useEffect } from 'react';
 import { useSelector, useDispatch } from '../../utils/hooks';
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSE } from '../../services/actions/websocket';
-import { TOrder } from '../../utils/types';
 import FeedSummary from '../feed-summary/feed-summary';
 import Order from '../order/order';
 import feedStyles from './feed.module.css';
@@ -29,7 +28,7 @@ const Feed: FunctionComponent = () => {
       <h1 className={`text text_type_main-large mb-5`}>Лента заказов</h1> 
       <div className={feedStyles.container}>
         <div className={`${feedStyles.orders_list}`}>
-          {orders.orders.map((item: TOrder, i: any) => (
+          {orders.orders.map((item, i) => (
             <Order item={item} key={i}/>
           ))}
         </div>

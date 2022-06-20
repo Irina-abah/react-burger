@@ -13,7 +13,7 @@ type TLoginUserState = {
   loginFailed: boolean;
 }
 
-const initialState: TLoginUserState = {
+export const initialState: TLoginUserState = {
   user: { 
     email: "",
     name: ""

@@ -1,6 +1,6 @@
 import { BASE_URL } from '../../utils/constants';
 import { getCookie } from '../../utils/cookie';
-import { refreshToken } from './refresh-token';
+import { refreshTokenRequest } from './refresh-token';
 import { checkResponse } from '../../utils/check-response';
 import { TAppDispatch } from '../../utils/types';
 import { TUserMain, TAppThunk } from '../../utils/types';
@@ -30,6 +30,10 @@ function handlePatchError() {
     type: PATCH_USER_FAILED
   }
 }
+
+const patchUserRequest = (): IPatchUserAction => ({
+  type: PATCH_USER_REQUEST
+})
 
 export const patchUser: TAppThunk = (data: TUserMain) => {
   return function (dispatch: TAppDispatch) {
@@ -63,8 +67,8 @@ export const patchUser: TAppThunk = (data: TUserMain) => {
       console.log(err.message)
       if (err.message === "jwt expired" || err.message === "Token is invalid") {
         dispatch(handlePatchError())
-        // dispatch(refreshToken())
-        // dispatch(patchUser(data))
+        dispatch(refreshTokenRequest())
+        dispatch(patchUserRequest())
       }
     })
   }

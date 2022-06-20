@@ -11,7 +11,7 @@ interface IModal {
   title: string
 }
 
-const Modal: FunctionComponent<IModal> = ({onClose, title, children}) => {
+const Modal: FunctionComponent<IModal> = ({ onClose, title, children }) => {
 
   function handleClick() {
       onClose()
@@ -32,16 +32,16 @@ const Modal: FunctionComponent<IModal> = ({onClose, title, children}) => {
 
   return createPortal(
     <>
-    <ModalOverlay onClose={handleClick}/>
-    <div className={`${modalStyles.container} p-10`}>
-    <div className={modalStyles.header}>
-      <h2 className={`${modalStyles.title} text text_type_main-large`}>{title}</h2>
-      <div className={modalStyles.icon}>
-        <CloseIcon type="primary" onClick={onClose}/>
+      <ModalOverlay onClose={handleClick}/>
+      <div className={`${modalStyles.container} p-10`}>
+      <div className={modalStyles.header}>
+        <h2 className={`${modalStyles.title} text text_type_main-large`}>{title}</h2>
+        <div className={modalStyles.icon}>
+          <CloseIcon type="primary" onClick={onClose}/>
+        </div>
       </div>
-    </div>
-      {children}
-    </div>
+        {children}
+      </div>
     </>, modalRoot
   ) 
 }

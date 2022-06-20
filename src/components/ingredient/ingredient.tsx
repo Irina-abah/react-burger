@@ -1,17 +1,17 @@
 import { FunctionComponent } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../utils/hooks';
 import { useDrag } from 'react-dnd';
 import { Link, useLocation } from 'react-router-dom';
 import { CurrencyIcon, Counter } from '@ya.praktikum/react-developer-burger-ui-components';
-import { TExtendedItem } from '../../utils/types';
+import { TItem } from '../../utils/types';
 import { OPEN_MODAL } from '../../services/actions/modal';
 import ingredientStyles from './ingredient.module.css';
 
 interface IIngredient {
-  item: TExtendedItem
+  item: TItem
 }
 
-const Ingredient: FunctionComponent<IIngredient> = ({item }) => {
+const Ingredient: FunctionComponent<IIngredient> = ({ item }) => {
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const Ingredient: FunctionComponent<IIngredient> = ({item }) => {
   }
 
   return (
-    <>
+    <div id="ingredient">
     <Link
       key={ingredientId}
       to={{
@@ -51,10 +51,11 @@ const Ingredient: FunctionComponent<IIngredient> = ({item }) => {
           <CurrencyIcon type="primary" />
         </div>
         <h2 className={`${ingredientStyles.title} text text_type_main-default`}>{item.name}</h2>
-        {item.count > 0 && <Counter count={item.count} size="default" />}
+        <div className={ingredientStyles.count}> {item.count > 0 && <Counter count={item.count} size="default" />}</div>
+       
       </div>
     </Link>
-  </>
+  </div>
   )
 }
 
